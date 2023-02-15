@@ -64,11 +64,6 @@ namespace EvaluationSystemServer
         /// </summary>
         public DbSet<JobApplicationEntity> JobApplications { get; set; }
 
-        /// <summary>
-        /// The applications
-        /// </summary>
-        public DbSet<JobApplicationEntity> Applications { get; set; }
-
         #endregion
 
         #region Constructors
