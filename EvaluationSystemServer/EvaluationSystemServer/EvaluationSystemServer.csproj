@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="DataModels\ResponseModels\" />
-    <Folder Include="DataModels\RequestModels\" />
     <Folder Include="DataModels\Repositories\" />
   </ItemGroup>
 

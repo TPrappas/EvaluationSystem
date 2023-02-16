@@ -1,6 +1,6 @@
-﻿namespace EvaluationSystemServer.DataModels.ResponseModels.Jobs
+﻿namespace EvaluationSystemServer
 {
-    public class JobApplicationResponseModel
+    public class JobApplicationResponseModel : BaseResponseModel
     {
         #region Public Properties
 
