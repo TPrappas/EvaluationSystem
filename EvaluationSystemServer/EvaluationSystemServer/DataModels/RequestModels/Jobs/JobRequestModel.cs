@@ -1,8 +1,8 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class JobResponseModel : BaseResponseModel
+    public class JobRequestModel : BaseRequestModel
     {
-        #region Public Properties
+        #region Public Constructors
 
         /// <summary>
         /// The name
@@ -29,16 +29,6 @@
         /// </summary>
         public DateTimeOffset SubmissionEnd { get; set; }
 
-        /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="CompanyEntity"/>
-        /// </summary>
-        public int CompanyId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="CompanyEntity"/>
-        /// </summary>
-        public CompanyEntity Company { get; set; }
-
         #endregion
 
         #region Constructors
@@ -46,12 +36,11 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobResponseModel()
-        {
-
+        public JobRequestModel() 
+        { 
+        
         }
 
         #endregion
-
     }
 }
