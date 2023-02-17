@@ -116,5 +116,23 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="UserEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static UserEntity FromRequestModel(UserRequestModel model) 
+            => ControllerHelpers.FromRequestModel<UserEntity, UserRequestModel>(model);
+
+        /// <summary>
+        /// Creates and returns a <see cref="UserResponseModel"/> from the current <see cref="UserEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public UserResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<UserEntity, UserResponseModel>(this);
+
+        #endregion
+
     }
 }

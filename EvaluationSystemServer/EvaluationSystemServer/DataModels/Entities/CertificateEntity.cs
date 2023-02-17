@@ -53,5 +53,23 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="CertificateEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static CertificateEntity FromRequestModel(CertificateRequestModel model)
+            => ControllerHelpers.FromRequestModel<CertificateEntity, CertificateRequestModel>(model);
+
+        /// <summary>
+        /// Creates and returns a <see cref="CertificateResponseModel"/> from the current <see cref="CertificateEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public CertificateResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<CertificateEntity, CertificateResponseModel>(this);
+
+        #endregion
+
     }
 }

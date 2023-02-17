@@ -40,9 +40,40 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity Employee { get; set; }    
+        public UserEntity Employee { get; set; }
 
         #endregion
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ProjectEntity() 
+        { 
+        
+        }
+
+        #endregion
+
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="ProjectEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model">The model</param>
+        /// <returns></returns>
+        public static ProjectEntity FromRequestModel(ProjectRequestModel model)
+            => ControllerHelpers.FromRequestModel<ProjectEntity, ProjectRequestModel>(model);
+
+        /// <summary>
+        /// Creates and returns a <see cref="ProjectResponseModel"/> from the current <see cref="ProjectEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public ProjectResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<ProjectEntity, ProjectResponseModel>(this);
 
         #endregion
 

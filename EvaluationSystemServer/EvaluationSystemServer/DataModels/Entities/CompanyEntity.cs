@@ -79,5 +79,22 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="CompanyEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model">The model</param>
+        /// <returns></returns>
+        public static CompanyEntity FromRequestModel(CompanyRequestModel model)
+            => ControllerHelpers.FromRequestModel<CompanyEntity, CompanyRequestModel>(model);
+
+        /// <summary>
+        /// Creates and returns a <see cref="CompanyResponseModel"/> from the current <see cref="CompanyEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public CompanyResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<CompanyEntity, CompanyResponseModel>(this);
+
+        #endregion
     }
 }
