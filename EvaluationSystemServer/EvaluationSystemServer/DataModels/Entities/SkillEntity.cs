@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EvaluationSystemServer.DataModels.RequestModels;
+using EvaluationSystemServer.DataModels.ResponseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +37,24 @@ namespace EvaluationSystemServer
         { 
         
         }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="SkillEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static SkillEntity FromRequestModel(SkillRequestModel model)
+            => ControllerHelpers.FromRequestModel<SkillEntity, SkillRequestModel>(model);
+
+        /// <summary>
+        /// Creates and returns a <see cref="SkillResponseModel"/> from the current <see cref="SkillEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public SkillResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<SkillEntity, SkillResponseModel>(this);
 
         #endregion
     }
