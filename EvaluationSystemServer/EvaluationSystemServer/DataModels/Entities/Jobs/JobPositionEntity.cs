@@ -53,5 +53,19 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="JobPositionEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="jobId">the job's id</param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static JobPositionEntity FromRequestModel(int jobId, JobPositionEntity model)
+            => ControllerHelpers.FromRequestModel(model, (JobPositionEntity entity) => { entity.JobId = jobId; });
+
+
+        #endregion
+
     }
 }

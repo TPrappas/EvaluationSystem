@@ -89,11 +89,7 @@ namespace EvaluationSystemServer
         public static CompanyEntity FromRequestModel(CompanyRequestModel model)
             => ControllerHelpers.FromRequestModel<CompanyEntity, CompanyRequestModel>(model);
 
-        /// <summary>
-        /// Creates and returns a <see cref="CompanyResponseModel"/> from the current <see cref="CompanyEntity"/>
-        /// </summary>
-        /// <returns></returns>
-        public CompanyResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<CompanyEntity, CompanyResponseModel>(this);
+
 
         #endregion
     }

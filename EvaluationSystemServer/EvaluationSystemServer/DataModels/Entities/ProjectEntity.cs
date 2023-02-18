@@ -64,16 +64,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Creates and returns a <see cref="ProjectEntity"/> from the specified <paramref name="model"/>
         /// </summary>
-        /// <param name="model">The model</param>
+        /// <param name="employeeId">The (user) employee's id</param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public static ProjectEntity FromRequestModel(ProjectRequestModel model)
-            => ControllerHelpers.FromRequestModel<ProjectEntity, ProjectRequestModel>(model);
+        public static ProjectEntity FromRequestModel(int employeeId, ProjectRequestModel model)
+            => ControllerHelpers.FromRequestModel(model, (ProjectEntity entity) => { entity.EmployeeId = employeeId; });
 
-        /// <summary>
-        /// Creates and returns a <see cref="ProjectResponseModel"/> from the current <see cref="ProjectEntity"/>
-        /// </summary>
-        /// <returns></returns>
-        public ProjectResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<ProjectEntity, ProjectResponseModel>(this);
 
         #endregion
 

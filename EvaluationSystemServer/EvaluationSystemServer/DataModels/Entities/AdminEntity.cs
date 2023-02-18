@@ -33,5 +33,17 @@ namespace EvaluationSystemServer
         }
 
         #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="AdminEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static AdminEntity FromRequestModel(AdminRequestModel model)
+            => ControllerHelpers.FromRequestModel<AdminEntity, AdminRequestModel>(model);
+
+        #endregion
     }
 }
