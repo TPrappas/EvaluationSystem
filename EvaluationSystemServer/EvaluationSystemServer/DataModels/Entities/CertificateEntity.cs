@@ -63,12 +63,6 @@ namespace EvaluationSystemServer
         public static CertificateEntity FromRequestModel(CertificateRequestModel model)
             => ControllerHelpers.FromRequestModel<CertificateEntity, CertificateRequestModel>(model);
 
-        /// <summary>
-        /// Creates and returns a <see cref="CertificateResponseModel"/> from the current <see cref="CertificateEntity"/>
-        /// </summary>
-        /// <returns></returns>
-        public CertificateResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<CertificateEntity, CertificateResponseModel>(this);
-
         #endregion
 
     }

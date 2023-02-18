@@ -70,6 +70,14 @@ namespace EvaluationSystemServer
 
         #region Public Methods
 
+        /// <summary>
+        /// Creates and returns a <see cref="JobEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="companyId">The company's id</param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static JobEntity FromRequestModel(int companyId, JobRequestModel model)
+            => ControllerHelpers.FromRequestModel(model, (JobEntity entity) => { entity.CompanyId = companyId; });
 
 
 

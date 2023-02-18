@@ -47,5 +47,19 @@ namespace EvaluationSystemServer
         }
 
         #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="UserSkillEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="userId">The user's id</param>
+        /// <param name="skillId">The skill's id</param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static UserSkillEntity FromRequest(int userId, int skillId, UserSkillRequestModel model)
+            => ControllerHelpers.FromRequestModel(model, (UserSkillEntity entity) => { entity.UserId = userId; entity.SkillId = skillId; });
+
+        #endregion
     }
 }

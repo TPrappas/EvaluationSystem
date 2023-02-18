@@ -50,11 +50,6 @@ namespace EvaluationSystemServer
         public static SkillEntity FromRequestModel(SkillRequestModel model)
             => ControllerHelpers.FromRequestModel<SkillEntity, SkillRequestModel>(model);
 
-        /// <summary>
-        /// Creates and returns a <see cref="SkillResponseModel"/> from the current <see cref="SkillEntity"/>
-        /// </summary>
-        /// <returns></returns>
-        public SkillResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<SkillEntity, SkillResponseModel>(this);
 
         #endregion
     }
