@@ -60,6 +60,14 @@ namespace EvaluationSystemServer
         public static UserCertificateEntity FromRequestModel(int userId, int certificateId, UserCertificateEntity model)
             => ControllerHelpers.FromRequestModel(model, (UserCertificateEntity entity) => { entity.UserId = userId; entity.CertificateId = certificateId; });
 
+        /// <summary>
+        /// Creates and returns a <see cref="UserCertificateResponseModel"/> from the current <see cref="UserCertificateEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public UserCertificateResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<UserCertificateEntity, UserCertificateResponseModel>(this);
+
+
         #endregion
 
     }

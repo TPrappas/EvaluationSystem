@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class AdminResponseModel
+    public class AdminResponseModel : BaseResponseModel
     {
         #region Public Properties
 
