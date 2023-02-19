@@ -133,9 +133,9 @@ namespace EvaluationSystemServer
         /// Creates and returns a <see cref="UserResponseModel"/> from the current <see cref="UserEntity"/>
         /// </summary>
         /// <returns></returns>
-        public UserResponseModel ToResponseModel() => ControllerHelpers.ToResponseModel<UserEntity, UserResponseModel>(this);
+        public UserResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<UserEntity, UserResponseModel>(this);
 
         #endregion
-
     }
 }

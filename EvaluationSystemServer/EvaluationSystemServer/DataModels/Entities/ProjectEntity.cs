@@ -70,6 +70,13 @@ namespace EvaluationSystemServer
         public static ProjectEntity FromRequestModel(int employeeId, ProjectRequestModel model)
             => ControllerHelpers.FromRequestModel(model, (ProjectEntity entity) => { entity.EmployeeId = employeeId; });
 
+        /// <summary>
+        /// Creates and returns a <see cref="ProjectResponseModel"/> from the current <see cref="ProjectEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public ProjectResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<ProjectEntity, ProjectResponseModel>(this);
+
 
         #endregion
 

@@ -44,6 +44,13 @@ namespace EvaluationSystemServer
         public static AdminEntity FromRequestModel(AdminRequestModel model)
             => ControllerHelpers.FromRequestModel<AdminEntity, AdminRequestModel>(model);
 
+        /// <summary>
+        /// Creates and returns a <see cref="AdminResponseModel"/> from the current <see cref="AdminEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public AdminResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<AdminEntity, AdminResponseModel>(this);
+
         #endregion
     }
 }

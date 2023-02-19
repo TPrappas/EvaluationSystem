@@ -79,7 +79,12 @@ namespace EvaluationSystemServer
         public static JobEntity FromRequestModel(int companyId, JobRequestModel model)
             => ControllerHelpers.FromRequestModel(model, (JobEntity entity) => { entity.CompanyId = companyId; });
 
-
+        /// <summary>
+        /// Creates and returns a <see cref="JobResponseModel"/> from the current <see cref="JobEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public JobResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<JobEntity, JobResponseModel>(this);
 
         #endregion
 
