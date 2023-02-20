@@ -1,4 +1,4 @@
-﻿namespace EvaluationSystemServer.DataModels.ResponseModels
+﻿namespace EvaluationSystemServer
 {
     public class SkillResponseModel : BaseResponseModel
     {
