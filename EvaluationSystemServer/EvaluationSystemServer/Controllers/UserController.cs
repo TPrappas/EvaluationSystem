@@ -35,11 +35,11 @@ namespace EvaluationSystemServer
         /// Post home/users
         [HttpPost]
         [Route(Routes.UsersRoute)]
-        public Task<ActionResult<UserResponseModel>> CreateUserAsync([FromBody] UserRequestModel model)
+        public Task<ActionResult<UserResponseModel>> CreateUserAsync([FromBody] int companyId, int jobPositionId, UserRequestModel model)
             => ControllerHelpers.PostAsync<UserEntity, UserResponseModel>(
                 mContext,
                 mContext.Users,
-                UserEntity.FromRequestModel(model),
+                UserEntity.FromRequestModel(companyId, jobPositionId, model),
                 x => x.ToResponseModel());
 
         /// <summary>

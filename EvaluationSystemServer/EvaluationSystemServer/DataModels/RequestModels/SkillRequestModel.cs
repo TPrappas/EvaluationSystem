@@ -1,4 +1,4 @@
-﻿namespace EvaluationSystemServer.DataModels.RequestModels
+﻿namespace EvaluationSystemServer
 {
     public class SkillRequestModel : BaseRequestModel
     {

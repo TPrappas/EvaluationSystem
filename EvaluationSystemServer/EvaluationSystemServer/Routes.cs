@@ -8,11 +8,12 @@
         /// <summary>
         /// The home route
         /// </summary>
-        public const string HomeRoute = "home";
+        public const string HomeRoute = "api";
 
         #region Admin Routes
 
         public const string AdminsRoute = HomeRoute + "/admins";
+
         public const string AdminRoute = AdminsRoute + "/{adminId}";
 
         #endregion
