@@ -55,7 +55,7 @@ namespace EvaluationSystemServer
                 x => true);
 
         /// <summary>
-        /// Gets the user with the specified id from the database if exists...
+        /// Gets the skill with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
         /// <param name="skillId">The skills's id</param>
@@ -75,14 +75,14 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Updates the user with the specified id
+        /// Updates the skill with the specified id
         /// </summary>
         /// <param name="skillId">The skills's id</param>
         /// <param name="model">The skill request model</param>
-        /// Put /api/admins/{adminId}
+        /// Put /api/skill/{skillId}
         [HttpPut]
-        [Route(Routes.AdminRoute)]
-        public Task<ActionResult<SkillResponseModel>> UpdateSkillAsync([FromRoute] int skillId, [FromBody] AdminRequestModel model)
+        [Route(Routes.SkillRoute)]
+        public Task<ActionResult<SkillResponseModel>> UpdateSkillAsync([FromRoute] int skillId, [FromBody] SkillRequestModel model)
         {
             return ControllerHelpers.PutAsync<SkillRequestModel, SkillEntity, SkillResponseModel>(
                 mContext,
@@ -92,13 +92,13 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Deletes the user with the specified id if exists from the database
+        /// Deletes the skill with the specified id if exists from the database
         /// </summary>
         /// <param name="skillId">The skill's id</param>
         /// Delete /api/skills/{skillId}
         [HttpDelete]
-        [Route(Routes.AdminRoute)]
-        public Task<ActionResult<SkillResponseModel>> DeleteUserAsync(int skillId)
+        [Route(Routes.SkillRoute)]
+        public Task<ActionResult<SkillResponseModel>> DeleteSkillAsync(int skillId)
         {
             return ControllerHelpers.DeleteAsync<SkillEntity, SkillResponseModel>(
                 mContext,

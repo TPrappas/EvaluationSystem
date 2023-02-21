@@ -49,7 +49,7 @@ namespace EvaluationSystemServer
         [HttpGet]
         [Route(Routes.CertificatesRoute)]
         public Task<ActionResult<IEnumerable<CertificateResponseModel>>> GetCertificatesAsync() =>
-            // Gets the response models for each admin entity
+            // Gets the response models for each certificate entity
             ControllerHelpers.GetAllAsync<CertificateEntity, CertificateResponseModel>(
                 mContext.Certificates,
                 x => true);

@@ -32,7 +32,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Creates a new admin
         /// </summary>
-        /// Post api/users
+        /// Post api/admins
         [HttpPost]
         [Route(Routes.AdminsRoute)]
         public Task<ActionResult<AdminResponseModel>> CreateAdminAsync([FromBody] AdminRequestModel model)
@@ -55,7 +55,7 @@ namespace EvaluationSystemServer
                 x => true);
 
         /// <summary>
-        /// Gets the user with the specified id from the database if exists...
+        /// Gets the admin with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
         /// <param name="adminId">The admins's id</param>
@@ -75,14 +75,14 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Updates the user with the specified id
+        /// Updates the admin with the specified id
         /// </summary>
         /// <param name="adminId">The admin's id</param>
         /// <param name="model">The admin request model</param>
         /// Put /api/admins/{adminId}
         [HttpPut]
         [Route(Routes.AdminRoute)]
-        public Task<ActionResult<AdminResponseModel>> UpdateUserAsync([FromRoute] int adminId, [FromBody] AdminRequestModel model)
+        public Task<ActionResult<AdminResponseModel>> UpdateAdminAsync([FromRoute] int adminId, [FromBody] AdminRequestModel model)
         {
             return ControllerHelpers.PutAsync<AdminRequestModel, AdminEntity, AdminResponseModel>(
                 mContext,
@@ -92,13 +92,13 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Deletes the user with the specified id if exists from the database
+        /// Deletes the admin with the specified id if exists from the database
         /// </summary>
         /// <param name="adminId">The admin's id</param>
         /// Delete /api/admins/{adminId}
         [HttpDelete]
         [Route(Routes.AdminRoute)]
-        public Task<ActionResult<AdminResponseModel>> DeleteUserAsync(int adminId)
+        public Task<ActionResult<AdminResponseModel>> DeleteAdminAsync(int adminId)
         {
             return ControllerHelpers.DeleteAsync<AdminEntity, AdminResponseModel>(
                 mContext,
