@@ -30,7 +30,7 @@ namespace EvaluationSystemServer
         #region Public Methods
 
         /// <summary>
-        /// Creates a new admin
+        /// Creates a new project
         /// </summary>
         /// Post api/projects
         [HttpPost]
@@ -43,23 +43,23 @@ namespace EvaluationSystemServer
                 x => x.ToResponseModel());
 
         /// <summary>
-        /// Gets all the admins from the database
+        /// Gets all the projects from the database
         /// </summary>
-        /// Get api/admins
+        /// Get api/project
         [HttpGet]
         [Route(Routes.ProjectsRoute)]
         public Task<ActionResult<IEnumerable<ProjectResponseModel>>> GetProjectsAsync() =>
-            // Gets the response models for each admin entity
+            // Gets the response models for each project entity
             ControllerHelpers.GetAllAsync<ProjectEntity, ProjectResponseModel>(
                 mContext.Projects,
                 x => true);
 
         /// <summary>
-        /// Gets the user with the specified id from the database if exists...
+        /// Gets the project with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
-        /// <param name="adminId">The admins's id</param>
-        /// Get api/admins/{adminId} == api/admins/1
+        /// <param name="projectId">The project's id</param>
+        /// Get api/projects/{projectId} == api/projects/1
         [HttpGet]
         [Route(Routes.ProjectRoute)]
         public Task<ActionResult<ProjectResponseModel>> GetProjectAsync([FromRoute] int projectId)
@@ -77,11 +77,11 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Updates the user with the specified id
         /// </summary>
-        /// <param name="adminId">The admin's id</param>
-        /// <param name="model">The admin request model</param>
-        /// Put /api/admins/{adminId}
+        /// <param name="projectId">The project's id</param>
+        /// <param name="model">The project request model</param>
+        /// Put /api/projects/{projectId}
         [HttpPut]
-        [Route(Routes.AdminRoute)]
+        [Route(Routes.ProjectRoute)]
         public Task<ActionResult<ProjectResponseModel>> UpdateProjectAsync([FromRoute] int projectId, [FromBody] ProjectRequestModel model)
         {
             return ControllerHelpers.PutAsync<ProjectRequestModel, ProjectEntity, ProjectResponseModel>(
@@ -94,10 +94,10 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Deletes the user with the specified id if exists from the database
         /// </summary>
-        /// <param name="adminId">The admin's id</param>
-        /// Delete /api/admins/{adminId}
+        /// <param name="projectId">The project's id</param>
+        /// Delete /api/projects/{projectId}
         [HttpDelete]
-        [Route(Routes.AdminRoute)]
+        [Route(Routes.ProjectRoute)]
         public Task<ActionResult<ProjectResponseModel>> DeleteProjectAsync(int projectId)
         {
             return ControllerHelpers.DeleteAsync<ProjectEntity, ProjectResponseModel>(

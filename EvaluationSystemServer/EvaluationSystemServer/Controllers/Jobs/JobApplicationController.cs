@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
-namespace EvaluationSystemServer
+namespace EvaluationSystemServer.Controllers.Jobs
 {
     public class JobApplicationController : Controller
     {
@@ -30,36 +30,36 @@ namespace EvaluationSystemServer
         #region Public Methods
 
         /// <summary>
-        /// Creates a new admin
+        /// Creates a new job application
         /// </summary>
-        /// Post api/users
+        /// Post api/jobApplications
         [HttpPost]
         [Route(Routes.JobApplicationsRoute)]
         public Task<ActionResult<JobApplicationResponseModel>> CreateJobApplicationAsync([FromBody] int userId, int jobPositionId, JobApplicationRequestModel model)
-            => ControllerHelpers.PostAsync<JobApplicationEntity, JobApplicationResponseModel>(
+            => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.JobApplications,
                 JobApplicationEntity.FromRequestModel(userId, jobPositionId, model),
                 x => x.ToResponseModel());
 
         /// <summary>
-        /// Gets all the admins from the database
+        /// Gets all the job applications from the database
         /// </summary>
-        /// Get api/admins
+        /// Get api/jobApplications
         [HttpGet]
         [Route(Routes.JobApplicationsRoute)]
         public Task<ActionResult<IEnumerable<JobApplicationResponseModel>>> GetJobApplicationsAsync() =>
-            // Gets the response models for each admin entity
+            // Gets the response models for each job application entity
             ControllerHelpers.GetAllAsync<JobApplicationEntity, JobApplicationResponseModel>(
                 mContext.JobApplications,
                 x => true);
 
         /// <summary>
-        /// Gets the user with the specified id from the database if exists...
+        /// Gets the job application with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
-        /// <param name="adminId">The admins's id</param>
-        /// Get api/admins/{adminId} == api/admins/1
+        /// <param name="jobApplicationId">The job application's id</param>
+        /// Get api/jobApplications/{adminId} == api/jobApplications/1
         [HttpGet]
         [Route(Routes.JobApplicationRoute)]
         public Task<ActionResult<JobApplicationResponseModel>> GetJobApplicationAsync([FromRoute] int jobApplicationId)
@@ -75,11 +75,11 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Updates the user with the specified id
+        /// Updates the job application with the specified id
         /// </summary>
-        /// <param name="adminId">The admin's id</param>
-        /// <param name="model">The admin request model</param>
-        /// Put /api/admins/{adminId}
+        /// <param name="jobApplcationId">The job application's id</param>
+        /// <param name="model">The job application request model</param>
+        /// Put /api/jobApplications/{jobApplicationId}
         [HttpPut]
         [Route(Routes.JobApplicationRoute)]
         public Task<ActionResult<JobApplicationResponseModel>> UpdateJobApplcationAsync([FromRoute] int jobApplcationId, [FromBody] AdminRequestModel model)
@@ -92,10 +92,10 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Deletes the user with the specified id if exists from the database
+        /// Deletes the job application with the specified id if exists from the database
         /// </summary>
-        /// <param name="adminId">The admin's id</param>
-        /// Delete /api/admins/{adminId}
+        /// <param name="jobApplicationId">The job application's id</param>
+        /// Delete /api/jobApplications/{jobApplicationId}
         [HttpDelete]
         [Route(Routes.JobApplicationRoute)]
         public Task<ActionResult<JobApplicationResponseModel>> DeleteJobApplicationAsync(int jobApplicationId)

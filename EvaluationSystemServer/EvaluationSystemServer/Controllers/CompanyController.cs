@@ -55,7 +55,7 @@ namespace EvaluationSystemServer
                 x => true);
 
         /// <summary>
-        /// Gets the user with the specified id from the database if exists...
+        /// Gets the company with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
         /// <param name="companyId">The company's id</param>
