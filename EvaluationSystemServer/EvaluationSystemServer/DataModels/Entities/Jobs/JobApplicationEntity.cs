@@ -69,7 +69,7 @@ namespace EvaluationSystemServer
         /// <param name="jobPositionId">The job position's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static JobApplicationEntity FromRequestModel(int userId, int jobPositionId, JobRequestModel model)
+        public static JobApplicationEntity FromRequestModel(int userId, int jobPositionId, JobApplicationRequestModel model)
             => ControllerHelpers.FromRequestModel(model, (JobApplicationEntity entity) => { entity.UserId = userId; entity.JobPositionId = jobPositionId; });
 
         /// <summary>
