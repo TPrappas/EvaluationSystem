@@ -82,7 +82,7 @@ namespace EvaluationSystemServer.Controllers.Jobs
         /// Put /api/jobApplications/{jobApplicationId}
         [HttpPut]
         [Route(Routes.JobApplicationRoute)]
-        public Task<ActionResult<JobApplicationResponseModel>> UpdateJobApplcationAsync([FromRoute] int jobApplcationId, [FromBody] AdminRequestModel model)
+        public Task<ActionResult<JobApplicationResponseModel>> UpdateJobApplcationAsync([FromRoute] int jobApplcationId, [FromBody] JobApplicationRequestModel model)
         {
             return ControllerHelpers.PutAsync<JobApplicationRequestModel, JobApplicationEntity, JobApplicationResponseModel>(
                 mContext,

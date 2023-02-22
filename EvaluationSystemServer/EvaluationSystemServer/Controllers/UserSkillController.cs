@@ -33,14 +33,14 @@ namespace EvaluationSystemServer
         /// Creates a new userskill
         /// </summary>
         /// Post api/userSkills
-        [HttpPost]
-        [Route(Routes.UserSkillsRoute)]
-        public Task<ActionResult<UserSkillResponseModel>> CreateUserSkillAsync([FromBody] UserSkillRequestModel model)
-            => ControllerHelpers.PostAsync<UserSkillEntity, UserSkillResponseModel>(
-                mContext,
-                mContext.UserSkills,
-                UserSkillEntity.FromRequestModel(model),
-                x => x.ToResponseModel());
+        //[HttpPost]
+        //[Route(Routes.UserSkillsRoute)]
+        //public Task<ActionResult<UserSkillResponseModel>> CreateUserSkillAsync([FromBody] UserSkillRequestModel model)
+        //    => ControllerHelpers.PostAsync<UserSkillEntity, UserSkillResponseModel>(
+        //        mContext,
+        //        mContext.UserSkills,
+        //        UserSkillEntity.FromRequestModel(model),
+        //        x => x.ToResponseModel());
 
         /// <summary>
         /// Gets all the admins from the database

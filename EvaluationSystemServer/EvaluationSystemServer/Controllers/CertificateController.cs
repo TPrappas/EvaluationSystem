@@ -39,7 +39,7 @@ namespace EvaluationSystemServer
             => ControllerHelpers.PostAsync<CertificateEntity, CertificateResponseModel>(
                 mContext,
                 mContext.Certificates,
-                AdminEntity.FromRequestModel(model),
+                CertificateEntity.FromRequestModel(model),
                 x => x.ToResponseModel());
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace EvaluationSystemServer
         /// Put /api/certificates/{certificatesId}
         [HttpPut]
         [Route(Routes.CertificateRoute)]
-        public Task<ActionResult<CertificateResponseModel>> UpdateCertificateAsync([FromRoute] int certificateId, [FromBody] AdminRequestModel model)
+        public Task<ActionResult<CertificateResponseModel>> UpdateCertificateAsync([FromRoute] int certificateId, [FromBody] CertificateRequestModel model)
         {
             return ControllerHelpers.PutAsync<CertificateRequestModel, CertificateEntity, CertificateResponseModel>(
                 mContext,

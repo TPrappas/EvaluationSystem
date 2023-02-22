@@ -35,11 +35,11 @@ namespace EvaluationSystemServer
         /// Post api/projects
         [HttpPost]
         [Route(Routes.ProjectsRoute)]
-        public Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] ProjectRequestModel model)
+        public Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] int userId, ProjectRequestModel model)
             => ControllerHelpers.PostAsync<ProjectEntity, ProjectResponseModel>(
                 mContext,
                 mContext.Projects,
-                AdminEntity.FromRequestModel(model),
+                ProjectEntity.FromRequestModel(userId, model),
                 x => x.ToResponseModel());
 
         /// <summary>
