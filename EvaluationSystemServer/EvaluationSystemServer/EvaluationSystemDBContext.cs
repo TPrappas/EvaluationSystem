@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EvaluationSystemServer.DataModels.Entities.Certificates;
+using EvaluationSystemServer.DataModels.Entities.Meetings;
+using EvaluationSystemServer.DataModels.Entities.Skills;
+using Microsoft.EntityFrameworkCore;
 
 namespace EvaluationSystemServer
 {
@@ -45,9 +48,19 @@ namespace EvaluationSystemServer
         public DbSet<UserCertificateEntity> UserCertificates { get; set; }
 
         /// <summary>
-        /// The user's projects
+        /// The projects
         /// </summary>
         public DbSet<ProjectEntity> Projects { get; set; }
+
+        /// <summary>
+        /// The categories
+        /// </summary>
+        public DbSet<CategoryEntity> Categories { get; set; }
+
+        /// <summary>
+        /// The meetings
+        /// </summary>
+        public DbSet<MeetingEntity> Meetings { get; set; }
 
         /// <summary>
         /// The jobs
@@ -95,21 +108,46 @@ namespace EvaluationSystemServer
             // For the applications of a user (employee)
             modelBuilder.Entity<UserEntity>()
                 // One user (employee) has many applications
-                .HasMany(x => x.Applications)
+                .HasMany(x => x.EmployeeApplications)
                 // Each leaflet one user (employee)
-                .WithOne(x => x.User)
+                .WithOne(x => x.Employee)
                 // The principal key of the join is the UserEntity.Id
                 .HasPrincipalKey(x => x.Id)
                 // The foreign key of the join is the ApplicationEntity.EmployeeId (UserId)
-                .HasForeignKey(x => x.UserId)
+                .HasForeignKey(x => x.EmployeeId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<UserEntity>()
-                .HasMany(x => x.EmployeeProjects)
-                .WithOne(x => x.Employee)
+                .HasMany(x => x.ManagerApplications)
+                .WithOne(x => x.Manager)
+                .HasForeignKey(x => x.ManagerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(x => x.EvaluatorApplications)
+                .WithOne(x => x.Evaluator)
+                .HasForeignKey(x => x.EvaluatorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(x => x.Projects)
+                .WithOne(x => x.User)
                 .HasPrincipalKey(x => x.Id)
-                .HasForeignKey(x => x.EmployeeId)
+                .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(x => x.EmployeeMeetings)
+                .WithOne(x => x.Employee)
+                .HasPrincipalKey (x => x.Id)
+                .HasForeignKey(x => x.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(x => x.ManagerMeetings)
+                .WithOne(x => x.Manager)
+                .HasForeignKey(x => x.ManagerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             #endregion
 
@@ -168,6 +206,17 @@ namespace EvaluationSystemServer
                 .WithOne(x => x.Company)
                 .HasPrincipalKey(x => x.Id) 
                 .HasForeignKey(x=> x.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            #endregion
+
+            #region Project
+
+            modelBuilder.Entity<ProjectEntity>()
+                .HasMany(x => x.Categories)
+                .WithOne(x => x.Project)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.ProjectId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             #endregion

@@ -35,12 +35,17 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
         /// </summary>
-        public int EmployeeId { get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity Employee { get; set; }
+        public UserEntity User { get; set; }
+
+        /// <summary>
+        /// The project's categories
+        /// </summary>
+        public IEnumerable<CategoryEntity> Categories { get; set; }
 
         #endregion
 
@@ -67,8 +72,8 @@ namespace EvaluationSystemServer
         /// <param name="employeeId">The (user) employee's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static ProjectEntity FromRequestModel(int employeeId, ProjectRequestModel model)
-            => ControllerHelpers.FromRequestModel(model, (ProjectEntity entity) => { entity.EmployeeId = employeeId; });
+        public static ProjectEntity FromRequestModel(int userId, ProjectRequestModel model)
+            => ControllerHelpers.FromRequestModel(model, (ProjectEntity entity) => { entity.UserId = userId; });
 
         /// <summary>
         /// Creates and returns a <see cref="ProjectResponseModel"/> from the current <see cref="ProjectEntity"/>

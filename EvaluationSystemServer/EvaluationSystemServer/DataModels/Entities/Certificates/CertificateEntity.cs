@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EvaluationSystemServer
-{ 
+{
     public class CertificateEntity : BaseEntity
     {
         #region Public Properties
@@ -13,7 +13,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; set; }    
+        public string Name { get; set; }
 
         /// <summary>
         /// The department
@@ -47,8 +47,8 @@ namespace EvaluationSystemServer
         /// Default Constructor 
         /// </summary>
         public CertificateEntity()
-        { 
-        
+        {
+
         }
 
         #endregion

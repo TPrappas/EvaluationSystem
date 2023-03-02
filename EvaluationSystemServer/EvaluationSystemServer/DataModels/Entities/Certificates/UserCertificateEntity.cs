@@ -41,9 +41,9 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public UserCertificateEntity() 
-        { 
-        
+        public UserCertificateEntity()
+        {
+
         }
 
         #endregion
