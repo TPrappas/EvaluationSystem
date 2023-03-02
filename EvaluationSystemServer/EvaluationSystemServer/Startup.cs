@@ -125,13 +125,13 @@ namespace EvaluationSystemServer
                 //                          c.MapFrom(new IgnoreNullResolver(), proptertyMap.SourceMember.Name);
                 //                      });
 
-                cfg.Internal(IProfileExpressionInternal.ForAllPropertyMaps(propertyMap => propertyMap.TypeMap.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix)
-                                                                                               && (TypeHelpers.GetNonNullableType(propertyMap.SourceType) == propertyMap.DestinationType
-                                                                                                || propertyMap.SourceType == propertyMap.DestinationType),
-                                      (propertyMap, c) =>
-                                      {
-                                          c.MapFrom(new IgnoreNullResolver(), propertyMap.SourceMember.Name);
-                                      }));
+                //cfg.Internal(IProfileExpressionInternal.ForAllPropertyMaps(propertyMap => propertyMap.TypeMap.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix)
+                //                                                                               && (TypeHelpers.GetNonNullableType(propertyMap.SourceType) == propertyMap.DestinationType
+                //                                                                                || propertyMap.SourceType == propertyMap.DestinationType),
+                //                      (propertyMap, c) =>
+                //                      {
+                //                          c.MapFrom(new IgnoreNullResolver(), propertyMap.SourceMember.Name);
+                //                      }));
 
             });
 
@@ -143,10 +143,10 @@ namespace EvaluationSystemServer
 
             #endregion
 
-            services.AddControllers().AddNewtonsoftJson(s =>
-            {
-                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            });
+            //services.AddControllers().AddNewtonsoftJson(s =>
+            //{
+            //    s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

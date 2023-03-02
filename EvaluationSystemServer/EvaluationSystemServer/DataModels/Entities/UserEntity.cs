@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using EvaluationSystemServer.DataModels.Entities.Certificates;
+using EvaluationSystemServer.DataModels.Entities.Meetings;
+using EvaluationSystemServer.DataModels.Entities.Skills;
+using EvaluationSystemServerngs;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,12 +98,32 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The employee's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity> Applications { get; set; }    
+        public IEnumerable<JobApplicationEntity> EmployeeApplications { get; set; }    
 
         /// <summary>
-        /// The employee's projects
+        /// The manager's application
         /// </summary>
-        public IEnumerable<ProjectEntity> EmployeeProjects { get; set; }
+        public IEnumerable<JobApplicationEntity> ManagerApplications { get; set; }
+
+        /// <summary>
+        /// The evaluator's application
+        /// </summary>
+        public IEnumerable<JobApplicationEntity> EvaluatorApplications { get; set; }
+
+        /// <summary>
+        /// The user's projects
+        /// </summary>
+        public IEnumerable<ProjectEntity> Projects { get; set; }
+
+        /// <summary>
+        /// The employee's meetings
+        /// </summary>
+        public IEnumerable<EmployeeMeetingEntity> EmployeesMeeting { get; set; }
+
+        /// <summary>
+        /// The manager's meetings
+        /// </summary>
+        public IEnumerable<MeetingEntity> ManagerMeetings { get; set; }
 
         #endregion
 

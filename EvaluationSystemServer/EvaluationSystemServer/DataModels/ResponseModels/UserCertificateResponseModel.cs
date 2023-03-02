@@ -1,4 +1,6 @@
-﻿namespace EvaluationSystemServer
+﻿using EvaluationSystemServer.DataModels.Entities.Certificates;
+
+namespace EvaluationSystemServer
 {
     public class UserCertificateResponseModel : BaseResponseModel
     {

@@ -1,4 +1,6 @@
-﻿namespace EvaluationSystemServer
+﻿using EvaluationSystemServer.DataModels.Entities.Skills;
+
+namespace EvaluationSystemServer
 {
     public class UserSkillResponseModel : BaseResponseModel
     {

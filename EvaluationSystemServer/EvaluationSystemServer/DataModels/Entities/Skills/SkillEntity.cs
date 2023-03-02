@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvaluationSystemServer
+namespace EvaluationSystemServer.DataModels.Entities.Skills
 {
     public class SkillEntity : BaseEntity
     {
@@ -31,9 +31,9 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public SkillEntity() 
-        { 
-        
+        public SkillEntity()
+        {
+
         }
 
         #endregion
