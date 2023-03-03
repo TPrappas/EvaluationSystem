@@ -1,7 +1,4 @@
-﻿using EvaluationSystemServer.DataModels.Entities.Certificates;
-using EvaluationSystemServer.DataModels.Entities.Meetings;
-using EvaluationSystemServer.DataModels.Entities.Skills;
-using EvaluationSystemServerngs;
+﻿using EvaluationSystemServerngs;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -116,14 +113,14 @@ namespace EvaluationSystemServer
         public IEnumerable<ProjectEntity> Projects { get; set; }
 
         /// <summary>
-        /// The employee's meetings
+        /// The participants's meetings
         /// </summary>
-        public IEnumerable<EmployeeMeetingEntity> EmployeesMeeting { get; set; }
+        public IEnumerable<ParticipantMeetingEntity> ParticipantsMeeting { get; set; }
 
         /// <summary>
         /// The manager's meetings
         /// </summary>
-        public IEnumerable<MeetingEntity> ManagerMeetings { get; set; }
+        public IEnumerable<OrganizerMeetingEntity> OrganizersMeeting { get; set; }
 
         #endregion
 

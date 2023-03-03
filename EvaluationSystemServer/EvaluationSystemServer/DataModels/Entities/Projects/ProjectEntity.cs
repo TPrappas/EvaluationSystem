@@ -56,13 +56,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectEntity() 
-        { 
-        
+        public ProjectEntity()
+        {
+
         }
 
         #endregion
-
 
         #region Public Methods
 

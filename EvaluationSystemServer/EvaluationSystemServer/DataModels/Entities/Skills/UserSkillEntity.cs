@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvaluationSystemServer.DataModels.Entities.Skills
+namespace EvaluationSystemServer
 {
     public class UserSkillEntity : BaseEntity
     {

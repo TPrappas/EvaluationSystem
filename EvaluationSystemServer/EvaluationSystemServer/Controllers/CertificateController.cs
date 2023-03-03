@@ -1,5 +1,4 @@
-﻿using EvaluationSystemServer.DataModels.Entities.Certificates;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer

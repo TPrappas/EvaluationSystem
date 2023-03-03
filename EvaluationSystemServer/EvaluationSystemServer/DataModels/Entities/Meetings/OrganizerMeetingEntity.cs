@@ -1,8 +1,6 @@
-﻿using EvaluationSystemServer;
-
-namespace EvaluationSystemServerngs
+﻿namespace EvaluationSystemServer
 {
-    public class EmployeeMeetingEntity : BaseEntity
+    public class OrganizerMeetingEntity : BaseEntity
     {
 
         #region Public Properties
@@ -12,12 +10,12 @@ namespace EvaluationSystemServerngs
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
         /// </summary>
-        public int EmployeeId { get; set; }
+        public int OrganizerId { get; set; }
 
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity Employee { get; set; }
+        public UserEntity Organizer { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="MeetingEntity"/>
@@ -25,7 +23,7 @@ namespace EvaluationSystemServerngs
         public int MeetingId { get; set; }
 
         /// <summary>
-        /// The related <see cref="Meeting"/>
+        /// The related <see cref="MeetingEntity"/>
         /// </summary>
         public MeetingEntity Meeting { get; set; }
 
@@ -33,18 +31,16 @@ namespace EvaluationSystemServerngs
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public EmployeeMeetingEntity() 
+        public OrganizerMeetingEntity() 
         { 
         
         }
 
         #endregion
-
-
     }
 }

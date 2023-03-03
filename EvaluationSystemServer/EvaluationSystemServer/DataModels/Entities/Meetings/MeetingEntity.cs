@@ -31,25 +31,22 @@ namespace EvaluationSystemServer
         /// </summary>
         public string Description { get; set; }
 
+        /// <summary>
+        /// The location
+        /// </summary>
+        public string Location { get; set; }
+
         #region Relationships
 
         /// <summary>
-        /// The meetings's employees
+        /// The meetings's participants
         /// </summary>
-        public IEnumerable<EmployeeMeetingEntity> EmployeeMeetings { get; set; }
+        public IEnumerable<ParticipantMeetingEntity> ParticipantMeetings { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
+        /// The meetings's participants
         /// </summary>
-        /// The id of the related user
-        public int ManagerId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="UserEntity"/>
-        /// </summary>
-        /// The related user 
-        /// Navigation Property
-        public UserEntity Manager { get; set; }
+        public IEnumerable<OrganizerMeetingEntity> OrganizerMeetings { get; set; }
 
         #endregion
 

@@ -1,6 +1,4 @@
-﻿using EvaluationSystemServer.DataModels.Entities.Certificates;
-using EvaluationSystemServer.DataModels.Entities.Meetings;
-using EvaluationSystemServer.DataModels.Entities.Skills;
+﻿using EvaluationSystemServerngs;
 using Microsoft.EntityFrameworkCore;
 
 namespace EvaluationSystemServer
@@ -61,6 +59,16 @@ namespace EvaluationSystemServer
         /// The meetings
         /// </summary>
         public DbSet<MeetingEntity> Meetings { get; set; }
+
+        /// <summary>
+        /// The participant's meetings
+        /// </summary>
+        public DbSet<ParticipantMeetingEntity> ParticipantMeetings { get; set; }
+
+        /// <summary>
+        /// The organizer's meetings
+        /// </summary>
+        public DbSet<OrganizerMeetingEntity> OrganizerMeetings { get; set; }
 
         /// <summary>
         /// The jobs
@@ -136,19 +144,6 @@ namespace EvaluationSystemServer
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<UserEntity>()
-                .HasMany(x => x.EmployeeMeetings)
-                .WithOne(x => x.Employee)
-                .HasPrincipalKey (x => x.Id)
-                .HasForeignKey(x => x.EmployeeId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<UserEntity>()
-                .HasMany(x => x.ManagerMeetings)
-                .WithOne(x => x.Manager)
-                .HasForeignKey(x => x.ManagerId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             #endregion
 
             #region User Skills
@@ -188,6 +183,42 @@ namespace EvaluationSystemServer
                 .WithMany(x => x.UserCertificates)
                 .HasPrincipalKey(x => x.Id)
                 .HasForeignKey(x => x.CertificateId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            #endregion
+
+            #region Organizer Meetings
+
+            modelBuilder.Entity<OrganizerMeetingEntity>()
+                .HasOne(x => x.Organizer)
+                .WithMany(x => x.OrganizersMeeting)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.OrganizerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrganizerMeetingEntity>()
+                .HasOne(x => x.Meeting)
+                .WithMany(x => x.OrganizerMeetings)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.MeetingId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            #endregion
+
+            #region Participant Meetings
+
+            modelBuilder.Entity<ParticipantMeetingEntity>()
+                 .HasOne(x => x.Participant)
+                 .WithMany(x => x.ParticipantsMeeting)
+                 .HasPrincipalKey(x => x.Id)
+                 .HasForeignKey(x => x.ParticipantId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ParticipantMeetingEntity>()
+                .HasOne(x => x.Meeting)
+                .WithMany(x => x.ParticipantMeetings)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.MeetingId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             #endregion

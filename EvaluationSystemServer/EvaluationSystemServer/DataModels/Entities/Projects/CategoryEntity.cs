@@ -8,7 +8,7 @@
         /// The name
         /// </summary>
         public string Name { get; set; }
-        
+
         /// <summary>
         /// The description
         /// </summary>
@@ -25,11 +25,10 @@
         /// The related <see cref="ProjectEntity"/>
         /// </summary>
         public ProjectEntity Project { get; set; }
-        
-        #endregion
 
         #endregion
 
+        #endregion
 
         #region Constructors
 
@@ -37,8 +36,8 @@
         /// Default constructor
         /// </summary>
         public CategoryEntity()
-        { 
-        
+        {
+
         }
 
         #endregion
