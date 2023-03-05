@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EvaluationSystemServer.DataModels.RequestModels.Skills;
+using EvaluationSystemServer.DataModels.ResponseModels.Skills;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer

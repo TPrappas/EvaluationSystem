@@ -49,6 +49,11 @@
         /// </summary>
         public StaffType UserType { get; set; }
 
+        /// <summary>
+        /// The certificate's id
+        /// </summary>
+        public IEnumerable<int> Certificates { get; set; }
+
         #endregion
 
         #region Constructors

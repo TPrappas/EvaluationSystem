@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class ProjectRequestModel : BaseRequestModel
+    public class CategoryResponseModel : BaseResponseModel
     {
         #region Public Properties
 
@@ -14,15 +14,16 @@
         /// </summary>
         public string Description { get; set; }
 
-        /// <summary>
-        /// The starting date
-        /// </summary>
-        public DateTimeOffset StartingDate { get; set; }
 
         /// <summary>
-        /// The ending date
+        /// The <see cref="BaseEntity.Id"/> of the related <see cref="ProjectEntity"/>
         /// </summary>
-        public DateTimeOffset EndingDate { get; set; }
+        public int ProjectId { get; set; }
+
+        /// <summary>
+        /// The related <see cref="ProjectEntity"/>
+        /// </summary>
+        public ProjectEntity Project { get; set; }
 
         #endregion
 
@@ -31,7 +32,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectRequestModel() 
+        public CategoryResponseModel() 
         { 
         
         }

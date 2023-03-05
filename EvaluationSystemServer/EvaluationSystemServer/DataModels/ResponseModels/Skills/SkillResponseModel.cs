@@ -1,13 +1,12 @@
 ﻿namespace EvaluationSystemServer
 {
-    public abstract class BaseResponseModel
+    public class SkillResponseModel : BaseResponseModel
     {
         #region Public Properties
 
-        /// <summary>
-        /// The id
-        /// </summary>
-        public int Id { get; set; } 
+        public string Name { get; set; }
+
+        public string Experience { get; set; }
 
         #endregion
 
@@ -16,9 +15,9 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseResponseModel() 
-        { 
-        
+        public SkillResponseModel()
+        {
+
         }
 
         #endregion

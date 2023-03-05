@@ -1,7 +1,9 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class UserCertificateRequestModel
+    public class UserCertificateRequestModel : BaseRequestModel
     {
+
+
         #region Constructors
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿using EvaluationSystemServerngs;
+﻿using EvaluationSystemServer.DataModels.RequestModels.Meetings;
+using EvaluationSystemServer.DataModels.ResponseModels.Meetings;
+using EvaluationSystemServerngs;
 
 namespace EvaluationSystemServer
 {
@@ -61,6 +63,26 @@ namespace EvaluationSystemServer
         {
 
         }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="MeetingRequestModel"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static MeetingEntity FromRequestModel(MeetingRequestModel model)
+            => ControllerHelpers.FromRequestModel<MeetingEntity, MeetingRequestModel>(model);
+
+
+        /// <summary>
+        /// Creates and returns a <see cref="MeetingResponseModel"/> from the current <see cref="MeetingEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public MeetingResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<MeetingEntity, MeetingResponseModel>(this);
 
         #endregion
     }

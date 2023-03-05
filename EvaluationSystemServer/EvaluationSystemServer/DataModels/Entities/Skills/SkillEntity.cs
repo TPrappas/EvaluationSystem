@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EvaluationSystemServer.DataModels.RequestModels.Skills;
+using EvaluationSystemServer.DataModels.ResponseModels.Skills;
 
 namespace EvaluationSystemServer
-{ 
+{
     public class SkillEntity : BaseEntity
     {
 

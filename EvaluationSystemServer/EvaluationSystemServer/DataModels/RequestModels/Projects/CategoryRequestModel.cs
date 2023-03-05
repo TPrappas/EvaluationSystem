@@ -1,12 +1,18 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class SkillRequestModel : BaseRequestModel
+    public class CategoryRequestModel : BaseRequestModel
     {
         #region Public Properties
 
+        /// <summary>
+        /// The name
+        /// </summary>
         public string Name { get; set; }
 
-        public string Experience { get; set; }
+        /// <summary>
+        /// The description
+        /// </summary>
+        public string Description { get; set; }
 
         #endregion
 
@@ -15,12 +21,11 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SkillRequestModel() 
+        public CategoryRequestModel()
         { 
         
         }
 
         #endregion
-
     }
 }

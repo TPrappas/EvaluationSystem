@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
-{
-    public class ProjectResponseModel : BaseResponseModel
+{ 
+    public class ProjectRequestModel : BaseRequestModel
     {
         #region Public Properties
 
@@ -24,16 +24,6 @@
         /// </summary>
         public DateTimeOffset EndingDate { get; set; }
 
-        /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
-        /// </summary>
-        public int EmployeeId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="UserEntity"/>
-        /// </summary>
-        public UserEntity Employee { get; set; }
-
         #endregion
 
         #region Constructors
@@ -41,12 +31,11 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectResponseModel() 
-        { 
-        
+        public ProjectRequestModel()
+        {
+
         }
 
         #endregion
-
     }
 }
