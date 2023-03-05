@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class UserResponseModel : BaseResponseModel
+    public class UserResponseModel : DateResponseModel
     {
         #region Public Properties
 
@@ -32,7 +32,7 @@
         /// <summary>
         /// The bio
         /// </summary>
-        public string Bio { get; set; } 
+        public string Bio { get; set; }
 
         /// <summary>
         /// The recommendations
@@ -50,27 +50,16 @@
         public StaffType UserType { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="CompanyEntity"/>
-        /// </summary>
-        /// The id of the related company
-        public int CompanyId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="CompanyEntity"/>
+        /// The related <see cref="EmbeddedCompanyResponseModel"/>
         /// </summary>
         /// The related company
         /// Navigation Property
-        public CompanyEntity Company { get; set; }
+        public EmbeddedCompanyResponseModel Company { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="JobPositionEntity"/>
+        /// The related <see cref="JobPositionResponseModel"/>
         /// </summary>
-        public int JobPositionId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="JobPositionEntity"/>
-        /// </summary>
-        public JobPositionEntity JobPosition { get; set; }
+        public JobResponseModel JobPosition { get; set; }
 
         #endregion
 
@@ -79,12 +68,49 @@
         /// <summary>
         /// Default constructor 
         /// </summary>
-        public UserResponseModel() 
-        { 
-        
+        public UserResponseModel()
+        {
+
         }
 
         #endregion
 
+    }
+
+    public class EmbeddedUserResponseModel : DateResponseModel
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// The username
+        /// </summary>
+        public string Username { get; set; }
+
+        /// <summary>
+        /// The email
+        /// </summary>
+        public string Email { set; get; }
+
+        /// <summary>
+        /// The firstname
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// The lastname
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// The rating
+        /// </summary>
+        public double Rating { get; set; }
+
+        /// <summary>
+        /// The user type
+        /// </summary>
+        public StaffType UserType { get; set; }
+
+        #endregion
     }
 }

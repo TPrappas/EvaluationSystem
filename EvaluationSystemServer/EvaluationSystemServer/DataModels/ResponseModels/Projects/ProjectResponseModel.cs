@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class JobResponseModel : BaseResponseModel
+    public class ProjectResponseModel : BaseResponseModel
     {
         #region Public Properties
 
@@ -15,24 +15,24 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// The salary
+        /// The starting date
         /// </summary>
-        public int Salary { get; set; }
+        public DateTimeOffset StartingDate { get; set; }
 
         /// <summary>
-        /// The submission start
+        /// The ending date
         /// </summary>
-        public DateTimeOffset SubmissionStart { get; set; }
+        public DateTimeOffset EndingDate { get; set; }
 
         /// <summary>
-        /// The submission end
+        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
         /// </summary>
-        public DateTimeOffset SubmissionEnd { get; set; }
+        public int EmployeeId { get; set; }
 
         /// <summary>
-        /// The related <see cref="CompanyEntity"/>
+        /// The related <see cref="UserEntity"/>
         /// </summary>
-        public EmbeddedCompanyResponseModel Company { get; set; }
+        public UserEntity Employee { get; set; }
 
         #endregion
 
@@ -41,7 +41,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobResponseModel()
+        public ProjectResponseModel()
         {
 
         }

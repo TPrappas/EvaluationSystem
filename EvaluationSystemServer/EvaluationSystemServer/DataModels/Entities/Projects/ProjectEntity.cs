@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EvaluationSystemServer.DataModels.RequestModels.Projects;
+using EvaluationSystemServer.DataModels.ResponseModels.Projects;
 
 namespace EvaluationSystemServer
 {

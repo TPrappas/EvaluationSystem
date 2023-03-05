@@ -1,18 +1,18 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class JobPositionResponseModel : BaseResponseModel
+    public abstract class DateResponseModel : BaseRequestModel
     {
         #region Public Properties
 
         /// <summary>
-        /// The related <see cref="JobEntity"/>
+        /// The date created
         /// </summary>
-        public JobResponseModel Job { get; set; }
+        public DateTimeOffset DateCreated { get; set; }
 
         /// <summary>
-        /// Is the position open or closed
+        /// The date updated
         /// </summary>
-        public bool IsOpen { get; set; }
+        public DateTimeOffset DateUpdated { get; set; }
 
         #endregion
 
@@ -21,12 +21,11 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobPositionResponseModel()
-        {
-
+        public DateResponseModel() 
+        { 
+        
         }
 
         #endregion
-
     }
 }

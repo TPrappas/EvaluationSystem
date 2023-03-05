@@ -42,6 +42,25 @@
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="CategoryEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="projectId">The project's id</param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static CategoryEntity FromRequestModel(int projectId, CategoryRequestModel model)
+            => ControllerHelpers.FromRequestModel(model, (CategoryEntity entity) => { entity.ProjectId = projectId; });
+
+        /// <summary>
+        /// Creates and returns a <see cref="CategoryResponseModel"/> from the current <see cref="CategoryEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public CategoryResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<CategoryEntity, CategoryResponseModel>(this);
+
+        #endregion
 
     }
 }

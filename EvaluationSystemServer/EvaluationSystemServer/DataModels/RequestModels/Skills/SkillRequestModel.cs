@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class SkillResponseModel : BaseResponseModel
+    public class SkillRequestModel : BaseRequestModel
     {
         #region Public Properties
 
@@ -15,11 +15,12 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SkillResponseModel() 
-        { 
-        
+        public SkillRequestModel()
+        {
+
         }
 
         #endregion
+
     }
 }

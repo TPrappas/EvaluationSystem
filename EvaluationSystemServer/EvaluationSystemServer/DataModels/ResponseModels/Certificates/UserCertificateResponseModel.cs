@@ -1,7 +1,6 @@
-﻿
-namespace EvaluationSystemServer
+﻿namespace EvaluationSystemServer
 {
-    public class UserSkillResponseModel : BaseResponseModel
+    public class UserCertificateResponseModel : BaseResponseModel
     {
         #region Public Properties
 
@@ -16,28 +15,27 @@ namespace EvaluationSystemServer
         public UserEntity User { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="SkillEntity"/>
+        /// The <see cref="BaseEntity.Id"/> of the related <see cref="CertificateEntity"/>
         /// </summary>
-        public int SkillId { get; set; }
+        public int CertificateId { get; set; }
 
         /// <summary>
-        /// The related <see cref="SkillEntity"/>
+        /// The related <see cref="CertificateEntity"/>
         /// </summary>
-        public SkillEntity Skill { get; set; }
+        public CertificateEntity Certificate { get; set; }
 
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Default Constructor
+        /// Default constructor
         /// </summary>
-        public UserSkillResponseModel()
+        public UserCertificateResponseModel()
         {
 
         }
 
         #endregion
-
     }
 }
