@@ -25,14 +25,9 @@
         public DateTimeOffset EndingDate { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
         /// </summary>
-        public int EmployeeId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="UserEntity"/>
-        /// </summary>
-        public UserEntity Employee { get; set; }
+        public EmbeddedUserResponseModel User { get; set; }
 
         #endregion
 

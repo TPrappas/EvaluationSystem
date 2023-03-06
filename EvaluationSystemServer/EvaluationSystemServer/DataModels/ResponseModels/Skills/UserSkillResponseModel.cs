@@ -5,24 +5,14 @@
         #region Public Properties
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
+        /// The related <see cref="UserResponseModel"/>
         /// </summary>
-        public int UserId { get; set; }
+        public EmbeddedUserResponseModel User { get; set; }
 
         /// <summary>
-        /// The related <see cref="UserEntity"/>
+        /// The related <see cref="SkillResponseModel"/>
         /// </summary>
-        public UserEntity User { get; set; }
-
-        /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="SkillEntity"/>
-        /// </summary>
-        public int SkillId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="SkillEntity"/>
-        /// </summary>
-        public SkillEntity Skill { get; set; }
+        public SkillResponseModel Skill { get; set; }
 
         #endregion
 

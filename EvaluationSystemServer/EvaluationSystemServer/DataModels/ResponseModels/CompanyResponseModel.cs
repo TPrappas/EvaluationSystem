@@ -61,13 +61,21 @@
 
     }
 
-    public class EmbeddedCompanyResponseModel 
-    { 
-    
-        public string Id { get; set; }
+    public class EmbeddedCompanyResponseModel : BaseResponseModel
+    {
 
+        #region Public Properties
+
+        /// <summary>
+        /// The AFM
+        /// </summary>
+        public int AFM { get; set; }
+
+        /// <summary>
+        /// The name
+        /// </summary>
         public string Name { get; set; }
 
-        public string Phone { get; set; }
+        #endregion
     }
 }

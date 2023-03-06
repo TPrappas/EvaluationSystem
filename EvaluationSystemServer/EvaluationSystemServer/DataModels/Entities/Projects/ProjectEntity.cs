@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EvaluationSystemServer.DataModels.RequestModels.Projects;
-using EvaluationSystemServer.DataModels.ResponseModels.Projects;
 
 namespace EvaluationSystemServer
 {
@@ -47,7 +45,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The project's categories
         /// </summary>
-        public IEnumerable<CategoryEntity> Categories { get; set; }
+        public IEnumerable<ProjectCategoryEntity> ProjectCategories { get; set; }
 
         #endregion
 
@@ -82,7 +80,6 @@ namespace EvaluationSystemServer
         /// <returns></returns>
         public ProjectResponseModel ToResponseModel()
             => ControllerHelpers.ToResponseModel<ProjectEntity, ProjectResponseModel>(this);
-
 
         #endregion
 

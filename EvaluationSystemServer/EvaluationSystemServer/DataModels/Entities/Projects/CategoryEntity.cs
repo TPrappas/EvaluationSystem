@@ -17,14 +17,9 @@
         #region Relationships
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="ProjectEntity"/>
+        /// The category's projects
         /// </summary>
-        public int ProjectId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="ProjectEntity"/>
-        /// </summary>
-        public ProjectEntity Project { get; set; }
+        public IEnumerable<ProjectCategoryEntity> ProjectsCategory { get; set; }
 
         #endregion
 
@@ -50,8 +45,8 @@
         /// <param name="projectId">The project's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static CategoryEntity FromRequestModel(int projectId, CategoryRequestModel model)
-            => ControllerHelpers.FromRequestModel(model, (CategoryEntity entity) => { entity.ProjectId = projectId; });
+        public static CategoryEntity FromRequestModel(CategoryRequestModel model)
+            => ControllerHelpers.FromRequestModel<CategoryEntity, CategoryRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="CategoryResponseModel"/> from the current <see cref="CategoryEntity"/>
