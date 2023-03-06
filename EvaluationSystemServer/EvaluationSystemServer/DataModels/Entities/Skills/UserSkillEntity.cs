@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EvaluationSystemServer.DataModels.RequestModels.Skills;
-using EvaluationSystemServer.DataModels.ResponseModels.Skills;
 
 namespace EvaluationSystemServer
 {
@@ -53,22 +51,11 @@ namespace EvaluationSystemServer
         #region Public Methods
 
         /// <summary>
-        /// Creates and returns a <see cref="UserSkillEntity"/> from the specified <paramref name="model"/>
-        /// </summary>
-        /// <param name="userId">The user's id</param>
-        /// <param name="skillId">The skill's id</param>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static UserSkillEntity FromRequest(int userId, int skillId, UserSkillRequestModel model)
-            => ControllerHelpers.FromRequestModel(model, (UserSkillEntity entity) => { entity.UserId = userId; entity.SkillId = skillId; });
-
-        /// <summary>
         /// Creates and returns a <see cref="UserSkillResponseModel"/> from the current <see cref="UserSkillEntity"/>
         /// </summary>
         /// <returns></returns>
         public UserSkillResponseModel ToResponseModel()
             => ControllerHelpers.ToResponseModel<UserSkillEntity, UserSkillResponseModel>(this);
-
 
         #endregion
     }

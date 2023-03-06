@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EvaluationSystemServer.DataModels.RequestModels.Skills;
-using EvaluationSystemServer.DataModels.ResponseModels.Skills;
 
 namespace EvaluationSystemServer
 {
@@ -13,8 +11,14 @@ namespace EvaluationSystemServer
 
         #region Public Properties
 
+        /// <summary>
+        /// The name
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// The experience
+        /// </summary>
         public string Experience { get; set; }
 
         #region Relationships
