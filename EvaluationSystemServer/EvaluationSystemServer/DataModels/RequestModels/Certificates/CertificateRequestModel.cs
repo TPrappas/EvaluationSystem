@@ -1,4 +1,4 @@
-﻿namespace EvaluationSystemServer.DataModels.RequestModels.Certificates
+﻿namespace EvaluationSystemServer
 {
     public class CertificateRequestModel : BaseRequestModel
     {

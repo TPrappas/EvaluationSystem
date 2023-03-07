@@ -42,7 +42,6 @@
         /// <summary>
         /// Creates and returns a <see cref="CategoryEntity"/> from the specified <paramref name="model"/>
         /// </summary>
-        /// <param name="projectId">The project's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
         public static CategoryEntity FromRequestModel(CategoryRequestModel model)

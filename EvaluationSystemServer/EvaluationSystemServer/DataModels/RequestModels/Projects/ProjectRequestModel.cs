@@ -24,6 +24,11 @@
         /// </summary>
         public DateTimeOffset EndingDate { get; set; }
 
+        /// <summary>
+        /// The category's id
+        /// </summary>
+        public IEnumerable<int> Categories { get; set; }
+
         #endregion
 
         #region Constructors

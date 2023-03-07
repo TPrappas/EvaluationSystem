@@ -20,16 +20,6 @@
         public int Salary { get; set; }
 
         /// <summary>
-        /// The submission start
-        /// </summary>
-        public DateTimeOffset SubmissionStart { get; set; }
-
-        /// <summary>
-        /// The submission end
-        /// </summary>
-        public DateTimeOffset SubmissionEnd { get; set; }
-
-        /// <summary>
         /// The related <see cref="CompanyEntity"/>
         /// </summary>
         public EmbeddedCompanyResponseModel Company { get; set; }

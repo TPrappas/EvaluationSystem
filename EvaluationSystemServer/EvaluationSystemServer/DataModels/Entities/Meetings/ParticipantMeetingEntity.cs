@@ -45,6 +45,15 @@ namespace EvaluationSystemServerngs
 
         #endregion
 
+        #region Public Methods
 
+        /// <summary>
+        /// Creates and returns a <see cref="ParticipantMeetingResponseModel"/> from the current <see cref="ParticipantMeetingEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public ParticipantMeetingResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<ParticipantMeetingEntity, ParticipantMeetingResponseModel>(this);
+
+        #endregion
     }
 }

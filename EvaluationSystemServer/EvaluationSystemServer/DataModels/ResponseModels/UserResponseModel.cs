@@ -112,5 +112,17 @@
         public StaffType UserType { get; set; }
 
         #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedUserResponseModel() 
+        { 
+        
+        }
+
+        #endregion
     }
 }

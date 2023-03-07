@@ -1,9 +1,7 @@
-﻿using EvaluationSystemServer.DataModels.RequestModels.Skills;
-using EvaluationSystemServer.DataModels.ResponseModels.Skills;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
-namespace EvaluationSystemServer
+namespace EvaluationSystemServer.Controllers.Skills
 {
     public class SkillController : Controller
     {
@@ -38,7 +36,7 @@ namespace EvaluationSystemServer
         [HttpPost]
         [Route(Routes.SkillsRoute)]
         public Task<ActionResult<SkillResponseModel>> CreateSkillAsync([FromBody] SkillRequestModel model)
-            => ControllerHelpers.PostAsync<SkillEntity, SkillResponseModel>(
+            => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Skills,
                 SkillEntity.FromRequestModel(model),

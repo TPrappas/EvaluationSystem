@@ -51,22 +51,11 @@ namespace EvaluationSystemServer
         #region Public Methods
 
         /// <summary>
-        /// Creates and returns a <see cref="UserCertificateEntity"/> from the specified <paramref name="model"/>
-        /// </summary>
-        /// <param name="userId">The user's id</param>
-        /// <param name="certificateId">The certificate's id</param>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public static UserCertificateEntity FromRequestModel(int userId, int certificateId, UserCertificateEntity model)
-            => ControllerHelpers.FromRequestModel(model, (UserCertificateEntity entity) => { entity.UserId = userId; entity.CertificateId = certificateId; });
-
-        /// <summary>
         /// Creates and returns a <see cref="UserCertificateResponseModel"/> from the current <see cref="UserCertificateEntity"/>
         /// </summary>
         /// <returns></returns>
         public UserCertificateResponseModel ToResponseModel()
             => ControllerHelpers.ToResponseModel<UserCertificateEntity, UserCertificateResponseModel>(this);
-
 
         #endregion
 

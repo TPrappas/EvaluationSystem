@@ -15,25 +15,25 @@
         public string Comments { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
+        /// The submission start
         /// </summary>
-        public int UserId { get; set; }
+        public DateTimeOffset SubmissionStart { get; set; }
+
+        /// <summary>
+        /// The submission end
+        /// </summary>
+        public DateTimeOffset SubmissionEnd { get; set; }
 
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
         /// The employee
-        public UserEntity User { get; set; }
+        public EmbeddedUserResponseModel User { get; set; }
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="JobPositionEntity"/>
+        /// The related <see cref="JobPositionResponseModel"/>
         /// </summary>
-        public int JobPositionId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="OpenJobPositionEntity"/>
-        /// </summary>
-        public JobPositionEntity JobPosition { get; set; }
+        public JobPositionResponseModel JobPosition { get; set; }
 
         #endregion
 

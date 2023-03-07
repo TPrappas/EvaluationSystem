@@ -5,7 +5,7 @@
         #region Public Properties
 
         /// <summary>
-        /// The related <see cref="JobEntity"/>
+        /// The related <see cref="JobResponseModel"/>
         /// </summary>
         public JobResponseModel Job { get; set; }
 

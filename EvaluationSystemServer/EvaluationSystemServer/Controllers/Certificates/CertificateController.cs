@@ -1,6 +1,4 @@
-﻿using EvaluationSystemServer.DataModels.RequestModels.Certificates;
-using EvaluationSystemServer.DataModels.ResponseModels.Certificates;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer
@@ -38,7 +36,7 @@ namespace EvaluationSystemServer
         [HttpPost]
         [Route(Routes.CertificatesRoute)]
         public Task<ActionResult<CertificateResponseModel>> CreateCertificateAsync([FromBody] CertificateRequestModel model)
-            => ControllerHelpers.PostAsync<CertificateEntity, CertificateResponseModel>(
+            => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Certificates,
                 CertificateEntity.FromRequestModel(model),
@@ -63,7 +61,7 @@ namespace EvaluationSystemServer
         /// <param name="certificateId">The certificate's id</param>
         /// Get api/certificates/{certificateId} == api/certificates/1
         [HttpGet]
-        [Route(Routes.AdminRoute)]
+        [Route(Routes.CertificateRoute)]
         public Task<ActionResult<CertificateResponseModel>> GetCertificateAsync([FromRoute] int certificateId)
         {
             // The needed expression for the filter

@@ -1,4 +1,4 @@
-﻿namespace EvaluationSystemServer.DataModels.RequestModels.Meetings
+﻿namespace EvaluationSystemServer
 {
     public class MeetingRequestModel : BaseRequestModel
     {

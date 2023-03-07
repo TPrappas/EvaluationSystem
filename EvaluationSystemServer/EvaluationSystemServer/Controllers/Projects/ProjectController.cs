@@ -1,9 +1,7 @@
-﻿using EvaluationSystemServer.DataModels.RequestModels.Projects;
-using EvaluationSystemServer.DataModels.ResponseModels.Projects;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
-namespace EvaluationSystemServer
+namespace EvaluationSystemServer.Controllers.Projects
 {
     public class ProjectController : Controller
     {
@@ -38,7 +36,7 @@ namespace EvaluationSystemServer
         [HttpPost]
         [Route(Routes.ProjectsRoute)]
         public Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] int userId, ProjectRequestModel model)
-            => ControllerHelpers.PostAsync<ProjectEntity, ProjectResponseModel>(
+            => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Projects,
                 ProjectEntity.FromRequestModel(userId, model),
@@ -47,7 +45,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Gets all the projects from the database
         /// </summary>
-        /// Get api/project
+        /// Get api/projects
         [HttpGet]
         [Route(Routes.ProjectsRoute)]
         public Task<ActionResult<IEnumerable<ProjectResponseModel>>> GetProjectsAsync() =>
