@@ -62,7 +62,7 @@
 
         public const string UserSkillsRoute = HomeRoute + "/userSkills";
 
-        public const string UserSkillRoute = UserSkillsRoute + "/{userSkillsId}";
+        public const string UserSkillRoute = UserSkillsRoute + "/{userSkillId}";
 
         #endregion
 
@@ -71,6 +71,46 @@
         public const string ProjectsRoute = HomeRoute + "/projects";
 
         public const string ProjectRoute = ProjectsRoute + "/{projectId}";
+
+        #endregion
+
+        #region Category Routes
+
+        public const string CategoriesRoute = HomeRoute + "/categories";
+
+        public const string CategoryRoute = CategoriesRoute + "/{categoryId}";
+
+        #endregion
+
+        #region ProjectCategory Routes
+
+        public const string ProjectCategoriesRoute = HomeRoute + "/projectCategories";
+
+        public const string ProjectCategoryRoute = ProjectCategoriesRoute + "/{projectCategoryId}";
+
+        #endregion
+
+        #region Meeting Route
+
+        public const string MeetingsRoute = HomeRoute + "/meetings";
+
+        public const string MeetingRoute = MeetingsRoute + "/{meetingId}";
+
+        #endregion
+
+        #region OrganizerMeeting Route 
+
+        public const string OrganizerMeetingsRoute = HomeRoute + "/organizerMeetings";
+
+        public const string OrganizerMeetingRoute = OrganizerMeetingsRoute + "/{organizerMeetingId}";
+
+        #endregion
+
+        #region ParticipantMeeting Route
+
+        public const string ParticipantMeetingsRoute = HomeRoute + "/participantMeetings";
+
+        public const string ParticipantMeetingRoute = ParticipantMeetingsRoute + "/{participantMeetingId}";
 
         #endregion
 

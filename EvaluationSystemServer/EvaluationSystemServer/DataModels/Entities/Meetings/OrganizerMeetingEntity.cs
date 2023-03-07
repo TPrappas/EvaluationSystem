@@ -42,5 +42,16 @@
         }
 
         #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates and returns a <see cref="OrganizerMeetingResponseModel"/> from the current <see cref="OrganizerMeetingEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public OrganizerMeetingResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<OrganizerMeetingEntity, OrganizerMeetingResponseModel>(this);
+
+        #endregion
     }
 }

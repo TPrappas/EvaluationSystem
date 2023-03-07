@@ -54,6 +54,26 @@
         /// </summary>
         public IEnumerable<int> Certificates { get; set; }
 
+        /// <summary>
+        /// The project's id
+        /// </summary>
+        public IEnumerable<int> Projects { get; set; }
+
+        /// <summary>
+        /// The skill's id
+        /// </summary>
+        public IEnumerable<int> Skills { get; set; }
+
+        /// <summary>
+        /// The organizer meeting's id
+        /// </summary>
+        public IEnumerable<int> OrganizerMeetings { get; set; }
+
+        /// <summary>
+        /// The participant meeting's id
+        /// </summary>
+        public IEnumerable<int> ParticipantMeetings { get; set; }
+
         #endregion
 
         #region Constructors

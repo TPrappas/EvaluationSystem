@@ -51,6 +51,11 @@ namespace EvaluationSystemServer
         public DbSet<ProjectEntity> Projects { get; set; }
 
         /// <summary>
+        /// The project's categories
+        /// </summary>
+        public DbSet<ProjectCategoryEntity> ProjectCategories { get; set; }
+
+        /// <summary>
         /// The categories
         /// </summary>
         public DbSet<CategoryEntity> Categories { get; set; }
@@ -241,13 +246,20 @@ namespace EvaluationSystemServer
 
             #endregion
 
-            #region Project
+            #region Project Categories
 
-            modelBuilder.Entity<ProjectEntity>()
-                .HasMany(x => x.Categories)
-                .WithOne(x => x.Project)
+            modelBuilder.Entity<ProjectCategoryEntity>()
+                .HasOne(x => x.Project)
+                .WithMany(x => x.ProjectCategories)
                 .HasPrincipalKey(x => x.Id)
                 .HasForeignKey(x => x.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProjectCategoryEntity>()
+                .HasOne(x => x.Category)
+                .WithMany(x => x.ProjectsCategory)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             #endregion

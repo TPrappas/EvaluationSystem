@@ -5,24 +5,14 @@
         #region Public Properties
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
+        /// The related <see cref="UserResponseModel"/>
         /// </summary>
-        public int UserId { get; set; }
+        public EmbeddedUserResponseModel User { get; set; }
 
         /// <summary>
-        /// The related <see cref="UserEntity"/>
+        /// The related <see cref="CertificateResponseModel"/>
         /// </summary>
-        public UserEntity User { get; set; }
-
-        /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="CertificateEntity"/>
-        /// </summary>
-        public int CertificateId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="CertificateEntity"/>
-        /// </summary>
-        public CertificateEntity Certificate { get; set; }
+        public CertificateResponseModel Certificate { get; set; }
 
         #endregion
 

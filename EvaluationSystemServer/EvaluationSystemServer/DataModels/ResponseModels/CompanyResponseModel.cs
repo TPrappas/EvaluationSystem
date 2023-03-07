@@ -63,7 +63,6 @@
 
     public class EmbeddedCompanyResponseModel : BaseResponseModel
     {
-
         #region Public Properties
 
         /// <summary>
@@ -75,6 +74,28 @@
         /// The name
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// The address
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// The city
+        /// </summary>
+        public string City { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedCompanyResponseModel() 
+        { 
+        
+        }
 
         #endregion
     }

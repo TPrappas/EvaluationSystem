@@ -45,12 +45,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The recommendations
         /// </summary>
-        public string Recommendations { get; set; } 
+        public string Recommendations { get; set; }
 
         /// <summary>
         /// The rating
         /// </summary>
-        public double Rating { get; set; }  
+        public double Rating { get; set; }
 
         /// <summary>
         /// The staff type 
@@ -93,9 +93,16 @@ namespace EvaluationSystemServer
         public IEnumerable<UserCertificateEntity> UserCertificates { get; set; }
 
         /// <summary>
+        /// The user's projects
+        /// </summary>
+        public IEnumerable<ProjectEntity> Projects { get; set; }
+
+        #region Applications
+
+        /// <summary>
         /// The employee's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity> EmployeeApplications { get; set; }    
+        public IEnumerable<JobApplicationEntity> EmployeeApplications { get; set; }
 
         /// <summary>
         /// The manager's application
@@ -107,10 +114,9 @@ namespace EvaluationSystemServer
         /// </summary>
         public IEnumerable<JobApplicationEntity> EvaluatorApplications { get; set; }
 
-        /// <summary>
-        /// The user's projects
-        /// </summary>
-        public IEnumerable<ProjectEntity> Projects { get; set; }
+        #endregion
+
+        #region Meetings
 
         /// <summary>
         /// The participants's meetings
@@ -126,14 +132,16 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #endregion
+
         #region Constructors
 
         /// <summary>
         /// Default Constructor
         /// </summary>
         public UserEntity()
-        { 
-        
+        {
+
         }
 
         #endregion
@@ -147,7 +155,7 @@ namespace EvaluationSystemServer
         /// <param name="jobPositionId">The job position's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static UserEntity FromRequestModel(int companyId, int jobPositionId, UserRequestModel model) 
+        public static UserEntity FromRequestModel(int companyId, int jobPositionId, UserRequestModel model)
             => ControllerHelpers.FromRequestModel(model, (UserEntity entity) => { entity.CompanyId = companyId; entity.JobPositionId = jobPositionId; });
 
         /// <summary>

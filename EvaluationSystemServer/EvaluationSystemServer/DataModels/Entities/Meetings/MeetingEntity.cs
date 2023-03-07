@@ -1,6 +1,4 @@
-﻿using EvaluationSystemServer.DataModels.RequestModels.Meetings;
-using EvaluationSystemServer.DataModels.ResponseModels.Meetings;
-using EvaluationSystemServerngs;
+﻿using EvaluationSystemServerngs;
 
 namespace EvaluationSystemServer
 {
