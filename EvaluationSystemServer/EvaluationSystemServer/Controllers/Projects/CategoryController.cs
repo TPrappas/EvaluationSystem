@@ -49,13 +49,13 @@ namespace EvaluationSystemServer
         [HttpGet]
         [Route(Routes.CategoriesRoute)]
         public Task<ActionResult<IEnumerable<CategoryResponseModel>>> GetCategoriesAsync() =>
-            // Gets the response models for each project entity
+            // Gets the response models for each category entity
             ControllerHelpers.GetAllAsync<CategoryEntity, CategoryResponseModel>(
                 mContext.Categories,
                 x => true);
 
         /// <summary>
-        /// Gets the project with the specified id from the database if exists...
+        /// Gets the category with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
         /// <param name="categoryId">The category's id</param>
@@ -77,7 +77,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Updates the user with the specified id
         /// </summary>
-        /// <param name="categoryId">The catrgory's id</param>
+        /// <param name="categoryId">The category's id</param>
         /// <param name="model">The project request model</param>
         /// Put /api/categories/{categoryId}
         [HttpPut]
@@ -94,10 +94,10 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Deletes the user with the specified id if exists from the database
         /// </summary>
-        /// <param name="categoryId">The project's id</param>
+        /// <param name="categoryId">The category's id</param>
         /// Delete /api/categories/{categoryId}
         [HttpDelete]
-        [Route(Routes.ProjectRoute)]
+        [Route(Routes.CategoryRoute)]
         public Task<ActionResult<CategoryResponseModel>> DeleteCategoryAsync(int categoryId)
         {
             return ControllerHelpers.DeleteAsync<CategoryEntity, CategoryResponseModel>(

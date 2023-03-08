@@ -58,7 +58,7 @@ namespace EvaluationSystemServer
         /// Gets the meeting with the specified id from the database if exists...
         /// Else returns not found
         /// </summary>
-        /// <param name="meetingId">The certificate's id</param>
+        /// <param name="meetingId">The meeting's id</param>
         /// Get api/meetings/{meetingsId} == api/meetings/1
         [HttpGet]
         [Route(Routes.MeetingRoute)]
@@ -75,10 +75,10 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
-        /// Updates the certificate with the specified id
+        /// Updates the meeting with the specified id
         /// </summary>
-        /// <param name="meetingId">The certificate's id</param>
-        /// <param name="model">The certificate request model</param>
+        /// <param name="meetingId">The meeting's id</param>
+        /// <param name="model">The meeting request model</param>
         /// Put /api/meetings/{meetingId}
         [HttpPut]
         [Route(Routes.MeetingRoute)]
@@ -94,7 +94,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Deletes the certificate with the specified id if exists from the database
         /// </summary>
-        /// <param name="meetingId">The certificate's id</param>
+        /// <param name="meetingId">The meeting's id</param>
         /// Delete /api/meetings/{meetingId}
         [HttpDelete]
         [Route(Routes.MeetingRoute)]

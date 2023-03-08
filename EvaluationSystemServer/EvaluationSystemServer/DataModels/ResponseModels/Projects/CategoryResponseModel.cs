@@ -14,17 +14,6 @@
         /// </summary>
         public string Description { get; set; }
 
-
-        /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="ProjectEntity"/>
-        /// </summary>
-        public int ProjectId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="ProjectEntity"/>
-        /// </summary>
-        public ProjectEntity Project { get; set; }
-
         #endregion
 
         #region Constructors

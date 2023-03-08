@@ -59,7 +59,7 @@
         /// <summary>
         /// The related <see cref="JobPositionResponseModel"/>
         /// </summary>
-        public JobResponseModel JobPosition { get; set; }
+        public JobPositionResponseModel JobPosition { get; set; }
 
         #endregion
 

@@ -79,5 +79,18 @@
         public string Location { get; set; }
 
         #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedMeetingResponseModel() 
+        { 
+        
+        }
+
+        #endregion
+
     }
 }

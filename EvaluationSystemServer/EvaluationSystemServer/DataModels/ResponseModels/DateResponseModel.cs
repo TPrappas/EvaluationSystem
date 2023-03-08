@@ -1,6 +1,6 @@
 ﻿namespace EvaluationSystemServer
 {
-    public abstract class DateResponseModel : BaseRequestModel
+    public abstract class DateResponseModel : BaseResponseModel
     {
         #region Public Properties
 

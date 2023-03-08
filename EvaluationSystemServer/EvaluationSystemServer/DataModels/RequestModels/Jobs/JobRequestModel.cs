@@ -19,16 +19,6 @@
         /// </summary>
         public int Salary { get; set; }
 
-        /// <summary>
-        /// The submission start
-        /// </summary>
-        public DateTimeOffset SubmissionStart { get; set; }
-
-        /// <summary>
-        /// The submission end
-        /// </summary>
-        public DateTimeOffset SubmissionEnd { get; set; }
-
         #endregion
 
         #region Constructors

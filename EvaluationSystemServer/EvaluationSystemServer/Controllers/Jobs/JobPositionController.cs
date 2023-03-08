@@ -32,7 +32,7 @@ namespace EvaluationSystemServer.Controllers.Jobs
         /// <summary>
         /// Creates a new job position
         /// </summary>
-        /// Post api/users
+        /// Post api/jobPositions
         [HttpPost]
         [Route(Routes.JobPositionRoute)]
         public Task<ActionResult<JobPositionResponseModel>> CreateJobPositionAsync([FromBody] int jobId, JobPositionRequestModel model)

@@ -75,7 +75,7 @@ namespace EvaluationSystemServer.Controllers.Projects
         }
 
         /// <summary>
-        /// Updates the user with the specified id
+        /// Updates the project with the specified id
         /// </summary>
         /// <param name="projectId">The project's id</param>
         /// <param name="model">The project request model</param>
@@ -92,7 +92,7 @@ namespace EvaluationSystemServer.Controllers.Projects
         }
 
         /// <summary>
-        /// Deletes the user with the specified id if exists from the database
+        /// Deletes the project with the specified id if exists from the database
         /// </summary>
         /// <param name="projectId">The project's id</param>
         /// Delete /api/projects/{projectId}
