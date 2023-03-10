@@ -4,7 +4,9 @@ namespace EvaluationSystemServer
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            DI.Host = CreateHostBuilder(args).Build();
+
+            DI.Host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
