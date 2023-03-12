@@ -30,6 +30,8 @@ namespace EvaluationSystemServer
             services.AddDbContext<EvaluationSystemDBContext>(opt => opt.UseSqlServer
                     (Configuration.GetConnectionString("sqlConnection")), ServiceLifetime.Transient);
 
+            services.AddSingleton<UsersManager>();
+
             services.AddControllers();
 
             #region AutoMapper
@@ -45,6 +47,9 @@ namespace EvaluationSystemServer
                 // The response model types
                 var responseModelTypes = new List<Type>();
 
+                // The embedded response model types
+                var embeddedResponseModelTypes = new List<Type>();
+
                 var assemblies = new List<Assembly>()
                 {
                     // The request model
@@ -56,7 +61,7 @@ namespace EvaluationSystemServer
                 };
 
                 // For each assembly...
-                foreach (var assembly in assemblies)
+                foreach (var assembly in assemblies.Distinct())
                 {
                     // For each type...
                     foreach (var type in assembly.GetTypes())
@@ -71,58 +76,79 @@ namespace EvaluationSystemServer
                             entityTypes.Add(type);
                         // Else if the type ends with "ResponseModel"...
                         else if (type.Name.EndsWith(FrameworkConstructionExtensions.ResponseModelSuffix))
+                        {
                             // Add it to the response model types
                             responseModelTypes.Add(type);
-                    }
 
-                    // For each request model type...
-                    foreach (var requestModelType in requestModelTypes)
-                    {
-                        // Get the prefix of the model
-                        var requestModelNamePrefix = requestModelType.Name.Replace(FrameworkConstructionExtensions.RequestModelSuffix, string.Empty);
-                        // Get the entity type if exists with the same prefix
-                        var entityType = entityTypes.FirstOrDefault(x => x.Name.Replace(FrameworkConstructionExtensions.EntitySuffix, string.Empty) == requestModelNamePrefix);
-
-                        // If the entity type exists...
-                        if (entityType != null)
-                            // Create map for request model -> entity
-                            cfg.CreateMap(requestModelType, entityType);
-                    }
-
-                    // For each entity type
-                    foreach (var entityType in entityTypes)
-                    {
-                        // Get the prefix of the entity
-                        var entityNamePrefix = entityType.Name.Replace(FrameworkConstructionExtensions.EntitySuffix, string.Empty);
-                        // Get the response model type if exists with the same prefix
-                        var responseModelType = responseModelTypes.FirstOrDefault(x => x.Name.Replace(FrameworkConstructionExtensions.ResponseModelSuffix, string.Empty) == entityNamePrefix);
-
-                        // If the response model exists...
-                        if (responseModelType != null)
-                            // Create map for entity -> response model
-                            cfg.CreateMap(entityType, responseModelType);
-
-                        // Set the name of the embedded response model that matches the entity's name 
-                        var embeddedResponseModelName = FrameworkConstructionExtensions.EmbeddedPrefix + entityNamePrefix + FrameworkConstructionExtensions.ResponseModelSuffix;
-                        // Searches for the embedded model if exists 
-                        var embeddedResponseModelType = responseModelTypes.FirstOrDefault(x => x.Name == embeddedResponseModelName);
-
-                        // If the model does not exists...
-                        if (embeddedResponseModelType == null)
-                            // Continue
-                            continue;
-                        // Creates a map for entity -> embedded response model
-                        cfg.CreateMap(entityType, embeddedResponseModelType);
+                            if (type.Name.StartsWith(FrameworkConstructionExtensions.EmbeddedPrefix))
+                                embeddedResponseModelTypes.Add(type);
+                        }
                     }
                 }
 
-                cfg.ForAllPropertyMaps(propertyMap => propertyMap.TypeMap.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix)
-                                                                               && (TypeHelpers.GetNonNullableType(propertyMap.SourceType) == propertyMap.DestinationType
-                                                                                || propertyMap.SourceType == propertyMap.DestinationType),
-                      (proptertyMap, c) =>
-                      {
-                          c.MapFrom(new IgnoreNullResolver(), proptertyMap.SourceMember.Name);
-                      });
+                // For each request model type...
+                foreach (var requestModelType in requestModelTypes)
+                {
+                    // Get the prefix of the model
+                    var requestModelNamePrefix = requestModelType.Name.Replace(FrameworkConstructionExtensions.RequestModelSuffix, string.Empty);
+                    // Get the entity type if exists with the same prefix
+                    var entityType = entityTypes.FirstOrDefault(x => x.Name.Replace(FrameworkConstructionExtensions.EntitySuffix, string.Empty) == requestModelNamePrefix);
+
+                    // If the entity type exists...
+                    if (entityType != null)
+                        // Create map for request model -> entity
+                        cfg.CreateMap(requestModelType, entityType);
+                }
+
+                // For each entity type
+                foreach (var entityType in entityTypes)
+                {
+                    // Get the prefix of the entity
+                    var entityNamePrefix = entityType.Name.Replace(FrameworkConstructionExtensions.EntitySuffix, string.Empty);
+                    // Get the response model type if exists with the same prefix
+                    var responseModelType = responseModelTypes.FirstOrDefault(x => x.Name.Replace(FrameworkConstructionExtensions.ResponseModelSuffix, string.Empty) == entityNamePrefix);
+
+                    // If the response model exists...
+                    if (responseModelType != null)
+                        // Create map for entity -> response model
+                        cfg.CreateMap(entityType, responseModelType);
+
+                    // Set the name of the embedded response model that matches the entity's name 
+                    var embeddedResponseModelName = FrameworkConstructionExtensions.EmbeddedPrefix + entityNamePrefix + FrameworkConstructionExtensions.ResponseModelSuffix;
+                    // Searches for the embedded model if exists 
+                    var embeddedResponseModelType = responseModelTypes.FirstOrDefault(x => x.Name == embeddedResponseModelName);
+
+                    // If the model does not exists...
+                    if (embeddedResponseModelType == null)
+                        // Continue
+                        continue;
+
+                    // Creates a map for entity -> embedded response model
+                    cfg.CreateMap(entityType, embeddedResponseModelType);
+                }
+
+                // Do not map values when the values of the properties of the request models are null
+                cfg.ForAllMaps((map, options) =>
+                {
+                    if (map.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix) && map.DestinationType.Name.EndsWith(FrameworkConstructionExtensions.EntitySuffix))
+                        options.ForAllMembers(x =>
+                        {
+                            x.Condition((_, _, sourceValue) => sourceValue is not null);
+                            x.UseDestinationValue();
+                        });
+                });
+
+                cfg.ForAllPropertyMaps(
+                        (map) => map.SourceType is not null && map.DestinationType is not null && map.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix) && map.DestinationType.Name.EndsWith(FrameworkConstructionExtensions.EntitySuffix) && map.SourceType is not null && map.SourceType == typeof(IEnumerable<int>),
+                        (map, opts) => opts.Ignore());
+
+                //cfg.ForAllPropertyMaps(propertyMap => propertyMap.TypeMap.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix)
+                //                                                               && (TypeHelpers.GetNonNullableType(propertyMap.SourceType) == propertyMap.DestinationType
+                //                                                                || propertyMap.SourceType == propertyMap.DestinationType),
+                //      (proptertyMap, c) =>
+                //      {
+                //          c.MapFrom(new IgnoreNullResolver(), proptertyMap.SourceMember.Name);
+                //      });
             });
 
             // Create the mapper

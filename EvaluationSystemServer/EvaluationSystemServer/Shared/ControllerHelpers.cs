@@ -57,6 +57,29 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
+        /// Gets all the response models
+        /// </summary>
+        /// <typeparam name="TEntity">The entity</typeparam>
+        /// <typeparam name="TResponseModel">The response model</typeparam>
+        /// <param name="query">The db set</param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public static async Task<ActionResult<IEnumerable<TResponseModel>>> GetAllAsync<TEntity, TResponseModel>(IQueryable<TEntity> query, BaseArgs args, List<Expression<Func<TEntity, bool>>> filters)
+            where TEntity : BaseEntity
+        {
+            foreach(var filter in filters)
+                query = query.Where(filter);
+
+            // Gets the all the entities of the db set 
+            var entities = await query.Skip(args.Page * args.PerPage).Take(args.PerPage).ToListAsync();
+
+            // Creates and returns an Microsoft.AspNetCore.Mvc.OkObjectResult object that
+            // produces an Microsoft.AspNetCore.Http.StatusCodes.Status200OK
+            // response with all the response models of the entities
+            return new OkObjectResult(DI.GetMapper.Map<IEnumerable<TResponseModel>>(entities));
+        }
+
+        /// <summary>
         /// Gets response model based on id
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
@@ -102,25 +125,8 @@ namespace EvaluationSystemServer
                 // Return not found
                 return new NotFoundResult();
 
-            // For each property of the request model type...
-            foreach (var propertyInfo in typeof(TRequestModel).GetProperties())
-            {
-                // If the property's value is not null...
-                if (propertyInfo.GetValue(model) != null)
-                {
-                    // Gets the property with the same name as that of the model's
-                    typeof(TEntity)
-                    .GetProperty(propertyInfo.Name,
-                        BindingFlags.IgnoreCase |
-                        BindingFlags.Instance |
-                        BindingFlags.Public)
-                    // Ands sets its value as the model's value
-                    .SetValue(entity, propertyInfo.GetValue(model));
-                }
-            }
-
-            // Sets the date the entity was last modified as now
-            entity.DateUpdated = DateTimeOffset.Now;
+            // Copy the non-null values from the request model to the entity
+            DI.GetMapper.Map(model, entity);
 
             // Saves the changes in the database
             await dBContext.SaveChangesAsync();

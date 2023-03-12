@@ -27,7 +27,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The date updated
         /// </summary>
-        public DateTimeOffset DateUpdated { get; set; }
+        public DateTimeOffset DateUpdated { get; set; } = DateTimeOffset.Now;
 
         #endregion
 
