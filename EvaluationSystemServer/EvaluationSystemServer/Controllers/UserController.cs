@@ -35,12 +35,8 @@ namespace EvaluationSystemServer
         /// Post home/users
         [HttpPost]
         [Route(Routes.UsersRoute)]
-        public Task<ActionResult<UserResponseModel>> CreateUserAsync([FromBody] int companyId, int jobPositionId, UserRequestModel model)
-            => ControllerHelpers.PostAsync<UserEntity, UserResponseModel>(
-                mContext,
-                mContext.Users,
-                UserEntity.FromRequestModel(companyId, jobPositionId, model),
-                x => x.ToResponseModel());
+        public async Task<ActionResult<UserResponseModel>> CreateUserAsync([FromBody] int companyId, int jobPositionId, UserRequestModel model)
+            => (await DI.GetUsersManager.AddUserAsync(model)).ToResponseModel();
 
         /// <summary>
         /// Gets all the users from the database
@@ -82,13 +78,9 @@ namespace EvaluationSystemServer
         /// Put /home/users/{userId}
         [HttpPut]
         [Route(Routes.UserRoute)]
-        public Task<ActionResult<UserResponseModel>> UpdateUserAsync([FromRoute] int userId, [FromBody] UserRequestModel model)
+        public async Task<ActionResult<UserResponseModel>> UpdateUserAsync([FromRoute] int userId, [FromBody] UserRequestModel model)
         {
-            return ControllerHelpers.PutAsync<UserRequestModel, UserEntity, UserResponseModel>(
-                mContext,
-                mContext.Users,
-                model,
-                x => x.Id == userId);
+            return (await DI.GetUsersManager.UpdateUserAsync(userId, model)).ToResponseModel();
         }
 
         /// <summary>

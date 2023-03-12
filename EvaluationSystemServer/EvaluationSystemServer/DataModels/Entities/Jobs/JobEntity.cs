@@ -23,7 +23,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The salary
         /// </summary>
-        public int Salary { get; set; }
+        public decimal Salary { get; set; }
 
         #region Relationships
 
@@ -63,11 +63,10 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Creates and returns a <see cref="JobEntity"/> from the specified <paramref name="model"/>
         /// </summary>
-        /// <param name="companyId">The company's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static JobEntity FromRequestModel(int companyId, JobRequestModel model)
-            => ControllerHelpers.FromRequestModel(model, (JobEntity entity) => { entity.CompanyId = companyId; });
+        public static JobEntity FromRequestModel(UpdateJobRequestModel model)
+            => ControllerHelpers.FromRequestModel<JobEntity, UpdateJobRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="JobResponseModel"/> from the current <see cref="JobEntity"/>

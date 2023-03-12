@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer.Controllers.Jobs
@@ -35,11 +37,11 @@ namespace EvaluationSystemServer.Controllers.Jobs
         /// Post api/jobs
         [HttpPost]
         [Route(Routes.JobsRoute)]
-        public Task<ActionResult<JobResponseModel>> CreateJobAsync([FromBody] int companyId, JobRequestModel model)
-            => ControllerHelpers.PostAsync(
+        public Task<ActionResult<JobResponseModel>> CreateJobAsync([FromBody] CreateJobRequestModel model)
+            => ControllerHelpers.PostAsync<JobEntity, JobResponseModel>(
                 mContext,
                 mContext.Jobs,
-                JobEntity.FromRequestModel(companyId, model),
+                JobEntity.FromRequestModel(model),
                 x => x.ToResponseModel());
 
         /// <summary>
@@ -48,11 +50,37 @@ namespace EvaluationSystemServer.Controllers.Jobs
         /// Get api/jobs
         [HttpGet]
         [Route(Routes.JobsRoute)]
-        public Task<ActionResult<IEnumerable<JobResponseModel>>> GetJobsAsync() =>
+        public Task<ActionResult<IEnumerable<JobResponseModel>>> GetJobsAsync([FromQuery] JobArgs args)
+        {
+            var filters = new List<Expression<Func<JobEntity, bool>>>();
+
+            if (!string.IsNullOrEmpty(args.Search))
+                filters.Add(x => x.Name.Contains(args.Search));
+
+            if (args.AfterDateCreated is not null)
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            if (args.BeforeDateCreated is not null)
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);  
+
+            if (args.MinSalary is not null)
+                filters.Add(x => args.MinSalary >= x.Salary);
+
+            if (args.MaxSalary is not null)
+                filters.Add(x => args.MaxSalary <= x.Salary);
+
+            if (args.IncludeCompanies is not null)
+                filters.Add(x => args.IncludeCompanies.Contains(x.CompanyId));
+
+            if (args.ExcludeCompanies is not null)
+                filters.Add(x => !args.ExcludeCompanies.Contains(x.CompanyId));
+
             // Gets the response models for each job entity
-            ControllerHelpers.GetAllAsync<JobEntity, JobResponseModel>(
-                mContext.Jobs,
-                x => true);
+            return ControllerHelpers.GetAllAsync<JobEntity, JobResponseModel>(
+                mContext.Jobs.Include(x => x.Company).Include(x => x.JobPositions),
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the job with the specified id from the database if exists...
@@ -82,9 +110,9 @@ namespace EvaluationSystemServer.Controllers.Jobs
         /// Put /api/jobs/{adminId}
         [HttpPut]
         [Route(Routes.JobRoute)]
-        public Task<ActionResult<JobResponseModel>> UpdateJobAsync([FromRoute] int jobId, [FromBody] JobRequestModel model)
+        public Task<ActionResult<JobResponseModel>> UpdateJobAsync([FromRoute] int jobId, [FromBody] UpdateJobRequestModel model)
         {
-            return ControllerHelpers.PutAsync<JobRequestModel, JobEntity, JobResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateJobRequestModel, JobEntity, JobResponseModel>(
                 mContext,
                 mContext.Jobs,
                 model,
