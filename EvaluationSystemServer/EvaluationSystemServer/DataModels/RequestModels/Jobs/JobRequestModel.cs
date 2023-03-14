@@ -1,8 +1,8 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class UpdateJobRequestModel : BaseRequestModel
+    public class JobRequestModel : BaseRequestModel
     {
-        #region Public Constructors
+        #region Public Properties
 
         /// <summary>
         /// The name
@@ -26,20 +26,21 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UpdateJobRequestModel() 
-        { 
-        
+        public JobRequestModel()
+        {
+
         }
 
         #endregion
+
     }
 
     public class CreateJobRequestModel : UpdateJobRequestModel
     {
-        #region Public Properties
+        #region Public Constructors
 
         /// <summary>
-        /// The company Id
+        /// The company id
         /// </summary>
         public int CompanyId { get; set; }
 
@@ -50,10 +51,25 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CreateJobRequestModel()
+        public CreateJobRequestModel() 
+        { 
+        
+        }
+
+        #endregion
+    }
+
+    public class UpdateJobRequestModel : JobRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateJobRequestModel()
         {
 
-        }   
+        }
 
         #endregion
     }

@@ -90,15 +90,15 @@ namespace EvaluationSystemServer
                 foreach (var requestModelType in requestModelTypes)
                 {
                     // Get the prefix of the model
-                    var requestModelNamePrefix = requestModelType.Name.Replace(FrameworkConstructionExtensions.RequestModelSuffix, string.Empty);
+                    var requestModelNamePrefix = requestModelType.Name.Replace(FrameworkConstructionExtensions.RequestModelSuffix, string.Empty).Replace(FrameworkConstructionExtensions.CreatePrefix, string.Empty).Replace(FrameworkConstructionExtensions.UpdatePrefix, string.Empty);
                     // Get the entity type if exists with the same prefix
                     var entityType = entityTypes.FirstOrDefault(x => x.Name.Replace(FrameworkConstructionExtensions.EntitySuffix, string.Empty) == requestModelNamePrefix);
 
-                    // If the entity type exists...
-                    if (entityType != null)
-                        // Create map for request model -> entity
-                        cfg.CreateMap(requestModelType, entityType);
-                }
+                            // If the entity type exists...
+                            if (entityType != null)
+                                // Create map for request model -> entity
+                                cfg.CreateMap(requestModelType, entityType);
+                        }
 
                 // For each entity type
                 foreach (var entityType in entityTypes)

@@ -97,14 +97,10 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Creates and returns a <see cref="JobApplicationEntity"/> from the specified <paramref name="model"/>
         /// </summary>
-        /// <param name="employeeId">The employee's id</param>
-        /// <param name="evaluatorId">The evaluator's id</param>
-        /// <param name="managerId">The manager's id</param>
-        /// <param name="jobPositionId">The job position's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static JobApplicationEntity FromRequestModel(int employeeId, int managerId, int evaluatorId, int jobPositionId, JobApplicationRequestModel model)
-            => ControllerHelpers.FromRequestModel(model, (JobApplicationEntity entity) => { entity.EmployeeId = employeeId; entity.EvaluatorId = evaluatorId; entity.ManagerId = managerId; entity.JobPositionId = jobPositionId; });
+        public static JobApplicationEntity FromRequestModel(CreateJobApplicationRequestModel model)
+            => ControllerHelpers.FromRequestModel<JobApplicationEntity, CreateJobApplicationRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="JobApplicationResponseModel"/> from the current <see cref="JobApplicationEntity"/>

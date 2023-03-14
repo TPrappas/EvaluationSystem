@@ -1,6 +1,6 @@
 ﻿using EvaluationSystemServer;
 
-namespace EvaluationSystemServerngs
+namespace EvaluationSystemServer
 {
     public class ParticipantMeetingEntity : BaseEntity
     {

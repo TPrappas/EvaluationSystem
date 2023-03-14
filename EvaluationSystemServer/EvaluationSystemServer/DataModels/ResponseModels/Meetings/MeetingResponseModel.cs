@@ -34,6 +34,11 @@
         /// </summary>
         public string Location { get; set; }
 
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        public EmbeddedUserResponseModel Organizer { get; set; }
+
         #endregion
 
         #region Constructors
@@ -77,6 +82,11 @@
         /// The location
         /// </summary>
         public string Location { get; set; }
+
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        public EmbeddedUserResponseModel Organizer { get; set; }
 
         #endregion
 

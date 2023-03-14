@@ -124,9 +124,9 @@ namespace EvaluationSystemServer
         public IEnumerable<ParticipantMeetingEntity> ParticipantsMeeting { get; set; }
 
         /// <summary>
-        /// The manager's meetings
+        /// The organizer's meetings
         /// </summary>
-        public IEnumerable<OrganizerMeetingEntity> OrganizersMeeting { get; set; }
+        public IEnumerable<MeetingEntity> OrganizersMeeting { get; set; }
 
         #endregion
 
@@ -151,12 +151,10 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Creates and returns a <see cref="UserEntity"/> from the specified <paramref name="model"/>
         /// </summary>
-        /// <param name="companyId">The company's id</param>
-        /// <param name="jobPositionId">The job position's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static UserEntity FromRequestModel(int companyId, int jobPositionId, UserRequestModel model)
-            => ControllerHelpers.FromRequestModel(model, (UserEntity entity) => { entity.CompanyId = companyId; entity.JobPositionId = jobPositionId; });
+        public static UserEntity FromRequestModel(UserRequestModel model)
+            => ControllerHelpers.FromRequestModel<UserEntity, UserRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="UserResponseModel"/> from the current <see cref="UserEntity"/>

@@ -7,7 +7,7 @@
         /// <summary>
         /// The related <see cref="JobResponseModel"/>
         /// </summary>
-        public JobResponseModel Job { get; set; }
+        public EmbeddedJobResponseModel Job { get; set; }
 
         /// <summary>
         /// Is the position open or closed
