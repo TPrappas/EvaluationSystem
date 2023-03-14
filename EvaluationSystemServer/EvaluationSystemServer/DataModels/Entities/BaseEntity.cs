@@ -22,12 +22,11 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The date created
         /// </summary>
-        public DateTimeOffset DateCreated { get; set; } = DateTimeOffset.Now;
-
+        public DateTimeOffset DateCreated { get; set; }
         /// <summary>
         /// The date updated
         /// </summary>
-        public DateTimeOffset DateUpdated { get; set; } = DateTimeOffset.Now;
+        public DateTimeOffset DateUpdated { get; set; }
 
         #endregion
 

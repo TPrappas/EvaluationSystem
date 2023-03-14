@@ -25,10 +25,22 @@
         public DateTimeOffset SubmissionEnd { get; set; }
 
         /// <summary>
-        /// The related <see cref="UserEntity"/>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        /// The manager
+        public EmbeddedUserResponseModel Manager { get; set; }
+
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        /// The evaluator
+        public EmbeddedUserResponseModel Evaluator { get; set; }
+
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
         /// </summary>
         /// The employee
-        public EmbeddedUserResponseModel User { get; set; }
+        public EmbeddedUserResponseModel Employee { get; set; }
 
         /// <summary>
         /// The related <see cref="JobPositionResponseModel"/>
@@ -49,5 +61,52 @@
 
         #endregion
 
+    }
+
+    public class EmbeddedJobApplicationResponseModel : BaseResponseModel 
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// The grade
+        /// </summary>
+        public double Grade { get; set; }
+
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        /// The manager
+        public EmbeddedUserResponseModel Manager { get; set; }
+
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        /// The evaluator
+        public EmbeddedUserResponseModel Evaluator { get; set; }
+
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        /// The employee
+        public EmbeddedUserResponseModel Employee { get; set; }
+
+        /// <summary>
+        /// The related <see cref="JobPositionResponseModel"/>
+        /// </summary>
+        public JobPositionResponseModel JobPosition { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedJobApplicationResponseModel()
+        {
+
+        }
+
+        #endregion
     }
 }

@@ -44,9 +44,14 @@ namespace EvaluationSystemServer
         public IEnumerable<ParticipantMeetingEntity> ParticipantMeetings { get; set; }
 
         /// <summary>
-        /// The meetings's participants
+        /// The meetings's organizer
         /// </summary>
-        public IEnumerable<OrganizerMeetingEntity> OrganizerMeetings { get; set; }
+        public int OrganizerId { get; set; }
+
+        /// <summary>
+        /// The related <see cref="UserEntity"/>
+        /// </summary>
+        public UserEntity Organizer { get; set; }
 
         #endregion
 
@@ -67,11 +72,11 @@ namespace EvaluationSystemServer
         #region Public Methods
 
         /// <summary>
-        /// Creates and returns a <see cref="MeetingRequestModel"/> from the specified <paramref name="model"/>
+        /// Creates and returns a <see cref="CreateMeetingRequestModel"/> from the specified <paramref name="model"/>
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static MeetingEntity FromRequestModel(MeetingRequestModel model)
+        public static MeetingEntity FromRequestModel(CreateMeetingRequestModel model)
             => ControllerHelpers.FromRequestModel<MeetingEntity, MeetingRequestModel>(model);
 
 

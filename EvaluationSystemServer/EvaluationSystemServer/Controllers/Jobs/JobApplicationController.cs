@@ -35,11 +35,11 @@ namespace EvaluationSystemServer.Controllers.Jobs
         /// Post api/jobApplications
         [HttpPost]
         [Route(Routes.JobApplicationsRoute)]
-        public Task<ActionResult<JobApplicationResponseModel>> CreateJobApplicationAsync([FromBody] int employeeId, int managerId, int evaluatorId, int jobPositionId, JobApplicationRequestModel model)
-            => ControllerHelpers.PostAsync(
+        public Task<ActionResult<JobApplicationResponseModel>> CreateJobApplicationAsync([FromBody] CreateJobApplicationRequestModel model)
+            => ControllerHelpers.PostAsync<JobApplicationEntity, JobApplicationResponseModel>(
                 mContext,
                 mContext.JobApplications,
-                JobApplicationEntity.FromRequestModel(employeeId, managerId, evaluatorId, jobPositionId, model),
+                JobApplicationEntity.FromRequestModel(model),
                 x => x.ToResponseModel());
 
         /// <summary>

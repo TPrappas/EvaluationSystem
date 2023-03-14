@@ -61,6 +61,11 @@
         /// </summary>
         public JobPositionResponseModel JobPosition { get; set; }
 
+        /// <summary>
+        /// The related <see cref="EmbeddedMeetingResponseModel"/>
+        /// </summary>
+        public EmbeddedMeetingResponseModel Meeting { get; set; }
+
         #endregion
 
         #region Constructors
@@ -107,9 +112,16 @@
         public double Rating { get; set; }
 
         /// <summary>
-        /// The user type
+        /// The related <see cref="EmbeddedCompanyResponseModel"/>
         /// </summary>
-        public StaffType UserType { get; set; }
+        /// The related company
+        /// Navigation Property
+        public EmbeddedCompanyResponseModel Company { get; set; }
+
+        /// <summary>
+        /// The related <see cref="JobPositionResponseModel"/>
+        /// </summary>
+        public JobPositionResponseModel JobPosition { get; set; }
 
         #endregion
 

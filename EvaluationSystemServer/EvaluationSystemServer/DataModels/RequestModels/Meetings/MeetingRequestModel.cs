@@ -47,6 +47,44 @@
         }
 
         #endregion
+    }
 
+    public class CreateMeetingRequestModel : MeetingRequestModel
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// The organizer's id
+        /// </summary>
+        public int OrganizerId { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateMeetingRequestModel()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class UpdateMeetingRequestModel : MeetingRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateMeetingRequestModel()
+        {
+
+        }
+
+        #endregion
     }
 }

@@ -90,7 +90,7 @@
 
         #endregion
 
-        #region Meeting Route
+        #region Meeting Routes
 
         public const string MeetingsRoute = HomeRoute + "/meetings";
 
@@ -98,15 +98,7 @@
 
         #endregion
 
-        #region OrganizerMeeting Route 
-
-        public const string OrganizerMeetingsRoute = HomeRoute + "/organizerMeetings";
-
-        public const string OrganizerMeetingRoute = OrganizerMeetingsRoute + "/{organizerMeetingId}";
-
-        #endregion
-
-        #region ParticipantMeeting Route
+        #region ParticipantMeeting Routes
 
         public const string ParticipantMeetingsRoute = HomeRoute + "/participantMeetings";
 

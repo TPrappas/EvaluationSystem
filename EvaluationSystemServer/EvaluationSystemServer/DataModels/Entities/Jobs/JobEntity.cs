@@ -65,8 +65,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static JobEntity FromRequestModel(UpdateJobRequestModel model)
-            => ControllerHelpers.FromRequestModel<JobEntity, UpdateJobRequestModel>(model);
+        public static JobEntity FromRequestModel(CreateJobRequestModel model)
+            => ControllerHelpers.FromRequestModel<JobEntity, CreateJobRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="JobResponseModel"/> from the current <see cref="JobEntity"/>

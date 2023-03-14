@@ -35,8 +35,8 @@ namespace EvaluationSystemServer
         /// Post api/meetings
         [HttpPost]
         [Route(Routes.MeetingsRoute)]
-        public Task<ActionResult<MeetingResponseModel>> CreateMeetingAsync([FromBody] MeetingRequestModel model)
-            => ControllerHelpers.PostAsync(
+        public Task<ActionResult<MeetingResponseModel>> CreateMeetingAsync([FromBody] CreateMeetingRequestModel model)
+            => ControllerHelpers.PostAsync<MeetingEntity, MeetingResponseModel>(
                 mContext,
                 mContext.Meetings,
                 MeetingEntity.FromRequestModel(model),

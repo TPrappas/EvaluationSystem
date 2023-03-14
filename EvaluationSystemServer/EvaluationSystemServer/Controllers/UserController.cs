@@ -35,7 +35,7 @@ namespace EvaluationSystemServer
         /// Post home/users
         [HttpPost]
         [Route(Routes.UsersRoute)]
-        public async Task<ActionResult<UserResponseModel>> CreateUserAsync([FromBody] int companyId, int jobPositionId, UserRequestModel model)
+        public async Task<ActionResult<UserResponseModel>> CreateUserAsync([FromBody] UserRequestModel model)
             => (await DI.GetUsersManager.AddUserAsync(model)).ToResponseModel();
 
         /// <summary>
