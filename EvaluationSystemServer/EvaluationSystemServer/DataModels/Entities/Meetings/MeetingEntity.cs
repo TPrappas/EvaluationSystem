@@ -1,6 +1,4 @@
-﻿using EvaluationSystemServerngs;
-
-namespace EvaluationSystemServer
+﻿namespace EvaluationSystemServer
 {
     public class MeetingEntity : BaseEntity
     {

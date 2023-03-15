@@ -21,6 +21,11 @@ namespace EvaluationSystemServer
         public string Description { get; set; }
 
         /// <summary>
+        /// Is the project submitted
+        /// </summary>
+        public bool isSubmitted { get; set; }
+
+        /// <summary>
         /// The starting date
         /// </summary>
         public DateTimeOffset StartingDate { get; set; }
