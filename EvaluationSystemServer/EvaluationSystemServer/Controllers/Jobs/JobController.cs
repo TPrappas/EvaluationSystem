@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Linq.Expressions;
 
-namespace EvaluationSystemServer.Controllers.Jobs
+namespace EvaluationSystemServer
 {
     public class JobController : Controller
     {

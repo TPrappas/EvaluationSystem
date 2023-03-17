@@ -47,6 +47,12 @@ namespace EvaluationSystemServer
         /// </summary>
         public static UsersManager GetUsersManager => Host.Services.GetRequiredService<UsersManager>();
 
+        /// <summary>
+        /// Gets the projects manager
+        /// </summary>
+        public static ProjectsManager GetProjectsManager => Host.Services.GetRequiredService<ProjectsManager>();
+
+
         #endregion
     }
 }
