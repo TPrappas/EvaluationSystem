@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
-namespace EvaluationSystemServer.Controllers.Jobs
+namespace EvaluationSystemServer
 {
     public class JobApplicationController : Controller
     {

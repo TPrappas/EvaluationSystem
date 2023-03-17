@@ -1,28 +1,28 @@
 ﻿namespace EvaluationSystemServer
 {
-    public class BaseArgs
+    public class CertificateArgs : BaseArgs
     {
         #region Public Properties
 
         /// <summary>
-        /// The page
+        /// By name
         /// </summary>
-        public int Page { get; set; } = 0;
+        public string Search { get; set; }
 
         /// <summary>
-        /// Per page
+        /// By department
         /// </summary>
-        public int PerPage { get; set; } = 10;
+        public string Department { get; set; }
 
         /// <summary>
-        /// By after date created
+        /// By minGrade
         /// </summary>
-        public DateTimeOffset? AfterDateCreated { get; set; }
+        public double? minGrade { get; set; }
 
         /// <summary>
-        /// By before date created
+        /// By maxGrade
         /// </summary>
-        public DateTimeOffset? BeforeDateCreated { get; set; }
+        public double? maxGrade { get; set; }
 
         #endregion
 
@@ -31,7 +31,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseArgs()
+        public CertificateArgs()
         {
 
         }

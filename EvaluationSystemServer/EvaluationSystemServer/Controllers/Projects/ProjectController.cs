@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
-namespace EvaluationSystemServer.Controllers.Projects
+namespace EvaluationSystemServer
 {
     public class ProjectController : Controller
     {
@@ -35,12 +35,8 @@ namespace EvaluationSystemServer.Controllers.Projects
         /// Post api/projects
         [HttpPost]
         [Route(Routes.ProjectsRoute)]
-        public Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] int userId, ProjectRequestModel model)
-            => ControllerHelpers.PostAsync(
-                mContext,
-                mContext.Projects,
-                ProjectEntity.FromRequestModel(userId, model),
-                x => x.ToResponseModel());
+        public async Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] ProjectRequestModel model)
+            => (await DI.GetProjectsManager.AddProjectAsync(model)).ToResponseModel();
 
         /// <summary>
         /// Gets all the projects from the database
