@@ -52,27 +52,42 @@ namespace EvaluationSystemServer
         [Route(Routes.JobsRoute)]
         public Task<ActionResult<IEnumerable<JobResponseModel>>> GetJobsAsync([FromQuery] JobArgs args)
         {
+            // The list of the filters
             var filters = new List<Expression<Func<JobEntity, bool>>>();
 
+            // If Search is not null...
             if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
                 filters.Add(x => x.Name.Contains(args.Search));
 
+            // If the After Date Created is not null...
             if (args.AfterDateCreated is not null)
+                // Add to filters
                 filters.Add(x => x.DateCreated >= args.AfterDateCreated);
 
+            // If the Before Date Created is not null...
             if (args.BeforeDateCreated is not null)
-                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);  
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
+            // If the min Salary is not null...
             if (args.MinSalary is not null)
+                // Add to filters
                 filters.Add(x => args.MinSalary >= x.Salary);
 
+            // If the max Salary is not null...
             if (args.MaxSalary is not null)
+                // Add to filters
                 filters.Add(x => args.MaxSalary <= x.Salary);
 
+            // If the included Companies is not null...
             if (args.IncludeCompanies is not null)
+                // Add to filters
                 filters.Add(x => args.IncludeCompanies.Contains(x.CompanyId));
 
+            // If the excluded Companies is not null...
             if (args.ExcludeCompanies is not null)
+                // Add to filters
                 filters.Add(x => !args.ExcludeCompanies.Contains(x.CompanyId));
 
             // Gets the response models for each job entity

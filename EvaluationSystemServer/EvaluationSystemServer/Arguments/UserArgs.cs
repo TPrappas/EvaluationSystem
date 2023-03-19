@@ -22,17 +22,17 @@
         /// <summary>
         /// By minRating
         /// </summary>
-        public double minRating { get; set; }
+        public double? MinRating { get; set; }
 
         /// <summary>
         /// By maxRating
         /// </summary>
-        public double maxRating { get; set; }
+        public double? MaxRating { get; set; }
 
         /// <summary>
         /// By staff type
         /// </summary>
-        public StaffType UserType { get; set; }
+        public StaffType? UserType { get; set; }
 
         /// <summary>
         /// Company included

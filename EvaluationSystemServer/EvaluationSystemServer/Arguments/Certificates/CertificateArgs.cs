@@ -17,12 +17,12 @@
         /// <summary>
         /// By minGrade
         /// </summary>
-        public double? minGrade { get; set; }
+        public double? MinGrade { get; set; }
 
         /// <summary>
         /// By maxGrade
         /// </summary>
-        public double? maxGrade { get; set; }
+        public double? MaxGrade { get; set; }
 
         #endregion
 

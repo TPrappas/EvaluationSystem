@@ -44,11 +44,72 @@ namespace EvaluationSystemServer
         /// Get api/projects
         [HttpGet]
         [Route(Routes.ProjectsRoute)]
-        public Task<ActionResult<IEnumerable<ProjectResponseModel>>> GetProjectsAsync() =>
+        public Task<ActionResult<IEnumerable<ProjectResponseModel>>> GetProjectsAsync([FromQuery] ProjectArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<ProjectEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Name.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If the Min Grade is not null...
+            if (args.MinGrade is not null)
+                // Add to filters
+                filters.Add(x => args.MinGrade >= x.Grade);
+
+            // If the Min Grade is not null...
+            if (args.MaxGrade is not null)
+                // Add to filters
+                filters.Add(x => args.MaxGrade <= x.Grade);
+
+            // If the After Submission Start is not null...
+            if (args.AfterSubmissionStart is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionStart >= args.AfterSubmissionStart);
+
+            // If the Before Submission Start is not null...
+            if (args.BeforeSubmissionStart is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionStart <= args.BeforeSubmissionStart);
+
+            // If the After Submission End is not null...
+            if (args.AfterSubmissionEnd is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionEnd >= args.AfterSubmissionEnd);
+
+            // If the Before Submission End is not null...
+            if (args.BeforeSubmissionEnd is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionEnd <= args.BeforeSubmissionEnd);
+
+            // If the included Users is not null...
+            if (args.IncludeUsers is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeUsers.Contains(x.UserId));
+
+            // If the excluded Users is not null...
+            if (args.ExcludeUsers is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeUsers.Contains(x.UserId));
+
             // Gets the response models for each project entity
-            ControllerHelpers.GetAllAsync<ProjectEntity, ProjectResponseModel>(
+            return ControllerHelpers.GetAllAsync<ProjectEntity, ProjectResponseModel>(
                 mContext.Projects,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the project with the specified id from the database if exists...

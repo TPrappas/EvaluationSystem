@@ -17,7 +17,7 @@
         /// <summary>
         /// By isOpen
         /// </summary>
-        public bool isOpen { get; set; }
+        public bool? isOpen { get; set; }
 
 
         #endregion

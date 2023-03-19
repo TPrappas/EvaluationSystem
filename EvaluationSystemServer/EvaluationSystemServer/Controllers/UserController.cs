@@ -44,11 +44,77 @@ namespace EvaluationSystemServer
         /// Get home/users
         [HttpGet]
         [Route(Routes.UsersRoute)]
-        public Task<ActionResult<IEnumerable<UserResponseModel>>> GetUsersAsync() =>
+        public Task<ActionResult<IEnumerable<UserResponseModel>>> GetUsersAsync([FromQuery] UserArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<UserEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Username.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If FirstName is not null...
+            if (!string.IsNullOrEmpty(args.FirstName))
+                // Add to filters
+                filters.Add(x => x.FirstName.Contains(args.FirstName));
+
+            // If LastName is not null...
+            if (!string.IsNullOrEmpty(args.LastName))
+                // Add to filters
+                filters.Add(x => x.LastName.Contains(args.LastName));
+
+            // If the Min Rating is not null...
+            if (args.MinRating is not null)
+                // Add to filters
+                filters.Add(x => args.MinRating >= x.Rating);
+
+            // If the Max Rating is not null...
+            if (args.MaxRating is not null)
+                // Add to filters
+                filters.Add(x => args.MaxRating <= x.Rating);
+
+            // If the UserType is not null...
+            if (args.UserType is not null)
+                // Add to filters
+                filters.Add(x => args.UserType == x.UserType);
+
+            // If the included Companies is not null...
+            if (args.IncludeCompanies is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeCompanies.Contains(x.CompanyId));
+
+            // If the excluded Companies is not null...
+            if (args.ExcludeCompanies is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeCompanies.Contains(x.CompanyId));
+
+            // If the included Job Positions is not null...
+            if (args.IncludeJobPositions is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeJobPositions.Contains(x.JobPositionId));
+
+            // If the excluded Job Positions is not null...
+            if (args.ExcludeJobPositions is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeJobPositions.Contains(x.JobPositionId));
+
             // Gets the response models for each user entity
-            ControllerHelpers.GetAllAsync<UserEntity, UserResponseModel>(
+            return ControllerHelpers.GetAllAsync<UserEntity, UserResponseModel>(
                 mContext.Users,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the user with the specified id from the database if exists...

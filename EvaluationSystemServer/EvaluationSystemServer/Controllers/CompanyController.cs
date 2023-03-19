@@ -48,11 +48,42 @@ namespace EvaluationSystemServer
         /// Get api/companies
         [HttpGet]
         [Route(Routes.CompaniesRoute)]
-        public Task<ActionResult<IEnumerable<CompanyResponseModel>>> GetCompaniesAsync() =>
+        public Task<ActionResult<IEnumerable<CompanyResponseModel>>> GetCompaniesAsync([FromQuery] CompanyArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<CompanyEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Name.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If Country is not null...
+            if (!string.IsNullOrEmpty(args.Country))
+                // Add to filters
+                filters.Add(x => x.Country.Contains(args.Country));
+
+            // If DOY is not null...
+            if (!string.IsNullOrEmpty(args.DOY))
+                // Add to filters
+                filters.Add(x => x.DOY.Contains(args.DOY));
+
             // Gets the response models for each companies entity
-            ControllerHelpers.GetAllAsync<CompanyEntity, CompanyResponseModel>(
+            return ControllerHelpers.GetAllAsync<CompanyEntity, CompanyResponseModel>(
                 mContext.Companies,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the company with the specified id from the database if exists...

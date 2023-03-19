@@ -15,19 +15,24 @@
         public IEnumerable<int> ExcludeOrganizer { get; set; }
 
         /// <summary>
-        /// By date
+        /// By after date
         /// </summary>
-        public DateTimeOffset? Date { get; set; }
+        public DateTimeOffset? AfterDate { get; set; }
+
+        /// <summary>
+        /// By before date
+        /// </summary>
+        public DateTimeOffset? BeforeDate { get; set; }
 
         /// <summary>
         /// By min duration
         /// </summary>
-        public TimeSpan? minDuration { get; set; }
+        public TimeSpan? MinDuration { get; set; }
 
         /// <summary>
         /// By max duration
         /// </summary>
-        public TimeSpan? maxDuration { get; set; }
+        public TimeSpan? MaxDuration { get; set; }
 
         /// <summary>
         /// By name

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EvaluationSystemServer.Arguments.Jobs;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer
@@ -48,11 +49,42 @@ namespace EvaluationSystemServer
         /// Get api/jobPositions
         [HttpGet]
         [Route(Routes.JobPositionsRoute)]
-        public Task<ActionResult<IEnumerable<JobPositionResponseModel>>> GetJobPositionsAsync() =>
+        public Task<ActionResult<IEnumerable<JobPositionResponseModel>>> GetJobPositionsAsync([FromQuery] JobPositionArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<JobPositionEntity, bool>>>();
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If the is Open is not null...
+            if (args.isOpen is not null)
+                // Add to filters
+                filters.Add(x => args.isOpen == x.IsOpen);
+
+            // If the included Jobs is not null...
+            if (args.IncludeJobs is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeJobs.Contains(x.JobId));
+
+            // If the excluded Jobs is not null...
+            if (args.ExcludeJobs is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeJobs.Contains(x.JobId));
+
             // Gets the response models for each job position entity
-            ControllerHelpers.GetAllAsync<JobPositionEntity, JobPositionResponseModel>(
+            return ControllerHelpers.GetAllAsync<JobPositionEntity, JobPositionResponseModel>(
                 mContext.JobPositions,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the job position with the specified id from the database if exists...
