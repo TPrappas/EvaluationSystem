@@ -48,11 +48,87 @@ namespace EvaluationSystemServer
         /// Get api/jobApplications
         [HttpGet]
         [Route(Routes.JobApplicationsRoute)]
-        public Task<ActionResult<IEnumerable<JobApplicationResponseModel>>> GetJobApplicationsAsync() =>
+        public Task<ActionResult<IEnumerable<JobApplicationResponseModel>>> GetJobApplicationsAsync([FromQuery] JobApplicationArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<JobApplicationEntity, bool>>>();
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If the Min Grade is not null...
+            if (args.MinGrade is not null)
+                // Add to filters
+                filters.Add(x => args.MinGrade >= x.Grade);
+
+            // If the Min Grade is not null...
+            if (args.MaxGrade is not null)
+                // Add to filters
+                filters.Add(x => args.MaxGrade <= x.Grade);
+
+            // If the After Submission Start is not null...
+            if (args.AfterSubmissionStart is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionStart >= args.AfterSubmissionStart);
+
+            // If the Before Submission Start is not null...
+            if (args.BeforeSubmissionStart is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionStart <= args.BeforeSubmissionStart);
+
+            // If the After Submission End is not null...
+            if (args.AfterSubmissionEnd is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionEnd >= args.AfterSubmissionEnd);
+
+            // If the Before Submission End is not null...
+            if (args.BeforeSubmissionEnd is not null)
+                // Add to filters
+                filters.Add(x => x.SubmissionEnd <= args.BeforeSubmissionEnd);
+
+            // If the included Employees is not null...
+            if (args.IncludeEmployees is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeEmployees.Contains(x.EmployeeId));
+
+            // If the excluded Employees is not null...
+            if (args.ExcludeEmployees is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeEmployees.Contains(x.EmployeeId));
+
+            // If the included Evaluator is not null...
+            if (args.IncludeEvaluators is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeEvaluators.Contains(x.EvaluatorId));
+
+            // If the excluded Evaluator is not null...
+            if (args.ExcludeEvaluators is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeEvaluators.Contains(x.EvaluatorId));
+
+            // If the included Manager is not null...
+            if (args.IncludeManagers is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeEvaluators.Contains(x.ManagerId));
+
+            // If the excluded Manager is not null...
+            if (args.ExcludeManagers is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeManagers.Contains(x.ManagerId));
+
             // Gets the response models for each job application entity
-            ControllerHelpers.GetAllAsync<JobApplicationEntity, JobApplicationResponseModel>(
+            return ControllerHelpers.GetAllAsync<JobApplicationEntity, JobApplicationResponseModel>(
                 mContext.JobApplications,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the job application with the specified id from the database if exists...

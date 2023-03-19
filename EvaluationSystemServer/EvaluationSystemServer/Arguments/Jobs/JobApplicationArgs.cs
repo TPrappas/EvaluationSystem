@@ -37,23 +37,33 @@
         /// <summary>
         /// By minGrade
         /// </summary>
-        public double? minGrade { get; set; }
+        public double? MinGrade { get; set; }
 
         /// <summary>
         /// By maxGrade
         /// </summary>
-        public double? maxGrade { get; set; }
+        public double? MaxGrade { get; set; }
 
 
         /// <summary>
-        /// By submission start
+        /// After submission start
         /// </summary>
-        public DateTimeOffset? SubmissionStart { get; set; }
+        public DateTimeOffset? AfterSubmissionStart { get; set; }
 
         /// <summary>
-        /// By submission end
+        /// Before submission start
         /// </summary>
-        public DateTimeOffset? SubmissionEnd { get; set; }
+        public DateTimeOffset? BeforeSubmissionStart { get; set; }
+
+        /// <summary>
+        /// After submission end
+        /// </summary>
+        public DateTimeOffset? AfterSubmissionEnd { get; set; }
+
+        /// <summary>
+        /// Before submission end
+        /// </summary>
+        public DateTimeOffset? BeforeSubmissionEnd { get; set; }
 
         #endregion
 

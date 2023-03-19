@@ -48,11 +48,32 @@ namespace EvaluationSystemServer
         /// Get api/skills
         [HttpGet]
         [Route(Routes.SkillsRoute)]
-        public Task<ActionResult<IEnumerable<SkillResponseModel>>> GetSkillsAsync() =>
+        public Task<ActionResult<IEnumerable<SkillResponseModel>>> GetSkillsAsync([FromQuery] SkillArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<SkillEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Name.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
             // Gets the response models for each skill entity
-            ControllerHelpers.GetAllAsync<SkillEntity, SkillResponseModel>(
+            return ControllerHelpers.GetAllAsync<SkillEntity, SkillResponseModel>(
                 mContext.Skills,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the skill with the specified id from the database if exists...

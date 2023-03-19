@@ -26,14 +26,19 @@ namespace EvaluationSystemServer
         public bool isSubmitted { get; set; }
 
         /// <summary>
+        /// The grade
+        /// </summary>
+        public double Grade { get; set; }        
+
+        /// <summary>
         /// The starting date
         /// </summary>
-        public DateTimeOffset StartingDate { get; set; }
+        public DateTimeOffset SubmissionStart { get; set; }
 
         /// <summary>
         /// The ending date
         /// </summary>
-        public DateTimeOffset EndingDate { get; set; }
+        public DateTimeOffset SubmissionEnd { get; set; }
 
         #region Relationships
 

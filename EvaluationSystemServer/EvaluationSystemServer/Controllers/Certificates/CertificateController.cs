@@ -48,11 +48,47 @@ namespace EvaluationSystemServer
         /// Get api/certificates
         [HttpGet]
         [Route(Routes.CertificatesRoute)]
-        public Task<ActionResult<IEnumerable<CertificateResponseModel>>> GetCertificatesAsync() =>
+        public Task<ActionResult<IEnumerable<CertificateResponseModel>>> GetCertificatesAsync([FromQuery] CertificateArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<CertificateEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Name.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the After Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If Department is not null...
+            if (!string.IsNullOrEmpty(args.Department))
+                // Add to filters
+                filters.Add(x => x.Department.Contains(args.Department));
+
+            // If the Min Grade is not null...
+            if (args.MinGrade is not null)
+                // Add to filters
+                filters.Add(x => args.MinGrade >= x.Grade);
+
+            // If the Min Grade is not null...
+            if (args.MaxGrade is not null)
+                // Add to filters
+                filters.Add(x => args.MaxGrade <= x.Grade);
+
             // Gets the response models for each certificate entity
-            ControllerHelpers.GetAllAsync<CertificateEntity, CertificateResponseModel>(
+            return ControllerHelpers.GetAllAsync<CertificateEntity, CertificateResponseModel>(
                 mContext.Certificates,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the certificate with the specified id from the database if exists...

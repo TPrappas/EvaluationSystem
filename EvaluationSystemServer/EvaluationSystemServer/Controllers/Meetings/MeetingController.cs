@@ -48,11 +48,63 @@ namespace EvaluationSystemServer
         /// Get api/meetings
         [HttpGet]
         [Route(Routes.MeetingsRoute)]
-        public Task<ActionResult<IEnumerable<MeetingResponseModel>>> GetMeetingsAsync() =>
+        public Task<ActionResult<IEnumerable<MeetingResponseModel>>> GetMeetingsAsync([FromQuery] MeetingArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<MeetingEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Title.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
+            // If the included Orgnizers is not null...
+            if (args.IncludeOrganizer is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeOrganizer.Contains(x.OrganizerId));
+
+            // If the excluded Organizers is not null...
+            if (args.ExcludeOrganizer is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeOrganizer.Contains(x.OrganizerId));
+
+            // If the After Date is not null...
+            if (args.AfterDate is not null)
+                // Add to filters
+                filters.Add(x => x.MeetingDate >= args.AfterDate);
+
+            // If the Before Date is not null...
+            if (args.BeforeDate is not null)
+                // Add to filters
+                filters.Add(x => x.MeetingDate <= args.BeforeDate);
+
+            // If the min Duration is not null...
+            if (args.MinDuration is not null)
+                // Add to filters
+                filters.Add(x => args.MinDuration >= x.Duration);
+
+            // If the max Duration is not null...
+            if (args.MaxDuration is not null)
+                // Add to filters
+                filters.Add(x => args.MaxDuration <= x.Duration);
+
+
             // Gets the response models for each certificate entity
-            ControllerHelpers.GetAllAsync<MeetingEntity, MeetingResponseModel>(
+            return ControllerHelpers.GetAllAsync<MeetingEntity, MeetingResponseModel>(
                 mContext.Meetings,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the meeting with the specified id from the database if exists...

@@ -48,11 +48,32 @@ namespace EvaluationSystemServer
         /// Get api/categories
         [HttpGet]
         [Route(Routes.CategoriesRoute)]
-        public Task<ActionResult<IEnumerable<CategoryResponseModel>>> GetCategoriesAsync() =>
+        public Task<ActionResult<IEnumerable<CategoryResponseModel>>> GetCategoriesAsync([FromQuery] CategoryArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<CategoryEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Name.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the Before Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
             // Gets the response models for each category entity
-            ControllerHelpers.GetAllAsync<CategoryEntity, CategoryResponseModel>(
+            return ControllerHelpers.GetAllAsync<CategoryEntity, CategoryResponseModel>(
                 mContext.Categories,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the category with the specified id from the database if exists...

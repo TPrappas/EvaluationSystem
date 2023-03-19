@@ -48,11 +48,32 @@ namespace EvaluationSystemServer
         /// Get api/admins
         [HttpGet]
         [Route(Routes.AdminsRoute)]
-        public Task<ActionResult<IEnumerable<AdminResponseModel>>> GetAdminsAsync() =>
+        public Task<ActionResult<IEnumerable<AdminResponseModel>>> GetAdminsAsync([FromQuery] AdminArgs args)
+        {
+            // The list of the filters
+            var filters = new List<Expression<Func<AdminEntity, bool>>>();
+
+            // If Search is not null...
+            if (!string.IsNullOrEmpty(args.Search))
+                // Add to filters
+                filters.Add(x => x.Username.Contains(args.Search));
+
+            // If the After Date Created is not null...
+            if (args.AfterDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
+
+            // If the After Date Created is not null...
+            if (args.BeforeDateCreated is not null)
+                // Add to filters
+                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
+
             // Gets the response models for each admin entity
-            ControllerHelpers.GetAllAsync<AdminEntity, AdminResponseModel>(
+            return ControllerHelpers.GetAllAsync<AdminEntity, AdminResponseModel>(
                 mContext.Admins,
-                x => true);
+                args,
+                filters);
+        }
 
         /// <summary>
         /// Gets the admin with the specified id from the database if exists...
