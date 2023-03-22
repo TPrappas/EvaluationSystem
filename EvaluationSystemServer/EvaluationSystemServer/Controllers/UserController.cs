@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer
@@ -11,6 +12,15 @@ namespace EvaluationSystemServer
         /// The DB context
         /// </summary>
         private readonly EvaluationSystemDBContext mContext;
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Users 
+        /// </summary>
+        protected IQueryable<UserEntity> UsersQuery => mContext.Users.Include(x => x.Company).Include(x => x.JobPosition.Job);
 
         #endregion
 
@@ -111,7 +121,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each user entity
             return ControllerHelpers.GetAllAsync<UserEntity, UserResponseModel>(
-                mContext.Users,
+                UsersQuery,
                 args,
                 filters);
         }
@@ -131,7 +141,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<UserEntity, UserResponseModel>(
-                mContext.Users,
+                UsersQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -160,7 +170,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<UserEntity, UserResponseModel>(
                 mContext,
-                mContext.Users,
+                UsersQuery,
                 DI.GetMapper,
                 x => x.Id == userId);
         }

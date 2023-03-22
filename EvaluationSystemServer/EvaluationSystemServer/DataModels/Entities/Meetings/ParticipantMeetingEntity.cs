@@ -38,7 +38,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ParticipantMeetingEntity() 
+        public ParticipantMeetingEntity() : base()
         { 
         
         }

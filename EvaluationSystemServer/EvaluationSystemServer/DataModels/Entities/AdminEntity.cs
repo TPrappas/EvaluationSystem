@@ -27,7 +27,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public AdminEntity() 
+        public AdminEntity() : base()
         {
         
         }
