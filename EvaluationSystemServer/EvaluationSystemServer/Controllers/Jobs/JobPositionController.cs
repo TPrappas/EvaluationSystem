@@ -1,5 +1,6 @@
 ﻿using EvaluationSystemServer.Arguments.Jobs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer
@@ -12,6 +13,15 @@ namespace EvaluationSystemServer
         /// The DB context
         /// </summary>
         private readonly EvaluationSystemDBContext mContext;
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Job Positions
+        /// </summary>
+        protected IQueryable<JobPositionEntity> JobPositionsQuery => mContext.JobPositions.Include(x => x.Job.Company).Include(x => x.JobApplications);
 
         #endregion
 
@@ -81,7 +91,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each job position entity
             return ControllerHelpers.GetAllAsync<JobPositionEntity, JobPositionResponseModel>(
-                mContext.JobPositions,
+                JobPositionsQuery,
                 args,
                 filters);
         }
@@ -101,7 +111,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<JobPositionEntity, JobPositionResponseModel>(
-                mContext.JobPositions,
+                JobPositionsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -118,7 +128,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<JobPositionRequestModel, JobPositionEntity, JobPositionResponseModel>(
                 mContext,
-                mContext.JobPositions,
+                JobPositionsQuery,
                 model,
                 x => x.Id == jobPositionId);
         }
@@ -134,7 +144,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<JobPositionEntity, JobPositionResponseModel>(
                 mContext,
-                mContext.JobPositions,
+                JobPositionsQuery,
                 DI.GetMapper,
                 x => x.Id == jobPositionId);
         }

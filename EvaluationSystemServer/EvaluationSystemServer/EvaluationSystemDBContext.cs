@@ -207,11 +207,11 @@ namespace EvaluationSystemServer
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //modelBuilder.Entity<UserEntity>()
-            //    .HasMany(x => x.OrganizersMeeting)
-            //    .WithOne(x => x.Organizer)
-            //    .HasForeignKey(x => x.OrganizerId)
-            //    .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(x => x.OrganizersMeeting)
+                .WithOne(x => x.Organizer)
+                .HasForeignKey(x => x.OrganizerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             #endregion
 

@@ -44,12 +44,12 @@
         /// <summary>
         /// The meetings's organizer
         /// </summary>
-        //public int OrganizerId { get; set; }
+        public int OrganizerId { get; set; }
 
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-       // public UserEntity Organizer { get; set; }
+        public UserEntity Organizer { get; set; }
 
         #endregion
 

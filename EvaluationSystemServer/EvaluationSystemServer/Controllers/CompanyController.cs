@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer
@@ -11,6 +12,15 @@ namespace EvaluationSystemServer
         /// The DB context
         /// </summary>
         private readonly EvaluationSystemDBContext mContext;
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Companies
+        /// </summary>
+        protected IQueryable<CompanyEntity> CompaniesQuery => mContext.Companies;
 
         #endregion
 

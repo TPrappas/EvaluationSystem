@@ -138,7 +138,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public UserEntity()
+        public UserEntity() : base()
         {
 
         }

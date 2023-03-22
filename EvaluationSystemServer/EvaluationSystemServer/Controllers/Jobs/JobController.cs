@@ -16,6 +16,15 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Jobs
+        /// </summary>
+        protected IQueryable<JobEntity> JobsQuery => mContext.Jobs.Include(x => x.Company).Include(x => x.JobPositions);
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -92,7 +101,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each job entity
             return ControllerHelpers.GetAllAsync<JobEntity, JobResponseModel>(
-                mContext.Jobs.Include(x => x.Company).Include(x => x.JobPositions),
+                JobsQuery,
                 args,
                 filters);
         }
@@ -112,7 +121,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<JobEntity, JobResponseModel>(
-                mContext.Jobs,
+                JobsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -129,7 +138,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<UpdateJobRequestModel, JobEntity, JobResponseModel>(
                 mContext,
-                mContext.Jobs,
+                JobsQuery,
                 model,
                 x => x.Id == jobId);
         }
@@ -145,7 +154,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<JobEntity, JobResponseModel>(
                 mContext,
-                mContext.Jobs,
+                JobsQuery,
                 DI.GetMapper,
                 x => x.Id == jobId);
         }

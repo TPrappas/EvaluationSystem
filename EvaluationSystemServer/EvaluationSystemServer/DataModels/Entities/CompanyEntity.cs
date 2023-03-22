@@ -72,7 +72,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CompanyEntity() 
+        public CompanyEntity() : base()
         {
         
         }

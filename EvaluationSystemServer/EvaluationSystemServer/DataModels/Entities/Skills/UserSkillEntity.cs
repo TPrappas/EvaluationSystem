@@ -41,7 +41,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UserSkillEntity()
+        public UserSkillEntity() : base()
         {
 
         }

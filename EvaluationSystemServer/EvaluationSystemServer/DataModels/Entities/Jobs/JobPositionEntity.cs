@@ -46,7 +46,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public JobPositionEntity()
+        public JobPositionEntity() : base()
         {
 
         }

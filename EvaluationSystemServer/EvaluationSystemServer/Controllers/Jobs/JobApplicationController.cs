@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace EvaluationSystemServer
@@ -11,6 +12,15 @@ namespace EvaluationSystemServer
         /// The DB context
         /// </summary>
         private readonly EvaluationSystemDBContext mContext;
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Job Applications
+        /// </summary>
+        protected IQueryable<JobApplicationEntity> JobApplicationsQuery => mContext.JobApplications.Include(x => x.Manager).Include(x => x.Employee).Include(x => x.Evaluator).Include(x => x.JobPosition);
 
         #endregion
 
@@ -125,7 +135,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each job application entity
             return ControllerHelpers.GetAllAsync<JobApplicationEntity, JobApplicationResponseModel>(
-                mContext.JobApplications,
+                JobApplicationsQuery,
                 args,
                 filters);
         }
@@ -145,7 +155,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<JobApplicationEntity, JobApplicationResponseModel>(
-                mContext.JobApplications,
+                JobApplicationsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -162,7 +172,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<JobApplicationRequestModel, JobApplicationEntity, JobApplicationResponseModel>(
                 mContext,
-                mContext.JobApplications,
+                JobApplicationsQuery,
                 model,
                 x => x.Id == jobApplcationId);
         }
@@ -178,7 +188,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<JobApplicationEntity, JobApplicationResponseModel>(
                 mContext,
-                mContext.JobApplications,
+                JobApplicationsQuery,
                 DI.GetMapper,
                 x => x.Id == jobApplicationId);
         }
