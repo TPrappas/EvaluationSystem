@@ -14,6 +14,15 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Admins
+        /// </summary>
+        protected IQueryable<AdminEntity> AdminsQuery => mContext.Admins;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -48,7 +57,7 @@ namespace EvaluationSystemServer
         /// Get api/admins
         [HttpGet]
         [Route(Routes.AdminsRoute)]
-        public Task<ActionResult<IEnumerable<AdminResponseModel>>> GetAdminsAsync([FromQuery] AdminArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedAdminResponseModel>>> GetAdminsAsync([FromQuery] AdminArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<AdminEntity, bool>>>();
@@ -69,8 +78,8 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
             // Gets the response models for each admin entity
-            return ControllerHelpers.GetAllAsync<AdminEntity, AdminResponseModel>(
-                mContext.Admins,
+            return ControllerHelpers.GetAllAsync<AdminEntity, EmbeddedAdminResponseModel>(
+                AdminsQuery,
                 args,
                 filters);
         }
@@ -83,14 +92,14 @@ namespace EvaluationSystemServer
         /// Get api/admins/{adminId} == api/admins/1
         [HttpGet]
         [Route(Routes.AdminRoute)]
-        public Task<ActionResult<AdminResponseModel>> GetAdminAsync([FromRoute] int adminId)
+        public Task<ActionResult<EmbeddedAdminResponseModel>> GetAdminAsync([FromRoute] int adminId)
         {
             // The needed expression for the filter
             Expression<Func<AdminEntity, bool>> filter = x => x.Id == adminId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<AdminEntity, AdminResponseModel>(
-                mContext.Admins,
+            return ControllerHelpers.GetAsync<AdminEntity, EmbeddedAdminResponseModel>(
+                AdminsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -107,7 +116,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<AdminRequestModel, AdminEntity, AdminResponseModel>(
                 mContext,
-                mContext.Admins,
+                AdminsQuery,
                 model,
                 x => x.Id == adminId);
         }
@@ -123,7 +132,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<AdminEntity, AdminResponseModel>(
                 mContext,
-                mContext.Admins,
+                AdminsQuery,
                 DI.GetMapper,
                 x => x.Id == adminId);
         }

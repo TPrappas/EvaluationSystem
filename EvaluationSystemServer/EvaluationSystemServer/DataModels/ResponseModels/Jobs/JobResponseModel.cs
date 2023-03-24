@@ -31,13 +31,12 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobResponseModel()
+        public JobResponseModel() : base()
         {
 
         }
 
         #endregion
-
     }
 
     public class EmbeddedJobResponseModel : BaseResponseModel 
@@ -66,7 +65,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public EmbeddedJobResponseModel()
+        public EmbeddedJobResponseModel() : base()
         {
 
         }

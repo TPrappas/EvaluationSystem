@@ -26,7 +26,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobRequestModel()
+        public JobRequestModel() : base()
         {
 
         }
@@ -51,7 +51,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CreateJobRequestModel() 
+        public CreateJobRequestModel() : base()
         { 
         
         }
@@ -66,7 +66,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UpdateJobRequestModel()
+        public UpdateJobRequestModel() : base()
         {
 
         }

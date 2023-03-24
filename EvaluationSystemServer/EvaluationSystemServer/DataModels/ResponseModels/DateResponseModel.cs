@@ -21,7 +21,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public DateResponseModel() 
+        public DateResponseModel() : base()
         { 
         
         }

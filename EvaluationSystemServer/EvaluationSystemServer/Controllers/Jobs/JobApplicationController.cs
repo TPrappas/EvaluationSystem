@@ -58,7 +58,7 @@ namespace EvaluationSystemServer
         /// Get api/jobApplications
         [HttpGet]
         [Route(Routes.JobApplicationsRoute)]
-        public Task<ActionResult<IEnumerable<JobApplicationResponseModel>>> GetJobApplicationsAsync([FromQuery] JobApplicationArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedJobApplicationResponseModel>>> GetJobApplicationsAsync([FromQuery] JobApplicationArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<JobApplicationEntity, bool>>>();
@@ -134,7 +134,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => !args.ExcludeManagers.Contains(x.ManagerId));
 
             // Gets the response models for each job application entity
-            return ControllerHelpers.GetAllAsync<JobApplicationEntity, JobApplicationResponseModel>(
+            return ControllerHelpers.GetAllAsync<JobApplicationEntity, EmbeddedJobApplicationResponseModel>(
                 JobApplicationsQuery,
                 args,
                 filters);
@@ -148,13 +148,13 @@ namespace EvaluationSystemServer
         /// Get api/jobApplications/{adminId} == api/jobApplications/1
         [HttpGet]
         [Route(Routes.JobApplicationRoute)]
-        public Task<ActionResult<JobApplicationResponseModel>> GetJobApplicationAsync([FromRoute] int jobApplicationId)
+        public Task<ActionResult<EmbeddedJobApplicationResponseModel>> GetJobApplicationAsync([FromRoute] int jobApplicationId)
         {
             // The needed expression for the filter
             Expression<Func<JobApplicationEntity, bool>> filter = x => x.Id == jobApplicationId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<JobApplicationEntity, JobApplicationResponseModel>(
+            return ControllerHelpers.GetAsync<JobApplicationEntity, EmbeddedJobApplicationResponseModel>(
                 JobApplicationsQuery,
                 DI.GetMapper,
                 filter);

@@ -15,6 +15,16 @@
         public string Description { get; set; }
 
         /// <summary>
+        /// The user's id
+        /// </summary>
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// The project is Submitted
+        /// </summary>
+        public bool isSubmitted { get; set; }
+
+        /// <summary>
         /// The starting date
         /// </summary>
         public DateTimeOffset StartingDate { get; set; }
@@ -36,7 +46,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectRequestModel()
+        public ProjectRequestModel() : base()
         {
 
         }

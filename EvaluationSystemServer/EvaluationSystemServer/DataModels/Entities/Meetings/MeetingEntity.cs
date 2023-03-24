@@ -60,7 +60,7 @@
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public MeetingEntity()
+        public MeetingEntity() : base()
         {
 
         }
@@ -75,7 +75,7 @@
         /// <param name="model"></param>
         /// <returns></returns>
         public static MeetingEntity FromRequestModel(CreateMeetingRequestModel model)
-            => ControllerHelpers.FromRequestModel<MeetingEntity, MeetingRequestModel>(model);
+            => ControllerHelpers.FromRequestModel<MeetingEntity, CreateMeetingRequestModel>(model);
 
 
         /// <summary>

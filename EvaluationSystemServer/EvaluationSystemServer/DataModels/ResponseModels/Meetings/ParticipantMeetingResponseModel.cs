@@ -22,10 +22,25 @@
         /// Default constructor
         /// </summary>
         public ParticipantMeetingResponseModel()
-        { 
-        
+        {
+
         }
-        
+
+        #endregion
+    }
+
+    public class EmbeddedParticipantMeetingResponseModel : ParticipantMeetingResponseModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedParticipantMeetingResponseModel() : base()
+        {
+
+        }
+
         #endregion
     }
 }

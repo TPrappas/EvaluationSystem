@@ -7,7 +7,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseRequestModel() 
+        public BaseRequestModel() : base()
         { 
         
         }

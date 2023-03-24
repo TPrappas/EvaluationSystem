@@ -52,7 +52,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CompanyResponseModel()
+        public CompanyResponseModel() : base()
         {
 
         }
@@ -92,7 +92,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public EmbeddedCompanyResponseModel() 
+        public EmbeddedCompanyResponseModel() : base()
         { 
         
         }

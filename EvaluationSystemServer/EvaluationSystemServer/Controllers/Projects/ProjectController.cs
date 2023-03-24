@@ -54,7 +54,7 @@ namespace EvaluationSystemServer
         /// Get api/projects
         [HttpGet]
         [Route(Routes.ProjectsRoute)]
-        public Task<ActionResult<IEnumerable<ProjectResponseModel>>> GetProjectsAsync([FromQuery] ProjectArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedProjectResponseModel>>> GetProjectsAsync([FromQuery] ProjectArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<ProjectEntity, bool>>>();
@@ -115,7 +115,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => !args.ExcludeUsers.Contains(x.UserId));
 
             // Gets the response models for each project entity
-            return ControllerHelpers.GetAllAsync<ProjectEntity, ProjectResponseModel>(
+            return ControllerHelpers.GetAllAsync<ProjectEntity, EmbeddedProjectResponseModel>(
                 mContext.Projects,
                 args,
                 filters);
@@ -129,13 +129,13 @@ namespace EvaluationSystemServer
         /// Get api/projects/{projectId} == api/projects/1
         [HttpGet]
         [Route(Routes.ProjectRoute)]
-        public Task<ActionResult<ProjectResponseModel>> GetProjectAsync([FromRoute] int projectId)
+        public Task<ActionResult<EmbeddedProjectResponseModel>> GetProjectAsync([FromRoute] int projectId)
         {
             // The needed expression for the filter
             Expression<Func<ProjectEntity, bool>> filter = x => x.Id == projectId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<ProjectEntity, ProjectResponseModel>(
+            return ControllerHelpers.GetAsync<ProjectEntity, EmbeddedProjectResponseModel>(
                 mContext.Projects,
                 DI.GetMapper,
                 filter);

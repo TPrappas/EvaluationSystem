@@ -32,7 +32,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobApplicationRequestModel()
+        public JobApplicationRequestModel() : base()
         {
 
         }
@@ -61,9 +61,9 @@
         public int EmployeeId { get; set; }
 
         /// <summary>
-        /// The job's id
+        /// The job position's id
         /// </summary>
-        public int JobId { get; set; }
+        public int JobPositionId { get; set; }
 
         #endregion
 
@@ -72,7 +72,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CreateJobApplicationRequestModel()
+        public CreateJobApplicationRequestModel() : base()
         {
 
         }
@@ -87,7 +87,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UpdateJobApplicationRequestModel()
+        public UpdateJobApplicationRequestModel() : base()
         {
 
         }

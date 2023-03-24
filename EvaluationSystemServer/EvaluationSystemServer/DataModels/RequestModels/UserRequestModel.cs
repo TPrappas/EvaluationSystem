@@ -81,7 +81,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UserRequestModel()
+        public UserRequestModel() : base()
         {
 
         }

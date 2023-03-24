@@ -15,6 +15,15 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Protected Proterties
+
+        /// <summary>
+        /// The query used for retrieving the Certificates
+        /// </summary>
+        protected IQueryable<CertificateEntity> CertificatesQuery => mContext.Certificates;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -49,7 +58,7 @@ namespace EvaluationSystemServer
         /// Get api/certificates
         [HttpGet]
         [Route(Routes.CertificatesRoute)]
-        public Task<ActionResult<IEnumerable<CertificateResponseModel>>> GetCertificatesAsync([FromQuery] CertificateArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedCertificateResponseModel>>> GetCertificatesAsync([FromQuery] CertificateArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<CertificateEntity, bool>>>();
@@ -85,8 +94,8 @@ namespace EvaluationSystemServer
                 filters.Add(x => args.MaxGrade <= x.Grade);
 
             // Gets the response models for each certificate entity
-            return ControllerHelpers.GetAllAsync<CertificateEntity, CertificateResponseModel>(
-                mContext.Certificates,
+            return ControllerHelpers.GetAllAsync<CertificateEntity, EmbeddedCertificateResponseModel>(
+                CertificatesQuery,
                 args,
                 filters);
         }
@@ -99,14 +108,14 @@ namespace EvaluationSystemServer
         /// Get api/certificates/{certificateId} == api/certificates/1
         [HttpGet]
         [Route(Routes.CertificateRoute)]
-        public Task<ActionResult<CertificateResponseModel>> GetCertificateAsync([FromRoute] int certificateId)
+        public Task<ActionResult<EmbeddedCertificateResponseModel>> GetCertificateAsync([FromRoute] int certificateId)
         {
             // The needed expression for the filter
             Expression<Func<CertificateEntity, bool>> filter = x => x.Id == certificateId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<CertificateEntity, CertificateResponseModel>(
-                mContext.Certificates,
+            return ControllerHelpers.GetAsync<CertificateEntity, EmbeddedCertificateResponseModel>(
+                CertificatesQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -123,7 +132,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<CertificateRequestModel, CertificateEntity, CertificateResponseModel>(
                 mContext,
-                mContext.Certificates,
+                CertificatesQuery,
                 model,
                 x => x.Id == certificateId);
         }
@@ -139,7 +148,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<CertificateEntity, CertificateResponseModel>(
                 mContext,
-                mContext.Certificates,
+                CertificatesQuery,
                 DI.GetMapper,
                 x => x.Id == certificateId);
         }

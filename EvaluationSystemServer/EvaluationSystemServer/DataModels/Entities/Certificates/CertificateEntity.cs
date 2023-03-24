@@ -46,7 +46,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default Constructor 
         /// </summary>
-        public CertificateEntity()
+        public CertificateEntity() : base()
         {
 
         }

@@ -21,7 +21,22 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SkillResponseModel()
+        public SkillResponseModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class EmbeddedSkillResponseModel : SkillResponseModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedSkillResponseModel() : base()
         {
 
         }

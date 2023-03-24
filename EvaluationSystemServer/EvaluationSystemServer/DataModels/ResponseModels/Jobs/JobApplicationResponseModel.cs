@@ -54,7 +54,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobApplicationResponseModel()
+        public JobApplicationResponseModel() : base()
         {
 
         }
@@ -102,7 +102,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public EmbeddedJobApplicationResponseModel()
+        public EmbeddedJobApplicationResponseModel() : base()
         {
 
         }

@@ -66,7 +66,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectEntity()
+        public ProjectEntity() : base()
         {
 
         }

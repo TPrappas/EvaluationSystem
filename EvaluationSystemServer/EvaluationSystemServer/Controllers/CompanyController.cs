@@ -20,7 +20,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The query used for retrieving the Companies
         /// </summary>
-        protected IQueryable<CompanyEntity> CompaniesQuery => mContext.Companies;
+        protected IQueryable<CompanyEntity> CompaniesQuery => mContext.Companies.Include(x => x.Users).Include(x => x.Jobs);
 
         #endregion
 
@@ -58,7 +58,7 @@ namespace EvaluationSystemServer
         /// Get api/companies
         [HttpGet]
         [Route(Routes.CompaniesRoute)]
-        public Task<ActionResult<IEnumerable<CompanyResponseModel>>> GetCompaniesAsync([FromQuery] CompanyArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedCompanyResponseModel>>> GetCompaniesAsync([FromQuery] CompanyArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<CompanyEntity, bool>>>();
@@ -89,8 +89,8 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DOY.Contains(args.DOY));
 
             // Gets the response models for each companies entity
-            return ControllerHelpers.GetAllAsync<CompanyEntity, CompanyResponseModel>(
-                mContext.Companies,
+            return ControllerHelpers.GetAllAsync<CompanyEntity, EmbeddedCompanyResponseModel>(
+                CompaniesQuery,
                 args,
                 filters);
         }
@@ -103,14 +103,14 @@ namespace EvaluationSystemServer
         /// Get api/companies/{companyId} == api/companies/1
         [HttpGet]
         [Route(Routes.CompanyRoute)]
-        public Task<ActionResult<CompanyResponseModel>> GetCompanyAsync([FromRoute] int companyId)
+        public Task<ActionResult<EmbeddedCompanyResponseModel>> GetCompanyAsync([FromRoute] int companyId)
         {
             // The needed expression for the filter
             Expression<Func<CompanyEntity, bool>> filter = x => x.Id == companyId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<CompanyEntity, CompanyResponseModel>(
-                mContext.Companies,
+            return ControllerHelpers.GetAsync<CompanyEntity, EmbeddedCompanyResponseModel>(
+                CompaniesQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -127,7 +127,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<CompanyRequestModel, CompanyEntity, CompanyResponseModel>(
                 mContext,
-                mContext.Companies,
+                CompaniesQuery,
                 model,
                 x => x.Id == companyId);
         }
@@ -143,7 +143,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<CompanyEntity, CompanyResponseModel>(
                 mContext,
-                mContext.Companies,
+                CompaniesQuery,
                 DI.GetMapper,
                 x => x.Id == companyId);
         }

@@ -52,7 +52,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CompanyRequestModel()
+        public CompanyRequestModel() : base()
         {
 
         }
