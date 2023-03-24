@@ -28,9 +28,11 @@ namespace EvaluationSystemServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EvaluationSystemDBContext>(opt => opt.UseSqlServer
-                    (Configuration.GetConnectionString("sqlConnection")), ServiceLifetime.Transient);
+                    (Configuration.GetConnectionString("sqlConnection")), ServiceLifetime.Singleton);
 
             services.AddSingleton<UsersManager>();
+
+            services.AddScoped<ProjectsManager>();
 
             services.AddControllers();
 

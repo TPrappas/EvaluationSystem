@@ -46,7 +46,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MeetingResponseModel()
+        public MeetingResponseModel() : base()
         {
 
         }
@@ -95,7 +95,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public EmbeddedMeetingResponseModel() 
+        public EmbeddedMeetingResponseModel() : base()
         { 
         
         }

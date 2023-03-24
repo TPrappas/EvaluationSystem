@@ -16,7 +16,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseResponseModel() 
+        public BaseResponseModel() : base()
         { 
         
         }

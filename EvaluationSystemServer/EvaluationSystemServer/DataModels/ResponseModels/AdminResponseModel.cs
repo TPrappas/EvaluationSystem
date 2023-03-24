@@ -21,12 +21,27 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public AdminResponseModel() 
+        public AdminResponseModel() : base()
         { 
         
         }
 
         #endregion
 
+    }
+
+    public class EmbeddedAdminResponseModel : AdminResponseModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedAdminResponseModel() : base()
+        {
+
+        }
+
+        #endregion
     }
 }

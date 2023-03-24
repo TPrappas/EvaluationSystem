@@ -15,6 +15,11 @@
         public string Description { get; set; }
 
         /// <summary>
+        /// The project is submitted
+        /// </summary>
+        public bool isSubmitted { get; set; }
+
+        /// <summary>
         /// The starting date
         /// </summary>
         public DateTimeOffset StartingDate { get; set; }
@@ -36,12 +41,27 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectResponseModel()
+        public ProjectResponseModel() : base()
         {
 
         }
 
         #endregion
 
+    }
+
+    public class EmbeddedProjectResponseModel : ProjectResponseModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedProjectResponseModel() : base()
+        {
+
+        }
+
+        #endregion
     }
 }

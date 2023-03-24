@@ -61,11 +61,6 @@
         /// </summary>
         public JobPositionResponseModel JobPosition { get; set; }
 
-        /// <summary>
-        /// The related <see cref="EmbeddedMeetingResponseModel"/>
-        /// </summary>
-        public EmbeddedMeetingResponseModel Meeting { get; set; }
-
         #endregion
 
         #region Constructors
@@ -73,7 +68,7 @@
         /// <summary>
         /// Default constructor 
         /// </summary>
-        public UserResponseModel()
+        public UserResponseModel() : base()
         {
 
         }
@@ -130,7 +125,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public EmbeddedUserResponseModel() 
+        public EmbeddedUserResponseModel() : base()
         { 
         
         }

@@ -21,12 +21,27 @@
         /// <summary>
         /// Default Constructor
         /// </summary>
-        public UserSkillResponseModel()
+        public UserSkillResponseModel() : base()
         {
 
         }
 
         #endregion
 
+    }
+
+    public class EmbeddedUserSkillResponseModel : UserSkillResponseModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedUserSkillResponseModel() : base()
+        {
+
+        }
+
+        #endregion
     }
 }

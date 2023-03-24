@@ -31,7 +31,7 @@
         /// <summary>
         /// Default Constructors
         /// </summary>
-        public CertificateRequestModel()
+        public CertificateRequestModel() : base()
         {
 
         }

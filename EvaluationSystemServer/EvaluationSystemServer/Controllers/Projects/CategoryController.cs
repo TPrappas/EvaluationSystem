@@ -14,6 +14,15 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Categories
+        /// </summary>
+        protected IQueryable<CategoryEntity> CategoriesQuery => mContext.Categories;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -48,7 +57,7 @@ namespace EvaluationSystemServer
         /// Get api/categories
         [HttpGet]
         [Route(Routes.CategoriesRoute)]
-        public Task<ActionResult<IEnumerable<CategoryResponseModel>>> GetCategoriesAsync([FromQuery] CategoryArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedCategoryResponseModel>>> GetCategoriesAsync([FromQuery] CategoryArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<CategoryEntity, bool>>>();
@@ -69,7 +78,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
             // Gets the response models for each category entity
-            return ControllerHelpers.GetAllAsync<CategoryEntity, CategoryResponseModel>(
+            return ControllerHelpers.GetAllAsync<CategoryEntity, EmbeddedCategoryResponseModel>(
                 mContext.Categories,
                 args,
                 filters);
@@ -83,13 +92,13 @@ namespace EvaluationSystemServer
         /// Get api/categories/{categoriesId} == api/categories/1
         [HttpGet]
         [Route(Routes.CategoryRoute)]
-        public Task<ActionResult<CategoryResponseModel>> GetCategoryAsync([FromRoute] int categoryId)
+        public Task<ActionResult<EmbeddedCategoryResponseModel>> GetCategoryAsync([FromRoute] int categoryId)
         {
             // The needed expression for the filter
             Expression<Func<CategoryEntity, bool>> filter = x => x.Id == categoryId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<CategoryEntity, CategoryResponseModel>(
+            return ControllerHelpers.GetAsync<CategoryEntity, EmbeddedCategoryResponseModel>(
                 mContext.Categories,
                 DI.GetMapper,
                 filter);

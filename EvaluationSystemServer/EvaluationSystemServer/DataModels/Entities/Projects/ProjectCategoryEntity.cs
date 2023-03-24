@@ -35,7 +35,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectCategoryEntity()
+        public ProjectCategoryEntity() : base()
         { 
         
         }

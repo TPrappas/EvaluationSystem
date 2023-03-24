@@ -29,11 +29,26 @@
         #region Constructors
 
         /// <summary>
-        /// Default Constructors
+        /// Default Constructor
         /// </summary>
-        public CertificateResponseModel()
+        public CertificateResponseModel() : base()
         {
 
+        }
+
+        #endregion
+    }
+
+    public class EmbeddedCertificateResponseModel : CertificateResponseModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public EmbeddedCertificateResponseModel() : base() 
+        { 
+        
         }
 
         #endregion

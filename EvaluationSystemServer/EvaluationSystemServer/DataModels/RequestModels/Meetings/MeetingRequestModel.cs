@@ -41,7 +41,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MeetingRequestModel()
+        public MeetingRequestModel() : base()
         {
 
         }
@@ -65,7 +65,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CreateMeetingRequestModel()
+        public CreateMeetingRequestModel() : base()
         {
 
         }
@@ -80,7 +80,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UpdateMeetingRequestModel()
+        public UpdateMeetingRequestModel() : base()
         {
 
         }

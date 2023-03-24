@@ -21,9 +21,24 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CategoryResponseModel() 
+        public CategoryResponseModel() : base()
         { 
         
+        }
+
+        #endregion
+    }
+
+    public class EmbeddedCategoryResponseModel : CategoryResponseModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedCategoryResponseModel() : base()
+        {
+
         }
 
         #endregion

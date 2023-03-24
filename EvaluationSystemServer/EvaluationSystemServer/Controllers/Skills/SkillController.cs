@@ -14,6 +14,15 @@ namespace EvaluationSystemServer
 
         #endregion
 
+        #region Protected Properties
+
+        /// <summary>
+        /// The query used for retrieving the Skills
+        /// </summary>
+        protected IQueryable<SkillEntity> SkillsQuery => mContext.Skills;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -48,7 +57,7 @@ namespace EvaluationSystemServer
         /// Get api/skills
         [HttpGet]
         [Route(Routes.SkillsRoute)]
-        public Task<ActionResult<IEnumerable<SkillResponseModel>>> GetSkillsAsync([FromQuery] SkillArgs args)
+        public Task<ActionResult<IEnumerable<EmbeddedSkillResponseModel>>> GetSkillsAsync([FromQuery] SkillArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<SkillEntity, bool>>>();
@@ -69,8 +78,8 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
             // Gets the response models for each skill entity
-            return ControllerHelpers.GetAllAsync<SkillEntity, SkillResponseModel>(
-                mContext.Skills,
+            return ControllerHelpers.GetAllAsync<SkillEntity, EmbeddedSkillResponseModel>(
+                SkillsQuery,
                 args,
                 filters);
         }
@@ -83,14 +92,14 @@ namespace EvaluationSystemServer
         /// Get api/skills/{skillId} == api/skills/1
         [HttpGet]
         [Route(Routes.SkillRoute)]
-        public Task<ActionResult<SkillResponseModel>> GetSkillAsync([FromRoute] int skillId)
+        public Task<ActionResult<EmbeddedSkillResponseModel>> GetSkillAsync([FromRoute] int skillId)
         {
             // The needed expression for the filter
             Expression<Func<SkillEntity, bool>> filter = x => x.Id == skillId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<SkillEntity, SkillResponseModel>(
-                mContext.Skills,
+            return ControllerHelpers.GetAsync<SkillEntity, EmbeddedSkillResponseModel>(
+                SkillsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -107,7 +116,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<SkillRequestModel, SkillEntity, SkillResponseModel>(
                 mContext,
-                mContext.Skills,
+                SkillsQuery,
                 model,
                 x => x.Id == skillId);
         }
@@ -123,7 +132,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<SkillEntity, SkillResponseModel>(
                 mContext,
-                mContext.Skills,
+                SkillsQuery,
                 DI.GetMapper,
                 x => x.Id == skillId);
         }

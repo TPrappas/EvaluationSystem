@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 
 namespace EvaluationSystemServer
@@ -43,14 +44,14 @@ namespace EvaluationSystemServer
         public static EvaluationSystemDBContext GetDbContext => Host.Services.GetRequiredService<EvaluationSystemDBContext>();
 
         /// <summary>
-        /// Gets the users manager
-        /// </summary>
-        public static UsersManager GetUsersManager => Host.Services.GetRequiredService<UsersManager>();
-
-        /// <summary>
         /// Gets the projects manager
         /// </summary>
         public static ProjectsManager GetProjectsManager => Host.Services.GetRequiredService<ProjectsManager>();
+
+        /// <summary>
+        /// Gets the users manager
+        /// </summary>
+        public static UsersManager GetUsersManager => Host.Services.GetRequiredService<UsersManager>();
 
 
         #endregion

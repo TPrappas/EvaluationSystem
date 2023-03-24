@@ -22,11 +22,26 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectCategoryResponseModel() 
+        public ProjectCategoryResponseModel() : base()
         { 
         
         }
         
+        #endregion
+    }
+
+    public class EmbeddedProjectCategoryResponse : ProjectCategoryResponseModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedProjectCategoryResponse() : base()
+        {
+
+        }
+
         #endregion
     }
 }

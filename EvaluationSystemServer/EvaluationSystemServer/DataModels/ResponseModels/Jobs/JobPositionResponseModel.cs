@@ -21,12 +21,26 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobPositionResponseModel()
+        public JobPositionResponseModel() : base()
         {
 
         }
 
         #endregion
+    }
 
+    public class EmbeddedJobPositionResponseModel : JobPositionResponseModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedJobPositionResponseModel() : base()
+        {
+
+        }
+
+        #endregion
     }
 }

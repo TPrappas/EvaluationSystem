@@ -21,7 +21,22 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public UserCertificateResponseModel()
+        public UserCertificateResponseModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class EmbeddedUserCertificateResponseModel : UserCertificateResponseModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public EmbeddedUserCertificateResponseModel() : base()
         {
 
         }

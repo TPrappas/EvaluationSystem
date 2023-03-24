@@ -15,7 +15,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SkillRequestModel()
+        public SkillRequestModel() : base()
         {
 
         }
