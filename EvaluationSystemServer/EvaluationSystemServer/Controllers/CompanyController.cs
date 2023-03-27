@@ -20,7 +20,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The query used for retrieving the Companies
         /// </summary>
-        protected IQueryable<CompanyEntity> CompaniesQuery => mContext.Companies.Include(x => x.Users).Include(x => x.Jobs);
+        protected IQueryable<CompanyEntity> CompaniesQuery => mContext.Companies.Include(x => x.Users).Include(x => x.JobPositions);
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace EvaluationSystemServer
         /// Post api/companies
         [HttpPost]
         [Route(Routes.CompaniesRoute)]
-        public Task<ActionResult<CompanyResponseModel>> CreateCompanyAsync([FromBody] CompanyRequestModel model)
+        public Task<ActionResult<CompanyResponseModel>> CreateCompanyAsync([FromBody] CreateCompanyRequestModel model)
             => ControllerHelpers.PostAsync<CompanyEntity, CompanyResponseModel>(
                 mContext,
                 mContext.Companies,
@@ -123,9 +123,9 @@ namespace EvaluationSystemServer
         /// Put /api/companies/{companyId}
         [HttpPut]
         [Route(Routes.CompanyRoute)]
-        public Task<ActionResult<CompanyResponseModel>> UpdateCompanyAsync([FromRoute] int companyId, [FromBody] CompanyRequestModel model)
+        public Task<ActionResult<CompanyResponseModel>> UpdateCompanyAsync([FromRoute] int companyId, [FromBody] UpdateCompanyRequestModel model)
         {
-            return ControllerHelpers.PutAsync<CompanyRequestModel, CompanyEntity, CompanyResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateCompanyRequestModel, CompanyEntity, CompanyResponseModel>(
                 mContext,
                 CompaniesQuery,
                 model,

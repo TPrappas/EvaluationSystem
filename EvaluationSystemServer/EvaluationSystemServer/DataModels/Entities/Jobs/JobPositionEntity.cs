@@ -10,6 +10,11 @@ namespace EvaluationSystemServer
     {
         #region Public Properties
 
+        /// <summary>
+        /// Is the position open or closed
+        /// </summary>
+        public bool IsOpen { get; set; }
+
         #region Relationships
 
         /// <summary>
@@ -23,9 +28,14 @@ namespace EvaluationSystemServer
         public JobEntity Job { get; set; }
 
         /// <summary>
-        /// Is the position open or closed
+        /// The <see cref="BaseEntity.Id"/> of the related <see cref="CompanyEntity"/>
         /// </summary>
-        public bool IsOpen { get; set; }
+        public int CompanyId { get; set; }
+
+        /// <summary>
+        /// The related <see cref="CompanyEntity"/>
+        /// </summary>
+        public CompanyEntity Company { get; set; }
 
         /// <summary>
         /// The job's position employees

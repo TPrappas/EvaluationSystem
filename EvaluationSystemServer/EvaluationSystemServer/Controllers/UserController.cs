@@ -18,7 +18,7 @@ namespace EvaluationSystemServer
         #region Protected Properties
 
         /// <summary>
-        /// The query used for retrieving the Users 
+        /// The query used for retrieving the users 
         /// </summary>
         protected IQueryable<UserEntity> UsersQuery => mContext.Users.Include(x => x.Company).Include(x => x.JobPosition.Job);
 
@@ -38,7 +38,7 @@ namespace EvaluationSystemServer
         #endregion
 
         #region Public Methods
-
+        
         /// <summary>
         /// Creates a new user
         /// </summary>
