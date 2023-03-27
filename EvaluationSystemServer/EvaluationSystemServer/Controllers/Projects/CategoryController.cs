@@ -79,7 +79,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each category entity
             return ControllerHelpers.GetAllAsync<CategoryEntity, EmbeddedCategoryResponseModel>(
-                mContext.Categories,
+                CategoriesQuery,
                 args,
                 filters);
         }
@@ -99,7 +99,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<CategoryEntity, EmbeddedCategoryResponseModel>(
-                mContext.Categories,
+                CategoriesQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -116,7 +116,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<CategoryRequestModel, CategoryEntity, CategoryResponseModel>(
                 mContext,
-                mContext.Categories,
+                CategoriesQuery,
                 model,
                 x => x.Id == categoryId);
         }
@@ -132,7 +132,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<CategoryEntity, CategoryResponseModel>(
                 mContext,
-                mContext.Categories,
+                CategoriesQuery,
                 DI.GetMapper,
                 x => x.Id == categoryId);
         }

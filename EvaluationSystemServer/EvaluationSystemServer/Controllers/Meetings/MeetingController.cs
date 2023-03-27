@@ -111,7 +111,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each certificate entity
             return ControllerHelpers.GetAllAsync<MeetingEntity, EmbeddedMeetingResponseModel>(
-                mContext.Meetings,
+                MeetingsQuery,
                 args,
                 filters);
         }
@@ -131,7 +131,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<MeetingEntity, EmbeddedMeetingResponseModel>(
-                mContext.Meetings,
+                MeetingsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -148,7 +148,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<MeetingRequestModel, MeetingEntity, MeetingResponseModel>(
                 mContext,
-                mContext.Meetings,
+                MeetingsQuery,
                 model,
                 x => x.Id == meetingId);
         }
@@ -164,7 +164,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<MeetingEntity, MeetingResponseModel>(
                 mContext,
-                mContext.Meetings,
+                MeetingsQuery,
                 DI.GetMapper,
                 x => x.Id == meetingId);
         }

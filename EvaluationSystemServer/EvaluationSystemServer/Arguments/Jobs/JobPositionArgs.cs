@@ -19,6 +19,15 @@
         /// </summary>
         public bool? isOpen { get; set; }
 
+        /// <summary>
+        /// Company included
+        /// </summary>
+        public IEnumerable<int> IncludeCompanies { get; set; }
+
+        /// <summary>
+        /// Company excluded
+        /// </summary>
+        public IEnumerable<int> ExcludeCompanies { get; set; }
 
         #endregion
 

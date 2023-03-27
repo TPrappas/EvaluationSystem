@@ -284,10 +284,10 @@ namespace EvaluationSystemServer
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<CompanyEntity>()
-                .HasMany(x => x.Jobs)
+                .HasMany(x => x.JobPositions)
                 .WithOne(x => x.Company)
                 .HasPrincipalKey(x => x.Id) 
-                .HasForeignKey(x=> x.CompanyId)
+                .HasForeignKey(x => x.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             #endregion
@@ -325,6 +325,13 @@ namespace EvaluationSystemServer
 
             modelBuilder.Entity<JobPositionEntity>()
                 .HasMany(x => x.Employees)
+                .WithOne(x => x.JobPosition)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.JobPositionId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<JobPositionEntity>()
+                .HasMany(x => x.JobApplications)
                 .WithOne(x => x.JobPosition)
                 .HasPrincipalKey(x => x.Id)
                 .HasForeignKey(x => x.JobPositionId)

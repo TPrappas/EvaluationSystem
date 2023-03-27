@@ -17,12 +17,7 @@
         /// <summary>
         /// The salary
         /// </summary>
-        public int Salary { get; set; }
-
-        /// <summary>
-        /// The related <see cref="CompanyEntity"/>
-        /// </summary>
-        public EmbeddedCompanyResponseModel Company { get; set; }
+        public decimal Salary { get; set; }
 
         #endregion
 
@@ -51,12 +46,7 @@
         /// <summary>
         /// The salary
         /// </summary>
-        public int Salary { get; set; }
-
-        /// <summary>
-        /// The related <see cref="CompanyEntity"/>
-        /// </summary>
-        public EmbeddedCompanyResponseModel Company { get; set; }
+        public decimal Salary { get; set; }
 
         #endregion
 

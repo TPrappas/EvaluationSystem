@@ -21,7 +21,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The query used for retrieving the Job Positions
         /// </summary>
-        protected IQueryable<JobPositionEntity> JobPositionsQuery => mContext.JobPositions.Include(x => x.Job.Company).Include(x => x.JobApplications);
+        protected IQueryable<JobPositionEntity> JobPositionsQuery => mContext.JobPositions.Include(x => x.Company).Include(x => x.Job).Include(x => x.JobApplications);
 
         #endregion
 
@@ -88,6 +88,16 @@ namespace EvaluationSystemServer
             if (args.ExcludeJobs is not null)
                 // Add to filters
                 filters.Add(x => !args.ExcludeJobs.Contains(x.JobId));
+
+            // If the included Companies is not null...
+            if (args.IncludeCompanies is not null)
+                // Add to filters
+                filters.Add(x => args.IncludeCompanies.Contains(x.CompanyId));
+
+            // If the excluded Companies is not null...
+            if (args.ExcludeCompanies is not null)
+                // Add to filters
+                filters.Add(x => !args.ExcludeCompanies.Contains(x.CompanyId));
 
             // Gets the response models for each job position entity
             return ControllerHelpers.GetAllAsync<JobPositionEntity, EmbeddedJobPositionResponseModel>(

@@ -28,16 +28,6 @@ namespace EvaluationSystemServer
         #region Relationships
 
         /// <summary>
-        /// The <see cref="BaseEntity.Id"/> of the related <see cref="CompanyEntity"/>
-        /// </summary>
-        public int CompanyId { get; set; }
-
-        /// <summary>
-        /// The related <see cref="CompanyEntity"/>
-        /// </summary>
-        public CompanyEntity Company { get; set; }
-
-        /// <summary>
         /// The job's positions
         /// </summary>
         public IEnumerable<JobPositionEntity> JobPositions { get; set; }

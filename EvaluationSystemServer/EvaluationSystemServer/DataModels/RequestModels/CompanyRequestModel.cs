@@ -60,5 +60,36 @@
         #endregion
 
     }
+
+    public class CreateCompanyRequestModel : CompanyRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateCompanyRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+
+    }
+
+    public class UpdateCompanyRequestModel : CompanyRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateCompanyRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
 }
 

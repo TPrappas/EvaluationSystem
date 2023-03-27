@@ -37,15 +37,6 @@
 
     public class CreateJobRequestModel : UpdateJobRequestModel
     {
-        #region Public Constructors
-
-        /// <summary>
-        /// The company id
-        /// </summary>
-        public int CompanyId { get; set; }
-
-        #endregion
-
         #region Constructors
 
         /// <summary>

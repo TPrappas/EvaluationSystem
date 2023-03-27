@@ -17,7 +17,7 @@
         /// <summary>
         /// The link
         /// </summary>
-        public string Link { get; set; }
+        public string? Link { get; set; }
 
         /// <summary>
         /// The title
@@ -32,7 +32,7 @@
         /// <summary>
         /// The location
         /// </summary>
-        public string Location { get; set; }
+        public string? Location { get; set; }
 
         #endregion
 

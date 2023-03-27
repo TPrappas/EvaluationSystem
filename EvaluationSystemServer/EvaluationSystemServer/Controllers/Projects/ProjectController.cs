@@ -116,7 +116,7 @@ namespace EvaluationSystemServer
 
             // Gets the response models for each project entity
             return ControllerHelpers.GetAllAsync<ProjectEntity, EmbeddedProjectResponseModel>(
-                mContext.Projects,
+                ProjectsQuery,
                 args,
                 filters);
         }
@@ -136,7 +136,7 @@ namespace EvaluationSystemServer
 
             // Gets the response model 
             return ControllerHelpers.GetAsync<ProjectEntity, EmbeddedProjectResponseModel>(
-                mContext.Projects,
+                ProjectsQuery,
                 DI.GetMapper,
                 filter);
         }
@@ -153,7 +153,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.PutAsync<ProjectRequestModel, ProjectEntity, ProjectResponseModel>(
                 mContext,
-                mContext.Projects,
+                ProjectsQuery,
                 model,
                 x => x.Id == projectId);
         }
@@ -169,7 +169,7 @@ namespace EvaluationSystemServer
         {
             return ControllerHelpers.DeleteAsync<ProjectEntity, ProjectResponseModel>(
                 mContext,
-                mContext.Projects,
+                ProjectsQuery,
                 DI.GetMapper,
                 x => x.Id == projectId);
         }

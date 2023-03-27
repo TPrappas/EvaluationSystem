@@ -59,9 +59,9 @@ namespace EvaluationSystemServer
         public IEnumerable<UserEntity> Users { get; set; }  
 
         /// <summary>
-        /// The company's jobs
+        /// The company's job positions
         /// </summary>
-        public IEnumerable<JobEntity> Jobs { get; set; }
+        public IEnumerable<JobPositionEntity> JobPositions { get; set; }
 
         #endregion
 
@@ -86,8 +86,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model">The model</param>
         /// <returns></returns>
-        public static CompanyEntity FromRequestModel(CompanyRequestModel model)
-            => ControllerHelpers.FromRequestModel<CompanyEntity, CompanyRequestModel>(model);
+        public static CompanyEntity FromRequestModel(CreateCompanyRequestModel model)
+            => ControllerHelpers.FromRequestModel<CompanyEntity, CreateCompanyRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="CompanyResponseModel"/> from the current <see cref="CompanyEntity"/>

@@ -33,6 +33,11 @@
         /// </summary>
         public int JobId { get; set; }
 
+        /// <summary>
+        /// The company's id
+        /// </summary>
+        public int CompanyId { get; set; }
+
         #endregion
 
         #region Constructors
@@ -50,7 +55,7 @@
 
     public class UpdateJobPositionRequestModel : JobPositionRequestModel
     {
-        #region Public Properties
+        #region Constructors
 
         /// <summary>
         /// Default constructor
