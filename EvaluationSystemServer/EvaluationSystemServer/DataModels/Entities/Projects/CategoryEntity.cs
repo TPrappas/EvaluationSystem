@@ -44,8 +44,8 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static CategoryEntity FromRequestModel(CategoryRequestModel model)
-            => ControllerHelpers.FromRequestModel<CategoryEntity, CategoryRequestModel>(model);
+        public static CategoryEntity FromRequestModel(CreateCategoryRequestModel model)
+            => ControllerHelpers.FromRequestModel<CategoryEntity, CreateCategoryRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="CategoryResponseModel"/> from the current <see cref="CategoryEntity"/>

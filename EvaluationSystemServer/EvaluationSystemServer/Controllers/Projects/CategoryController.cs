@@ -44,7 +44,7 @@ namespace EvaluationSystemServer
         /// Post api/categories
         [HttpPost]
         [Route(Routes.CategoriesRoute)]
-        public Task<ActionResult<CategoryResponseModel>> CreateCategoryAsync([FromBody] CategoryRequestModel model)
+        public Task<ActionResult<CategoryResponseModel>> CreateCategoryAsync([FromBody] CreateCategoryRequestModel model)
             => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Categories,
@@ -112,9 +112,9 @@ namespace EvaluationSystemServer
         /// Put /api/categories/{categoryId}
         [HttpPut]
         [Route(Routes.CategoryRoute)]
-        public Task<ActionResult<CategoryResponseModel>> UpdateCategoryAsync([FromRoute] int categoryId, [FromBody] CategoryRequestModel model)
+        public Task<ActionResult<CategoryResponseModel>> UpdateCategoryAsync([FromRoute] int categoryId, [FromBody] UpdateCategoryRequestModel model)
         {
-            return ControllerHelpers.PutAsync<CategoryRequestModel, CategoryEntity, CategoryResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateCategoryRequestModel, CategoryEntity, CategoryResponseModel>(
                 mContext,
                 CategoriesQuery,
                 model,
@@ -128,7 +128,7 @@ namespace EvaluationSystemServer
         /// Delete /api/categories/{categoryId}
         [HttpDelete]
         [Route(Routes.CategoryRoute)]
-        public Task<ActionResult<CategoryResponseModel>> DeleteCategoryAsync(int categoryId)
+        public Task<ActionResult<CategoryResponseModel>> DeleteCategoryAsync([FromRoute] int categoryId)
         {
             return ControllerHelpers.DeleteAsync<CategoryEntity, CategoryResponseModel>(
                 mContext,

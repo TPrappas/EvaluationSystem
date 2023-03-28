@@ -28,4 +28,34 @@
 
         #endregion
     }
+
+    public class CreateCategoryRequestModel : CategoryRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateCategoryRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class UpdateCategoryRequestModel : CategoryRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateCategoryRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
 }

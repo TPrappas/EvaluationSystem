@@ -8,12 +8,12 @@
         /// <summary>
         /// The grade
         /// </summary>
-        public double Grade { get; set; }
+        public double? Grade { get; set; }
 
         /// <summary>
         /// The comments
         /// </summary>
-        public string Comments { get; set; }
+        public string? Comments { get; set; }
 
         /// <summary>
         /// The submission start

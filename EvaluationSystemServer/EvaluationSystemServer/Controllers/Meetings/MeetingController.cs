@@ -144,9 +144,9 @@ namespace EvaluationSystemServer
         /// Put /api/meetings/{meetingId}
         [HttpPut]
         [Route(Routes.MeetingRoute)]
-        public Task<ActionResult<MeetingResponseModel>> UpdateMeetingAsync([FromRoute] int meetingId, [FromBody] MeetingRequestModel model)
+        public Task<ActionResult<MeetingResponseModel>> UpdateMeetingAsync([FromRoute] int meetingId, [FromBody] UpdateMeetingRequestModel model)
         {
-            return ControllerHelpers.PutAsync<MeetingRequestModel, MeetingEntity, MeetingResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateMeetingRequestModel, MeetingEntity, MeetingResponseModel>(
                 mContext,
                 MeetingsQuery,
                 model,
@@ -160,7 +160,7 @@ namespace EvaluationSystemServer
         /// Delete /api/meetings/{meetingId}
         [HttpDelete]
         [Route(Routes.MeetingRoute)]
-        public Task<ActionResult<MeetingResponseModel>> DeleteMeetingAsync(int meetingId)
+        public Task<ActionResult<MeetingResponseModel>> DeleteMeetingAsync([FromRoute] int meetingId)
         {
             return ControllerHelpers.DeleteAsync<MeetingEntity, MeetingResponseModel>(
                 mContext,

@@ -45,7 +45,7 @@ namespace EvaluationSystemServer
         /// Post api/certificates
         [HttpPost]
         [Route(Routes.CertificatesRoute)]
-        public Task<ActionResult<CertificateResponseModel>> CreateCertificateAsync([FromBody] CertificateRequestModel model)
+        public Task<ActionResult<CertificateResponseModel>> CreateCertificateAsync([FromBody] CreateCertificateRequestModel model)
             => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Certificates,
@@ -128,9 +128,9 @@ namespace EvaluationSystemServer
         /// Put /api/certificates/{certificatesId}
         [HttpPut]
         [Route(Routes.CertificateRoute)]
-        public Task<ActionResult<CertificateResponseModel>> UpdateCertificateAsync([FromRoute] int certificateId, [FromBody] CertificateRequestModel model)
+        public Task<ActionResult<CertificateResponseModel>> UpdateCertificateAsync([FromRoute] int certificateId, [FromBody] UpdateCertificateRequestModel model)
         {
-            return ControllerHelpers.PutAsync<CertificateRequestModel, CertificateEntity, CertificateResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateCertificateRequestModel, CertificateEntity, CertificateResponseModel>(
                 mContext,
                 CertificatesQuery,
                 model,
@@ -144,7 +144,7 @@ namespace EvaluationSystemServer
         /// Delete /api/certificates/{certificateId}
         [HttpDelete]
         [Route(Routes.CertificateRoute)]
-        public Task<ActionResult<CertificateResponseModel>> DeleteCertificateAsync(int certificateId)
+        public Task<ActionResult<CertificateResponseModel>> DeleteCertificateAsync([FromRoute] int certificateId)
         {
             return ControllerHelpers.DeleteAsync<CertificateEntity, CertificateResponseModel>(
                 mContext,

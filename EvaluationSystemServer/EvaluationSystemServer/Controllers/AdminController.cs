@@ -128,7 +128,7 @@ namespace EvaluationSystemServer
         /// Delete /api/admins/{adminId}
         [HttpDelete]
         [Route(Routes.AdminRoute)]
-        public Task<ActionResult<AdminResponseModel>> DeleteAdminAsync(int adminId)
+        public Task<ActionResult<AdminResponseModel>> DeleteAdminAsync([FromRoute] int adminId)
         {
             return ControllerHelpers.DeleteAsync<AdminEntity, AdminResponseModel>(
                 mContext,

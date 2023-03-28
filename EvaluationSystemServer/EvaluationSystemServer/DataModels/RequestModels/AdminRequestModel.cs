@@ -28,4 +28,34 @@
 
         #endregion
     }
+
+    public class CreateAdminRequestModel : AdminRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateAdminRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class UpdateAdminRequestModel : AdminRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateAdminRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
 }

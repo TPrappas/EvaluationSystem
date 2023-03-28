@@ -45,7 +45,7 @@ namespace EvaluationSystemServer
         /// Post api/projects
         [HttpPost]
         [Route(Routes.ProjectsRoute)]
-        public async Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] ProjectRequestModel model)
+        public async Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] CreateProjectRequestModel model)
             => (await DI.GetProjectsManager.AddProjectAsync(model)).ToResponseModel();
 
         /// <summary>
@@ -149,9 +149,9 @@ namespace EvaluationSystemServer
         /// Put /api/projects/{projectId}
         [HttpPut]
         [Route(Routes.ProjectRoute)]
-        public Task<ActionResult<ProjectResponseModel>> UpdateProjectAsync([FromRoute] int projectId, [FromBody] ProjectRequestModel model)
+        public Task<ActionResult<ProjectResponseModel>> UpdateProjectAsync([FromRoute] int projectId, [FromBody] UpdateProjectRequestModel model)
         {
-            return ControllerHelpers.PutAsync<ProjectRequestModel, ProjectEntity, ProjectResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateProjectRequestModel, ProjectEntity, ProjectResponseModel>(
                 mContext,
                 ProjectsQuery,
                 model,
@@ -165,7 +165,7 @@ namespace EvaluationSystemServer
         /// Delete /api/projects/{projectId}
         [HttpDelete]
         [Route(Routes.ProjectRoute)]
-        public Task<ActionResult<ProjectResponseModel>> DeleteProjectAsync(int projectId)
+        public Task<ActionResult<ProjectResponseModel>> DeleteProjectAsync([FromRoute] int projectId)
         {
             return ControllerHelpers.DeleteAsync<ProjectEntity, ProjectResponseModel>(
                 mContext,

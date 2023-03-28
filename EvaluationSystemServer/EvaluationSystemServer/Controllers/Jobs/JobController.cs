@@ -140,7 +140,7 @@ namespace EvaluationSystemServer
         /// Delete /api/jobs/{jobId}
         [HttpDelete]
         [Route(Routes.JobRoute)]
-        public Task<ActionResult<JobResponseModel>> DeleteJobAsync(int jobId)
+        public Task<ActionResult<JobResponseModel>> DeleteJobAsync([FromRoute] int jobId)
         {
             return ControllerHelpers.DeleteAsync<JobEntity, JobResponseModel>(
                 mContext,

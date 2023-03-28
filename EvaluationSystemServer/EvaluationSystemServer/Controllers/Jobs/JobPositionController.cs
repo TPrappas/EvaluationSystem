@@ -134,9 +134,9 @@ namespace EvaluationSystemServer
         /// Put /api/jobPosition/{jobPositionId}
         [HttpPut]
         [Route(Routes.JobPositionRoute)]
-        public Task<ActionResult<JobPositionResponseModel>> UpdateJobPositionAsync([FromRoute] int jobPositionId, [FromBody] JobPositionRequestModel model)
+        public Task<ActionResult<JobPositionResponseModel>> UpdateJobPositionAsync([FromRoute] int jobPositionId, [FromBody] UpdateJobPositionRequestModel model)
         {
-            return ControllerHelpers.PutAsync<JobPositionRequestModel, JobPositionEntity, JobPositionResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateJobPositionRequestModel, JobPositionEntity, JobPositionResponseModel>(
                 mContext,
                 JobPositionsQuery,
                 model,
@@ -150,7 +150,7 @@ namespace EvaluationSystemServer
         /// Delete /api/jobPositions/{jobPositionId}
         [HttpDelete]
         [Route(Routes.JobPositionRoute)]
-        public Task<ActionResult<JobPositionResponseModel>> DeleteJobPositionAsync(int jobPositionId)
+        public Task<ActionResult<JobPositionResponseModel>> DeleteJobPositionAsync([FromRoute] int jobPositionId)
         {
             return ControllerHelpers.DeleteAsync<JobPositionEntity, JobPositionResponseModel>(
                 mContext,

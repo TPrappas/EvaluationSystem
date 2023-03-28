@@ -168,9 +168,9 @@ namespace EvaluationSystemServer
         /// Put /api/jobApplications/{jobApplicationId}
         [HttpPut]
         [Route(Routes.JobApplicationRoute)]
-        public Task<ActionResult<JobApplicationResponseModel>> UpdateJobApplcationAsync([FromRoute] int jobApplcationId, [FromBody] JobApplicationRequestModel model)
+        public Task<ActionResult<EmbeddedJobApplicationResponseModel>> UpdateJobApplcationAsync([FromRoute] int jobApplcationId, [FromBody] UpdateJobApplicationRequestModel model)
         {
-            return ControllerHelpers.PutAsync<JobApplicationRequestModel, JobApplicationEntity, JobApplicationResponseModel>(
+            return ControllerHelpers.PutAsync<UpdateJobApplicationRequestModel, JobApplicationEntity, EmbeddedJobApplicationResponseModel>(
                 mContext,
                 JobApplicationsQuery,
                 model,
@@ -184,7 +184,7 @@ namespace EvaluationSystemServer
         /// Delete /api/jobApplications/{jobApplicationId}
         [HttpDelete]
         [Route(Routes.JobApplicationRoute)]
-        public Task<ActionResult<JobApplicationResponseModel>> DeleteJobApplicationAsync(int jobApplicationId)
+        public Task<ActionResult<JobApplicationResponseModel>> DeleteJobApplicationAsync([FromRoute] int jobApplicationId)
         {
             return ControllerHelpers.DeleteAsync<JobApplicationEntity, JobApplicationResponseModel>(
                 mContext,

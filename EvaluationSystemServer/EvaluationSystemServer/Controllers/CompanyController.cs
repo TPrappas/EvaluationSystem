@@ -139,7 +139,7 @@ namespace EvaluationSystemServer
         /// Delete /api/companies/{companyId}
         [HttpDelete]
         [Route(Routes.CompanyRoute)]
-        public Task<ActionResult<CompanyResponseModel>> DeleteCompanyAsync(int companyId)
+        public Task<ActionResult<CompanyResponseModel>> DeleteCompanyAsync([FromRoute] int companyId)
         {
             return ControllerHelpers.DeleteAsync<CompanyEntity, CompanyResponseModel>(
                 mContext,
