@@ -53,4 +53,34 @@
 
         #endregion
     }
+
+    public class CreateProjectRequestModel : ProjectRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateProjectRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class UpdateProjectRequestModel : ProjectRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateProjectRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
 }

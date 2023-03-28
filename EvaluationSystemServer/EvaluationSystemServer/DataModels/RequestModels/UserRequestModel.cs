@@ -32,17 +32,17 @@
         /// <summary>
         /// The bio
         /// </summary>
-        public string Bio { get; set; }
+        public string? Bio { get; set; }
 
         /// <summary>
         /// The recommendations
         /// </summary>
-        public string Recommendations { get; set; }
+        public string? Recommendations { get; set; }
 
         /// <summary>
         /// The rating
         /// </summary>
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
 
         /// <summary>
         /// The company' id
@@ -82,6 +82,36 @@
         /// Default constructor
         /// </summary>
         public UserRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class CreateUserRequestModel : UserRequestModel
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateUserRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class UpdateUserRequestModel : UserRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateUserRequestModel() : base()
         {
 
         }

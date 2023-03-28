@@ -154,7 +154,7 @@ namespace EvaluationSystemServer
         /// Put /home/users/{userId}
         [HttpPut]
         [Route(Routes.UserRoute)]
-        public async Task<ActionResult<UserResponseModel>> UpdateUserAsync([FromRoute] int userId, [FromBody] UserRequestModel model)
+        public async Task<ActionResult<UserResponseModel>> UpdateUserAsync([FromRoute] int userId, [FromBody] UpdateUserRequestModel model)
         {
             return (await DI.GetUsersManager.UpdateUserAsync(userId, model)).ToResponseModel();
         }
@@ -166,7 +166,7 @@ namespace EvaluationSystemServer
         /// Delete /home/users/{userId}
         [HttpDelete]
         [Route(Routes.UserRoute)]
-        public Task<ActionResult<UserResponseModel>> DeleteUserAsync(int userId)
+        public Task<ActionResult<UserResponseModel>> DeleteUserAsync([FromRoute] int userId)
         {
             return ControllerHelpers.DeleteAsync<UserEntity, UserResponseModel>(
                 mContext,

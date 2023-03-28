@@ -39,4 +39,34 @@
         #endregion
 
     }
+
+    public class CreateCertificateRequestModel : CertificateRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public CreateCertificateRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
+
+    public class UpdateCertificateRequestModel : CertificateRequestModel 
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public UpdateCertificateRequestModel() : base()
+        {
+
+        }
+
+        #endregion
+    }
 }

@@ -44,7 +44,7 @@ namespace EvaluationSystemServer
         /// Post api/skills
         [HttpPost]
         [Route(Routes.SkillsRoute)]
-        public Task<ActionResult<SkillResponseModel>> CreateSkillAsync([FromBody] SkillRequestModel model)
+        public Task<ActionResult<SkillResponseModel>> CreateSkillAsync([FromBody] CreateSkillRequestModel model)
             => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Skills,
@@ -112,7 +112,7 @@ namespace EvaluationSystemServer
         /// Put /api/skill/{skillId}
         [HttpPut]
         [Route(Routes.SkillRoute)]
-        public Task<ActionResult<SkillResponseModel>> UpdateSkillAsync([FromRoute] int skillId, [FromBody] SkillRequestModel model)
+        public Task<ActionResult<SkillResponseModel>> UpdateSkillAsync([FromRoute] int skillId, [FromBody] UpdateSkillRequestModel model)
         {
             return ControllerHelpers.PutAsync<SkillRequestModel, SkillEntity, SkillResponseModel>(
                 mContext,
@@ -128,7 +128,7 @@ namespace EvaluationSystemServer
         /// Delete /api/skills/{skillId}
         [HttpDelete]
         [Route(Routes.SkillRoute)]
-        public Task<ActionResult<SkillResponseModel>> DeleteSkillAsync(int skillId)
+        public Task<ActionResult<SkillResponseModel>> DeleteSkillAsync([FromRoute] int skillId)
         {
             return ControllerHelpers.DeleteAsync<SkillEntity, SkillResponseModel>(
                 mContext,
