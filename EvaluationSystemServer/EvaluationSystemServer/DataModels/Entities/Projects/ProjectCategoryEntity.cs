@@ -14,7 +14,7 @@
         /// <summary>
         /// The related <see cref="ProjectEntity"/>
         /// </summary>
-        public ProjectEntity Project { get; set; }
+        public ProjectEntity? Project { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="CategoryEntity"/>
@@ -24,7 +24,7 @@
         /// <summary>
         /// The related <see cref="CategoryEntity"/>
         /// </summary>
-        public CategoryEntity Category { get; set; }
+        public CategoryEntity? Category { get; set; }
 
         #endregion
 

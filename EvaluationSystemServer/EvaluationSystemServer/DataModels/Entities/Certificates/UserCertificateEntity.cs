@@ -20,7 +20,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity User { get; set; }
+        public UserEntity? User { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="CertificateEntity"/>
@@ -30,7 +30,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="CertificateEntity"/>
         /// </summary>
-        public CertificateEntity Certificate { get; set; }
+        public CertificateEntity? Certificate { get; set; }
 
         #endregion
 

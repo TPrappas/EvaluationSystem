@@ -18,7 +18,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The comments
         /// </summary>
-        public string Comments { get; set; }
+        public string? Comments { get; set; }
 
         /// <summary>
         /// The submission start
@@ -41,7 +41,7 @@ namespace EvaluationSystemServer
         /// The related <see cref="UserEntity"/>
         /// </summary>
         /// The employee
-        public UserEntity Employee { get; set; }
+        public UserEntity? Employee { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
@@ -52,7 +52,7 @@ namespace EvaluationSystemServer
         /// The related <see cref="UserEntity"/>
         /// </summary>
         /// The manager
-        public UserEntity Manager { get; set; }
+        public UserEntity? Manager { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>
@@ -63,7 +63,7 @@ namespace EvaluationSystemServer
         /// The related <see cref="UserEntity"/>
         /// </summary>
         /// The evaluator
-        public UserEntity Evaluator { get; set; }
+        public UserEntity? Evaluator { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="JobPositionEntity"/>
@@ -74,7 +74,7 @@ namespace EvaluationSystemServer
         /// The related <see cref="JobApplicationEntity"/>
         /// </summary>
         /// The job position
-        public JobPositionEntity JobPosition { get; set; }
+        public JobPositionEntity? JobPosition { get; set; }
 
         #endregion
 

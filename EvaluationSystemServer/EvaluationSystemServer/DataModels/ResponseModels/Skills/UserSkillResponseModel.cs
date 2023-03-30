@@ -7,12 +7,12 @@
         /// <summary>
         /// The related <see cref="UserResponseModel"/>
         /// </summary>
-        public EmbeddedUserResponseModel User { get; set; }
+        public EmbeddedUserResponseModel? User { get; set; }
 
         /// <summary>
         /// The related <see cref="SkillResponseModel"/>
         /// </summary>
-        public SkillResponseModel Skill { get; set; }
+        public SkillResponseModel? Skill { get; set; }
 
         #endregion
 

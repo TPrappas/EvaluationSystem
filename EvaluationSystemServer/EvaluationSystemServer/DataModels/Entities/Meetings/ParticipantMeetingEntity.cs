@@ -4,7 +4,6 @@ namespace EvaluationSystemServer
 {
     public class ParticipantMeetingEntity : BaseEntity
     {
-
         #region Public Properties
 
         #region Relationships
@@ -17,7 +16,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity Participant { get; set; }
+        public UserEntity? Participant { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="MeetingEntity"/>
@@ -27,7 +26,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="MeetingEntity"/>
         /// </summary>
-        public MeetingEntity Meeting { get; set; }
+        public MeetingEntity? Meeting { get; set; }
 
         #endregion
 

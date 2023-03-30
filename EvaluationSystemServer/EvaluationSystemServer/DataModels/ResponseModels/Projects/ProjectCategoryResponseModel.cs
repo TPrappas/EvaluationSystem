@@ -7,13 +7,13 @@
         /// <summary>
         /// The related <see cref="ProjectResponseModel"/>
         /// </summary>
-        public ProjectResponseModel Project { get; set; }
+        public ProjectResponseModel? Project { get; set; }
 
 
         /// <summary>
         /// The related <see cref="CategoryResponseModel"/>
         /// </summary>
-        public CategoryResponseModel Category { get; set; }
+        public CategoryResponseModel? Category { get; set; }
         
         #endregion
 

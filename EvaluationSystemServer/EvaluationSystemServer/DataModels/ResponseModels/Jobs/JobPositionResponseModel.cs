@@ -7,12 +7,12 @@
         /// <summary>
         /// The related <see cref="EmbeddedJobResponseModel"/>
         /// </summary>
-        public EmbeddedJobResponseModel Job { get; set; }
+        public EmbeddedJobResponseModel? Job { get; set; }
 
         /// <summary>
         /// The related <see cref="EmbeddedCompanyResponseModel"/>
         /// </summary>
-        public EmbeddedCompanyResponseModel Company { get; set; }
+        public EmbeddedCompanyResponseModel? Company { get; set; }
 
         /// <summary>
         /// Is the position open or closed

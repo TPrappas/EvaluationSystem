@@ -2,6 +2,20 @@
 {
     public class MeetingEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Title"/> property
+        /// </summary>
+        private string? mTitle;
+
+        /// <summary>
+        /// The member of the <see cref="Location"/> property
+        /// </summary>
+        private string? mDescription;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -17,29 +31,39 @@
         /// <summary>
         /// The link
         /// </summary>
-        public string Link { get; set; }
+        public Uri? Link { get; set; }
 
         /// <summary>
         /// The title
         /// </summary>
-        public string Title { get; set; }
+        public string Title 
+        { 
+            get => mTitle ?? string.Empty;
+            
+            set => mTitle = value;
+        }
 
         /// <summary>
         /// The description
         /// </summary>
-        public string Description { get; set; }
+        public string Description 
+        { 
+            get => mDescription ?? string.Empty;
+           
+            set => mDescription = value;
+        }
 
         /// <summary>
         /// The location
         /// </summary>
-        public string Location { get; set; }
+        public string? Location { get; set; }
 
         #region Relationships
 
         /// <summary>
         /// The meetings's participants
         /// </summary>
-        public IEnumerable<ParticipantMeetingEntity> ParticipantMeetings { get; set; }
+        public IEnumerable<ParticipantMeetingEntity>? ParticipantMeetings { get; set; }
 
         /// <summary>
         /// The meetings's organizer
@@ -49,7 +73,7 @@
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity Organizer { get; set; }
+        public UserEntity? Organizer { get; set; }
 
         #endregion
 
