@@ -8,17 +8,46 @@ namespace EvaluationSystemServer
 {
     public class ProjectEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Name"/> property
+        /// </summary>
+        private string? mName;
+
+        /// <summary>
+        /// The member of the <see cref="Description"/> property
+        /// </summary>
+        private string? mDescription;
+
+        /// <summary>
+        /// The member of the <see cref="ProjectCategories"/> property
+        /// </summary>
+        private IEnumerable<ProjectCategoryEntity>? mProjectCategories;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get => mName ?? string.Empty;
+
+            set => mName = value;
+        }
 
         /// <summary>
         /// The description
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => mDescription ?? string.Empty;
+
+            set => mDescription = value;
+        }
 
         /// <summary>
         /// Is the project submitted
@@ -50,12 +79,17 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity User { get; set; }
+        public UserEntity? User { get; set; }
 
         /// <summary>
         /// The project's categories
         /// </summary>
-        public IEnumerable<ProjectCategoryEntity> ProjectCategories { get; set; }
+        public IEnumerable<ProjectCategoryEntity> ProjectCategories
+        { 
+            get => mProjectCategories ?? Enumerable.Empty<ProjectCategoryEntity>();
+            
+            set => mProjectCategories = value;
+        }
 
         #endregion
 

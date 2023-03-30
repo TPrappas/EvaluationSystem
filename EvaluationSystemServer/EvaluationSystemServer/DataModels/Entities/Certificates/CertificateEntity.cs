@@ -8,17 +8,41 @@ namespace EvaluationSystemServer
 {
     public class CertificateEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Name"/> property
+        /// </summary>
+        private string? mName;
+
+        /// <summary>
+        /// The member of the <see cref="Department"/> property
+        /// </summary>
+        private string? mDepartment;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; set; }
+        public string Name 
+        { 
+            get => mName ?? string.Empty; 
+            
+            set => mName = value; 
+        }
 
         /// <summary>
         /// The department
         /// </summary>
-        public string Department { get; set; }
+        public string Department 
+        { 
+            get => mDepartment ?? string.Empty; 
+            
+            set => mDepartment = value;
+        }
 
         /// <summary>
         /// The graduation year
@@ -35,7 +59,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The certificate's employees
         /// </summary>
-        public IEnumerable<UserCertificateEntity> UserCertificates { get; set; }
+        public IEnumerable<UserCertificateEntity>? UserCertificates { get; set; }
 
         #endregion
 

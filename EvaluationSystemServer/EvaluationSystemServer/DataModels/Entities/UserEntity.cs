@@ -9,42 +9,96 @@ namespace EvaluationSystemServer
 {
     public class UserEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Username"/> property
+        /// </summary>
+        private string? mUsername;
+
+        /// <summary>
+        /// The member of the <see cref="Password"/> property
+        /// </summary>
+        private string? mPassword;
+
+        /// <summary>
+        /// The member of the <see cref="Email"/> property
+        /// </summary>
+        private string? mEmail;
+
+        /// <summary>
+        /// The member of the <see cref="FirstName"/> property
+        /// </summary>
+        private string? mFirstName;
+
+        /// <summary>
+        /// The member of the <see cref="LastName"/> property
+        /// </summary>
+        private string? mLastName;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// The username
         /// </summary>
-        public string Username { get; set; }
+        public string Username 
+        { 
+            get => mUsername ?? string.Empty;
+            
+            set => mUsername = value;
+        }
 
         /// <summary>
         /// The password
         /// </summary>
-        public string Password { get; set; }
+        public string Password 
+        { 
+            get => mPassword ?? string.Empty;
+            
+            set => mPassword = value;
+        }
 
         /// <summary>
         /// The email
         /// </summary>
-        public string Email { get; set; }
+        public string Email 
+        { 
+            get => mEmail ?? string.Empty; 
+            
+            set => mEmail = value;
+        }
 
         /// <summary>
         /// The first name
         /// </summary>
-        public string FirstName { get; set; }
+        public string FirstName 
+        { 
+            get => mFirstName ?? string.Empty;
+            
+            set => mFirstName = value;
+        }
 
         /// <summary>
         /// The last name
         /// </summary>
-        public string LastName { get; set; }
+        public string LastName 
+        { 
+            get => mLastName ?? string.Empty;
+            
+            set => mLastName = value; 
+        }
 
         /// <summary>
         /// The bio
         /// </summary>
-        public string Bio { get; set; }
+        public string? Bio { get; set; }
 
         /// <summary>
         /// The recommendations
         /// </summary>
-        public string Recommendations { get; set; }
+        public string? Recommendations { get; set; }
 
         /// <summary>
         /// The rating
@@ -69,7 +123,7 @@ namespace EvaluationSystemServer
         /// </summary>
         /// The related company
         /// Navigation Property
-        public CompanyEntity Company { get; set; }
+        public CompanyEntity? Company { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="JobPositionEntity"/>
@@ -79,39 +133,39 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="JobPositionEntity"/>
         /// </summary>
-        public JobPositionEntity JobPosition { get; set; }
+        public JobPositionEntity? JobPosition { get; set; }
 
         /// <summary>
         /// The user's skills
         /// </summary>
-        public IEnumerable<UserSkillEntity> UserSkills { get; set; }
+        public IEnumerable<UserSkillEntity>? UserSkills { get; set; }
 
         /// <summary>
         /// The users's certificates
         /// </summary>
-        public IEnumerable<UserCertificateEntity> UserCertificates { get; set; }
+        public IEnumerable<UserCertificateEntity>? UserCertificates { get; set; }
 
         /// <summary>
         /// The user's projects
         /// </summary>
-        public IEnumerable<ProjectEntity> Projects { get; set; }
+        public IEnumerable<ProjectEntity>? Projects { get; set; }
 
         #region Applications
 
         /// <summary>
         /// The employee's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity> EmployeeApplications { get; set; }
+        public IEnumerable<JobApplicationEntity>? EmployeeApplications { get; set; }
 
         /// <summary>
         /// The manager's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity> ManagerApplications { get; set; }
+        public IEnumerable<JobApplicationEntity>? ManagerApplications { get; set; }
 
         /// <summary>
         /// The evaluator's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity> EvaluatorApplications { get; set; }
+        public IEnumerable<JobApplicationEntity>? EvaluatorApplications { get; set; }
 
         #endregion
 
@@ -120,12 +174,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The participants's meetings
         /// </summary>
-        public IEnumerable<ParticipantMeetingEntity> ParticipantsMeeting { get; set; }
+        public IEnumerable<ParticipantMeetingEntity>? ParticipantsMeeting { get; set; }
 
         /// <summary>
         /// The organizer's meetings
         /// </summary>
-        public IEnumerable<MeetingEntity> OrganizersMeeting { get; set; }
+        public IEnumerable<MeetingEntity>? OrganizersMeeting { get; set; }
 
         #endregion
 

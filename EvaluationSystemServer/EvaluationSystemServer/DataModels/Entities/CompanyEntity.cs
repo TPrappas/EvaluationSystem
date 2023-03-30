@@ -8,6 +8,39 @@ namespace EvaluationSystemServer
 {
     public class CompanyEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="DOY"/> property
+        /// </summary>
+        private string? mDOY;
+
+        /// <summary>
+        /// The member of the <see cref="Name"/> property
+        /// </summary>
+        private string? mName;
+
+        /// <summary>
+        /// The member of the <see cref="Phone"/> property
+        /// </summary>
+        private string? mPhone;
+
+        /// <summary>
+        /// The member of the <see cref="Address"/> property
+        /// </summary>
+        private string? mAddress;
+
+        /// <summary>
+        /// The member of the <see cref="City"/> property
+        /// </summary>
+        private string? mCity;
+
+        /// <summary>
+        /// The member of the <see cref="Country"/> property
+        /// </summary>
+        private string? mCountry;
+
+        #endregion
 
         #region Public Properties
 
@@ -19,49 +52,79 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The DOY
         /// </summary>
-        public string DOY { get; set; } 
+        public string DOY 
+        { 
+            get => mDOY ?? string.Empty;
+            
+            set => mDOY = value;
+        } 
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; set; }    
+        public string Name 
+        { 
+            get => mName ?? string.Empty;
+            
+            set => mName = value;
+        }    
 
         /// <summary>
         /// The phone
         /// </summary>
-        public string Phone { get; set; }   
+        public string Phone 
+        { 
+            get => mPhone ?? string.Empty;
+            
+            set => mPhone = value;
+        }   
 
         /// <summary>
         /// The website
         /// </summary>
-        public string Website { get; set; }
+        public Uri? Website { get; set; }
 
         /// <summary>
         /// The Address
         /// </summary>
-        public string Address { get; set; }
+        public string Address 
+        { 
+            get => mAddress ?? string.Empty;
+            
+            set => mAddress = value;
+        }
 
         /// <summary>
         /// The city
         /// </summary>
-        public string City { get; set; }
+        public string City 
+        { 
+            get => mCity ?? string.Empty;
+            
+            set => mCity = value;
+        }
 
         /// <summary>
         /// The country
         /// </summary>
-        public string Country { get; set; }
+        public string Country 
+        { 
+            get => mCountry ?? string.Empty;
+            
+            set => mCountry = value;
+        }
 
         #region Relationships
 
         /// <summary>
         /// The company's users
         /// </summary>
-        public IEnumerable<UserEntity> Users { get; set; }  
+        public IEnumerable<UserEntity>? Users { get; set; }  
 
         /// <summary>
         /// The company's job positions
         /// </summary>
-        public IEnumerable<JobPositionEntity> JobPositions { get; set; }
+        public IEnumerable<JobPositionEntity>? JobPositions { get; set; }
 
         #endregion
 

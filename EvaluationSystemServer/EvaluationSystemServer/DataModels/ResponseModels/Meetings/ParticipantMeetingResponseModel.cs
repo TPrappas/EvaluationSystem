@@ -7,12 +7,12 @@
         /// <summary>
         /// The related <see cref="EmbeddedUserResponseModel"/>
         /// </summary>
-        public EmbeddedUserResponseModel Participant { get; set; }
+        public EmbeddedUserResponseModel? Participant { get; set; }
 
         /// <summary>
         /// The related <see cref="EmbeddedMeetingResponseModel"/>
         /// </summary>
-        public EmbeddedMeetingResponseModel Meeting { get; set; }
+        public EmbeddedMeetingResponseModel? Meeting { get; set; }
 
         #endregion
 

@@ -25,7 +25,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="JobEntity"/>
         /// </summary>
-        public JobEntity Job { get; set; }
+        public JobEntity? Job { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="CompanyEntity"/>
@@ -35,17 +35,17 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="CompanyEntity"/>
         /// </summary>
-        public CompanyEntity Company { get; set; }
+        public CompanyEntity? Company { get; set; }
 
         /// <summary>
         /// The job's position employees
         /// </summary>
-        public IEnumerable<UserEntity> Employees { get; set; }
+        public IEnumerable<UserEntity>? Employees { get; set; }
 
         /// <summary>
         /// The job's applications
         /// </summary>
-        public IEnumerable<JobApplicationEntity> JobApplications { get; set; }
+        public IEnumerable<JobApplicationEntity>? JobApplications { get; set; }
 
         #endregion
 

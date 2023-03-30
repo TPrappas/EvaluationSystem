@@ -2,6 +2,20 @@
 {
     public class MeetingResponseModel : BaseResponseModel
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Title"/> property
+        /// </summary>
+        private string? mTitle;
+
+        /// <summary>
+        /// The member of the <see cref="Location"/> property
+        /// </summary>
+        private string? mDescription;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -17,27 +31,37 @@
         /// <summary>
         /// The link
         /// </summary>
-        public string Link { get; set; }
+        public Uri? Link { get; set; }
 
         /// <summary>
         /// The title
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => mTitle ?? string.Empty;
+
+            set => mTitle = value;
+        }
 
         /// <summary>
         /// The description
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => mDescription ?? string.Empty;
+
+            set => mDescription = value;
+        }
 
         /// <summary>
         /// The location
         /// </summary>
-        public string Location { get; set; }
+        public string? Location { get; set; }
 
         /// <summary>
         /// The related <see cref="EmbeddedUserResponseModel"/>
         /// </summary>
-        public EmbeddedUserResponseModel Organizer { get; set; }
+        public EmbeddedUserResponseModel? Organizer { get; set; }
 
         #endregion
 
@@ -56,6 +80,15 @@
 
     public class EmbeddedMeetingResponseModel : BaseResponseModel 
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Title"/> property
+        /// </summary>
+        private string? mTitle;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -71,22 +104,27 @@
         /// <summary>
         /// The link
         /// </summary>
-        public string Link { get; set; }
+        public Uri? Link { get; set; }
 
         /// <summary>
         /// The title
         /// </summary>
-        public string Title { get; set; }
+        public string Title
+        {
+            get => mTitle ?? string.Empty;
+
+            set => mTitle = value;
+        }
 
         /// <summary>
         /// The location
         /// </summary>
-        public string Location { get; set; }
+        public string? Location { get; set; }
 
         /// <summary>
         /// The related <see cref="EmbeddedUserResponseModel"/>
         /// </summary>
-        public EmbeddedUserResponseModel Organizer { get; set; }
+        public EmbeddedUserResponseModel? Organizer { get; set; }
 
         #endregion
 

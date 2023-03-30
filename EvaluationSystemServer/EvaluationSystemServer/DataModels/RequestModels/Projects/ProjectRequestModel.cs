@@ -2,17 +2,46 @@
 { 
     public class ProjectRequestModel : BaseRequestModel
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Name"/> property
+        /// </summary>
+        private string? mName;
+
+        /// <summary>
+        /// The member of the <see cref="Description"/> property
+        /// </summary>
+        private string? mDescription;
+
+        /// <summary>
+        /// The member of the <see cref="ProjectCategories"/> property
+        /// </summary>
+        private IEnumerable<int>? mCategories;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get => mName ?? string.Empty;
+
+            set => mName = value;
+        }
 
         /// <summary>
         /// The description
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get => mDescription ?? string.Empty;
+
+            set => mDescription = value;
+        }
 
         /// <summary>
         /// The user's id
@@ -37,7 +66,12 @@
         /// <summary>
         /// The category's id
         /// </summary>
-        public IEnumerable<int> Categories { get; set; }
+        public IEnumerable<int> Categories
+        {
+            get => mCategories ?? Enumerable.Empty<int>();
+
+            set => mCategories = value;
+        }
 
         #endregion
 

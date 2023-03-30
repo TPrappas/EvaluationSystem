@@ -2,32 +2,86 @@
 {
     public class UserRequestModel : BaseRequestModel
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Username"/> property
+        /// </summary>
+        private string? mUsername;
+
+        /// <summary>
+        /// The member of the <see cref="Password"/> property
+        /// </summary>
+        private string? mPassword;
+
+        /// <summary>
+        /// The member of the <see cref="Email"/> property
+        /// </summary>
+        private string? mEmail;
+
+        /// <summary>
+        /// The member of the <see cref="FirstName"/> property
+        /// </summary>
+        private string? mFirstName;
+
+        /// <summary>
+        /// The member of the <see cref="LastName"/> property
+        /// </summary>
+        private string? mLastName;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// The username
         /// </summary>
-        public string Username { get; set; }
+        public string Username
+        {
+            get => mUsername ?? string.Empty;
+
+            set => mUsername = value;
+        }
 
         /// <summary>
         /// The password
         /// </summary>
-        public string Password { get; set; }
+        public string Password
+        {
+            get => mPassword ?? string.Empty;
+
+            set => mPassword = value;
+        }
 
         /// <summary>
         /// The email
         /// </summary>
-        public string Email { get; set; }
+        public string Email
+        {
+            get => mEmail ?? string.Empty;
+
+            set => mEmail = value;
+        }
 
         /// <summary>
-        /// The firstname
+        /// The first name
         /// </summary>
-        public string FirstName { get; set; }
+        public string FirstName
+        {
+            get => mFirstName ?? string.Empty;
+
+            set => mFirstName = value;
+        }
 
         /// <summary>
-        /// The lastname
+        /// The last name
         /// </summary>
-        public string LastName { get; set; }
+        public string LastName
+        {
+            get => mLastName ?? string.Empty;
+
+            set => mLastName = value;
+        }
 
         /// <summary>
         /// The bio
@@ -62,17 +116,17 @@
         /// <summary>
         /// The certificate's id
         /// </summary>
-        public IEnumerable<int> Certificates { get; set; }
+        public IEnumerable<int>? Certificates { get; set; }
 
         /// <summary>
         /// The skill's id
         /// </summary>
-        public IEnumerable<int> Skills { get; set; }
+        public IEnumerable<int>? Skills { get; set; }
 
         /// <summary>
         /// The participant meeting's id
         /// </summary>
-        public IEnumerable<int> ParticipantMeetings { get; set; }
+        public IEnumerable<int>? ParticipantMeetings { get; set; }
 
         #endregion
 

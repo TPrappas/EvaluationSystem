@@ -20,7 +20,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="UserEntity"/>
         /// </summary>
-        public UserEntity User { get; set; }
+        public UserEntity? User { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="SkillEntity"/>
@@ -30,7 +30,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="SkillEntity"/>
         /// </summary>
-        public SkillEntity Skill { get; set; }
+        public SkillEntity? Skill { get; set; }
 
         #endregion
 
