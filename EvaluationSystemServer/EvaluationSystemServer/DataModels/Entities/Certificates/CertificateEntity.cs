@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace EvaluationSystemServer
         /// The member of the <see cref="Department"/> property
         /// </summary>
         private string? mDepartment;
+
+        /// <summary>
+        /// The member of the <see cref="UserCertificates"/> property
+        /// </summary>
+        private ICollection<UserCertificateEntity>? mUserCertificates;
 
         #endregion
 
@@ -59,7 +65,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The certificate's employees
         /// </summary>
-        public IEnumerable<UserCertificateEntity>? UserCertificates { get; set; }
+        public ICollection<UserCertificateEntity> UserCertificates
+        { 
+            get => mUserCertificates ??= new Collection<UserCertificateEntity>();
+            
+            set => mUserCertificates = value;
+        }
 
         #endregion
 

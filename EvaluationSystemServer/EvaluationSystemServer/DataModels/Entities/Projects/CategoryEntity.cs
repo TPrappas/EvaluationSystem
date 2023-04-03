@@ -1,4 +1,6 @@
-﻿namespace EvaluationSystemServer
+﻿using System.Collections.ObjectModel;
+
+namespace EvaluationSystemServer
 {
     public class CategoryEntity : BaseEntity
     {
@@ -13,6 +15,11 @@
         /// The member of the <see cref="Description"/> property
         /// </summary>
         private string? mDescription;
+
+        /// <summary>
+        /// The member of the <see cref="ProjectsCategory"/> property
+        /// </summary>
+        private ICollection<ProjectCategoryEntity>? mProjectsCategory;
 
         #endregion
 
@@ -43,7 +50,12 @@
         /// <summary>
         /// The category's projects
         /// </summary>
-        public IEnumerable<ProjectCategoryEntity>? ProjectsCategory { get; set; }
+        public ICollection<ProjectCategoryEntity> ProjectsCategory 
+        { 
+            get => mProjectsCategory ??= new Collection<ProjectCategoryEntity>();
+            
+            set => mProjectsCategory = value;
+        }
 
         #endregion
 

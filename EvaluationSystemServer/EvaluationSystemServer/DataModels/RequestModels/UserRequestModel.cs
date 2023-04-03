@@ -2,86 +2,32 @@
 {
     public class UserRequestModel : BaseRequestModel
     {
-        #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Username"/> property
-        /// </summary>
-        private string? mUsername;
-
-        /// <summary>
-        /// The member of the <see cref="Password"/> property
-        /// </summary>
-        private string? mPassword;
-
-        /// <summary>
-        /// The member of the <see cref="Email"/> property
-        /// </summary>
-        private string? mEmail;
-
-        /// <summary>
-        /// The member of the <see cref="FirstName"/> property
-        /// </summary>
-        private string? mFirstName;
-
-        /// <summary>
-        /// The member of the <see cref="LastName"/> property
-        /// </summary>
-        private string? mLastName;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// The username
         /// </summary>
-        public string Username
-        {
-            get => mUsername ?? string.Empty;
-
-            set => mUsername = value;
-        }
+        public string? Username { get; set; }
 
         /// <summary>
         /// The password
         /// </summary>
-        public string Password
-        {
-            get => mPassword ?? string.Empty;
-
-            set => mPassword = value;
-        }
+        public string? Password { get; set; }
 
         /// <summary>
         /// The email
         /// </summary>
-        public string Email
-        {
-            get => mEmail ?? string.Empty;
-
-            set => mEmail = value;
-        }
+        public string? Email { get; set; }
 
         /// <summary>
         /// The first name
         /// </summary>
-        public string FirstName
-        {
-            get => mFirstName ?? string.Empty;
-
-            set => mFirstName = value;
-        }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// The last name
         /// </summary>
-        public string LastName
-        {
-            get => mLastName ?? string.Empty;
-
-            set => mLastName = value;
-        }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// The bio
@@ -101,17 +47,17 @@
         /// <summary>
         /// The company' id
         /// </summary>
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
 
         /// <summary>
         /// The job position's id
         /// </summary>
-        public int JobPositionId { get; set; }
+        public int? JobPositionId { get; set; }
 
         /// <summary>
         /// The user type
         /// </summary>
-        public StaffType UserType { get; set; }
+        public StaffType? UserType { get; set; }
 
         /// <summary>
         /// The certificate's id

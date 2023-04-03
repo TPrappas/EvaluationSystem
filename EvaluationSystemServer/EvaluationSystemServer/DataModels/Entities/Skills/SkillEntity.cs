@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace EvaluationSystemServer
         /// The member of the <see cref="Experience"/> property
         /// </summary>
         private string? mExperience;
+
+        /// <summary>
+        /// The member of the <see cref="UserSkills"/> property
+        /// </summary>
+        private ICollection<UserSkillEntity>? mUserSkills;
 
         #endregion
 
@@ -49,7 +55,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The related <see cref="SkillEntity"/>
         /// </summary>
-        public IEnumerable<UserSkillEntity>? UserSkills { get; set; }
+        public ICollection<UserSkillEntity> UserSkills 
+        { 
+            get => mUserSkills ??= new Collection<UserSkillEntity>();
+            
+            set => mUserSkills = value;
+        }
 
         #endregion
 

@@ -8,6 +8,15 @@ namespace EvaluationSystemServer
 {
     public class JobApplicationEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Comments"/> property
+        /// </summary>
+        private string? mComments;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -18,7 +27,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The comments
         /// </summary>
-        public string? Comments { get; set; }
+        public string Comments 
+        { 
+            get => mComments ?? string.Empty;
+            
+            set => mComments = value;
+        }
 
         /// <summary>
         /// The submission start

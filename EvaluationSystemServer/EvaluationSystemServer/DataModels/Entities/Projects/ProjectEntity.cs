@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The member of the <see cref="ProjectCategories"/> property
         /// </summary>
-        private IEnumerable<ProjectCategoryEntity>? mProjectCategories;
+        private ICollection<ProjectCategoryEntity>? mProjectCategories;
 
         #endregion
 
@@ -84,9 +85,9 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The project's categories
         /// </summary>
-        public IEnumerable<ProjectCategoryEntity> ProjectCategories
+        public ICollection<ProjectCategoryEntity> ProjectCategories
         { 
-            get => mProjectCategories ?? Enumerable.Empty<ProjectCategoryEntity>();
+            get => mProjectCategories ??= new Collection<ProjectCategoryEntity>();
             
             set => mProjectCategories = value;
         }

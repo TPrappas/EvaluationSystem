@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,20 @@ namespace EvaluationSystemServer
 {
     public class JobPositionEntity : BaseEntity
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="JobApplicationEntity"/> property
+        /// </summary>
+        private ICollection<UserEntity>? mEmployees;
+
+        /// <summary>
+        /// The member of the <see cref="JobApplicationEntity"/> property
+        /// </summary>
+        private ICollection<JobApplicationEntity>? mJobAppplications;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -40,12 +55,22 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The job's position employees
         /// </summary>
-        public IEnumerable<UserEntity>? Employees { get; set; }
+        public ICollection<UserEntity> Employees 
+        { 
+            get => mEmployees ??= new Collection<UserEntity>();
+            
+            set => mEmployees = value;
+        }
 
         /// <summary>
         /// The job's applications
         /// </summary>
-        public IEnumerable<JobApplicationEntity>? JobApplications { get; set; }
+        public ICollection<JobApplicationEntity> JobApplications 
+        { 
+            get => mJobAppplications ??= new Collection<JobApplicationEntity>();
+            
+            set => mJobAppplications = value;
+        }
 
         #endregion
 

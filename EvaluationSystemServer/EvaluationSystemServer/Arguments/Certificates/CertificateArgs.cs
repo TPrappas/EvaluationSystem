@@ -2,17 +2,41 @@
 {
     public class CertificateArgs : BaseArgs
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Search"/> property
+        /// </summary>
+        private string? mSearch;
+
+        /// <summary>
+        /// The member of the <see cref="Department"/> property
+        /// </summary>
+        private string? mDepartment;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
         /// By name
         /// </summary>
-        public string Search { get; set; }
+        public string Search 
+        { 
+            get => mSearch ?? string.Empty; 
+            
+            set => mSearch = value;
+        }
 
         /// <summary>
         /// By department
         /// </summary>
-        public string Department { get; set; }
+        public string Department 
+        { 
+            get => mDepartment ?? string.Empty;
+            
+            set => mDepartment = value;
+        }
 
         /// <summary>
         /// By minGrade

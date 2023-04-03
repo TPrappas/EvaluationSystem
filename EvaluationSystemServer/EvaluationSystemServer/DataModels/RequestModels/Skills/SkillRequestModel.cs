@@ -2,42 +2,17 @@
 {
     public class SkillRequestModel : BaseRequestModel
     {
-        #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
-
-        /// <summary>
-        /// The member of the <see cref="Experience"/> property
-        /// </summary>
-        private string? mExperience;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name
-        {
-            get => mName ?? string.Empty;
-
-            set => mName = value;
-        }
+        public string? Name { get; set; }
 
         /// <summary>
         /// The experience
         /// </summary>
-        public string Experience
-        {
-            get => mExperience ?? string.Empty;
-
-            set => mExperience = value;
-        }
-
+        public string? Experience { get; set; }
 
         #endregion
 

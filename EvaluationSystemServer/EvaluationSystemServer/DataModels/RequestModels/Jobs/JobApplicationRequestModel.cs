@@ -17,12 +17,12 @@
         /// <summary>
         /// The submission start
         /// </summary>
-        public DateTimeOffset SubmissionStart { get; set; }
+        public DateTimeOffset? SubmissionStart { get; set; }
 
         /// <summary>
         /// The submission end
         /// </summary>
-        public DateTimeOffset SubmissionEnd { get; set; }
+        public DateTimeOffset? SubmissionEnd { get; set; }
 
         #endregion
 
@@ -47,22 +47,22 @@
         /// <summary>
         /// The manager's id
         /// </summary>
-        public int ManagerId { get; set; }
+        public int? ManagerId { get; set; }
 
         /// <summary>
         /// The evaluator's id
         /// </summary>
-        public int EvaluatorId { get; set; }
+        public int? EvaluatorId { get; set; }
 
         /// <summary>
         /// The employee's id
         /// </summary>
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
 
         /// <summary>
         /// The job position's id
         /// </summary>
-        public int JobPositionId { get; set; }
+        public int? JobPositionId { get; set; }
 
         #endregion
 

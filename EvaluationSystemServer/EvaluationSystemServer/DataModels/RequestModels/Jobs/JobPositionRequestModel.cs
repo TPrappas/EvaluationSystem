@@ -7,7 +7,7 @@
         /// <summary>
         /// Is the position open or closed
         /// </summary>
-        public bool IsOpen { get; set; }
+        public bool? IsOpen { get; set; }
 
         #endregion
 
@@ -31,12 +31,12 @@
         /// <summary>
         /// The job's id
         /// </summary>
-        public int JobId { get; set; }
+        public int? JobId { get; set; }
 
         /// <summary>
         /// The company's id
         /// </summary>
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
 
         #endregion
 
