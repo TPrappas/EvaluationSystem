@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,16 @@ namespace EvaluationSystemServer
         /// The member of the <see cref="Country"/> property
         /// </summary>
         private string? mCountry;
+
+        /// <summary>
+        /// The member of the <see cref="JobPositions"/> property
+        /// </summary>
+        private ICollection<JobPositionEntity>? mJobPositions;
+
+        /// <summary>
+        /// The member of the <see cref="Users"/> property
+        /// </summary>
+        private ICollection<UserEntity>? mUsers;
 
         #endregion
 
@@ -119,12 +130,22 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The company's users
         /// </summary>
-        public IEnumerable<UserEntity>? Users { get; set; }  
+        public ICollection<UserEntity> Users 
+        { 
+            get => mUsers ??= new Collection<UserEntity>();
+            
+            set => mUsers = value;
+        }  
 
         /// <summary>
         /// The company's job positions
         /// </summary>
-        public IEnumerable<JobPositionEntity>? JobPositions { get; set; }
+        public ICollection<JobPositionEntity> JobPositions 
+        {
+            get => mJobPositions ??= new Collection<JobPositionEntity>();
+            
+            set => mJobPositions = value;
+        }
 
         #endregion
 

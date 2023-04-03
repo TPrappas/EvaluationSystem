@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,46 @@ namespace EvaluationSystemServer
         /// The member of the <see cref="LastName"/> property
         /// </summary>
         private string? mLastName;
+
+        /// <summary>
+        /// The member of the <see cref="UserSkills"/> property
+        /// </summary>
+        private ICollection<UserSkillEntity>? mUserSkills;
+
+        /// <summary>
+        /// The member of the <see cref="UserCertificates"/> property
+        /// </summary>
+        private ICollection<UserCertificateEntity>? mUserCertificates;
+
+        /// <summary>
+        /// The member of the <see cref="Projects"/> property
+        /// </summary>
+        private ICollection<ProjectEntity>? mProjects;
+
+        /// <summary>
+        /// The member of the <see cref="EmployeeApplications"/> property
+        /// </summary>
+        private ICollection<JobApplicationEntity>? mEmployeeApplications;
+
+        /// <summary>
+        /// The member of the <see cref="ManagerApplications"/> property
+        /// </summary>
+        private ICollection<JobApplicationEntity>? mManagerApplications;
+
+        /// <summary>
+        /// The member of the <see cref="EvaluatorApplications"/> property
+        /// </summaryJobApplicationEntity
+        private ICollection<JobApplicationEntity>? mEvaluatorApplications;
+
+        /// <summary>
+        /// The member of the <see cref="ParticipantsMeeting"/> property
+        /// </summaryJobApplicationEntity
+        private ICollection<ParticipantMeetingEntity>? mParticipantsMeeting;
+
+        /// <summary>
+        /// The member of the <see cref="OrganizersMeeting"/> property
+        /// </summaryJobApplicationEntity
+        private ICollection<MeetingEntity>? mOrganizersMeeting;
 
         #endregion
 
@@ -138,34 +179,64 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The user's skills
         /// </summary>
-        public IEnumerable<UserSkillEntity>? UserSkills { get; set; }
+        public ICollection<UserSkillEntity> UserSkills 
+        { 
+            get => mUserSkills ??= new Collection<UserSkillEntity>(); 
+            
+            set => mUserSkills = value;
+        }
 
         /// <summary>
         /// The users's certificates
         /// </summary>
-        public IEnumerable<UserCertificateEntity>? UserCertificates { get; set; }
+        public ICollection<UserCertificateEntity> UserCertificates
+        { 
+            get => mUserCertificates ??= new Collection<UserCertificateEntity>(); 
+            
+            set => mUserCertificates = value;
+        }
 
         /// <summary>
         /// The user's projects
         /// </summary>
-        public IEnumerable<ProjectEntity>? Projects { get; set; }
+        public ICollection<ProjectEntity> Projects 
+        { 
+            get => mProjects ??= new Collection<ProjectEntity>();
+            
+            set => mProjects = value;
+        }
 
         #region Applications
 
         /// <summary>
         /// The employee's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity>? EmployeeApplications { get; set; }
+        public ICollection<JobApplicationEntity> EmployeeApplications 
+        { 
+            get => mEmployeeApplications ??= new Collection<JobApplicationEntity>();
+            
+            set => mEmployeeApplications = value;
+        }
 
         /// <summary>
         /// The manager's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity>? ManagerApplications { get; set; }
+        public ICollection<JobApplicationEntity> ManagerApplications 
+        { 
+            get => mManagerApplications ??= new Collection<JobApplicationEntity>();
+            
+            set => mManagerApplications = value;
+        }
 
         /// <summary>
         /// The evaluator's application
         /// </summary>
-        public IEnumerable<JobApplicationEntity>? EvaluatorApplications { get; set; }
+        public ICollection<JobApplicationEntity> EvaluatorApplications 
+        { 
+            get => mEvaluatorApplications ??= new Collection<JobApplicationEntity>(); 
+            
+            set => mEvaluatorApplications = value;
+        }
 
         #endregion
 
@@ -174,12 +245,22 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The participants's meetings
         /// </summary>
-        public IEnumerable<ParticipantMeetingEntity>? ParticipantsMeeting { get; set; }
+        public ICollection<ParticipantMeetingEntity> ParticipantsMeeting 
+        { 
+            get => mParticipantsMeeting ??= new Collection<ParticipantMeetingEntity>(); 
+            
+            set => mParticipantsMeeting = value; 
+        }
 
         /// <summary>
         /// The organizer's meetings
         /// </summary>
-        public IEnumerable<MeetingEntity>? OrganizersMeeting { get; set; }
+        public ICollection<MeetingEntity> OrganizersMeeting 
+        { 
+            get => mOrganizersMeeting ??= new Collection<MeetingEntity>(); 
+            
+            set => mOrganizersMeeting = value;
+        }
 
         #endregion
 

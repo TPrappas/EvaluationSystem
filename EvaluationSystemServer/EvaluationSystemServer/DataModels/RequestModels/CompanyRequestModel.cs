@@ -2,76 +2,27 @@
 {
     public class CompanyRequestModel
     {
-        #region Private Properties
-
-        /// <summary>
-        /// The member of the <see cref="DOY"/> property
-        /// </summary>
-        private string? mDOY;
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
-
-        /// <summary>
-        /// The member of the <see cref="Phone"/> property
-        /// </summary>
-        private string? mPhone;
-
-        /// <summary>
-        /// The member of the <see cref="Address"/> property
-        /// </summary>
-        private string? mAddress;
-
-        /// <summary>
-        /// The member of the <see cref="City"/> property
-        /// </summary>
-        private string? mCity;
-
-        /// <summary>
-        /// The member of the <see cref="Country"/> property
-        /// </summary>
-        private string? mCountry;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// The AFM
         /// </summary>
-        public int AFM { get; set; }
+        public int? AFM { get; set; }
 
         /// <summary>
         /// The DOY
         /// </summary>
-        public string DOY
-        {
-            get => mDOY ?? string.Empty;
-
-            set => mDOY = value;
-        }
+        public string? DOY { get; set; }
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name
-        {
-            get => mName ?? string.Empty;
-
-            set => mName = value;
-        }
+        public string? Name { get; set; }
 
         /// <summary>
         /// The phone
         /// </summary>
-        public string Phone
-        {
-            get => mPhone ?? string.Empty;
-
-            set => mPhone = value;
-        }
+        public string? Phone { get; set; }
 
         /// <summary>
         /// The website
@@ -81,32 +32,17 @@
         /// <summary>
         /// The Address
         /// </summary>
-        public string Address
-        {
-            get => mAddress ?? string.Empty;
-
-            set => mAddress = value;
-        }
+        public string? Address { get; set; }
 
         /// <summary>
         /// The city
         /// </summary>
-        public string City
-        {
-            get => mCity ?? string.Empty;
-
-            set => mCity = value;
-        }
+        public string? City { get; set; }
 
         /// <summary>
         /// The country
         /// </summary>
-        public string Country
-        {
-            get => mCountry ?? string.Empty;
-
-            set => mCountry = value;
-        }
+        public string? Country { get; set; }
 
         #endregion
 

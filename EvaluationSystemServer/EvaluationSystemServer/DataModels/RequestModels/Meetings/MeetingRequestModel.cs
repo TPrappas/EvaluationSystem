@@ -2,31 +2,17 @@
 {
     public class MeetingRequestModel : BaseRequestModel
     {
-        #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Title"/> property
-        /// </summary>
-        private string? mTitle;
-
-        /// <summary>
-        /// The member of the <see cref="Location"/> property
-        /// </summary>
-        private string? mDescription;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// The date
         /// </summary>
-        public DateTimeOffset MeetingDate { get; set; }
+        public DateTimeOffset? MeetingDate { get; set; }
 
         /// <summary>
         /// The duration
         /// </summary>
-        public TimeSpan Duration { get; set; }
+        public TimeSpan? Duration { get; set; }
 
         /// <summary>
         /// The link
@@ -36,22 +22,12 @@
         /// <summary>
         /// The title
         /// </summary>
-        public string Title 
-        { 
-            get => mTitle ?? string.Empty;
-            
-            set => mTitle = value;
-        }
+        public string? Title { get; set; }
 
         /// <summary>
         /// The description
         /// </summary>
-        public string Description
-        {
-            get => mDescription ?? string.Empty;
-
-            set => mDescription = value;
-        }
+        public string? Description { get; set; }
 
         /// <summary>
         /// The location
@@ -80,7 +56,7 @@
         /// <summary>
         /// The organizer's id
         /// </summary>
-        public int OrganizerId { get; set; }
+        public int? OrganizerId { get; set; }
 
         #endregion
 

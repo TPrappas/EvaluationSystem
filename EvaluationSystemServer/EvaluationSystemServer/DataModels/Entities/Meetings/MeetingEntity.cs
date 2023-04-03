@@ -1,4 +1,6 @@
-﻿namespace EvaluationSystemServer
+﻿using System.Collections.ObjectModel;
+
+namespace EvaluationSystemServer
 {
     public class MeetingEntity : BaseEntity
     {
@@ -13,6 +15,11 @@
         /// The member of the <see cref="Location"/> property
         /// </summary>
         private string? mDescription;
+
+        /// <summary>
+        /// The member of the <see cref="ParticipantMeetings"/> property
+        /// </summary>
+        private ICollection<ParticipantMeetingEntity>? mParticipantMeetings;
 
         #endregion
 
@@ -63,7 +70,12 @@
         /// <summary>
         /// The meetings's participants
         /// </summary>
-        public IEnumerable<ParticipantMeetingEntity>? ParticipantMeetings { get; set; }
+        public ICollection<ParticipantMeetingEntity>? ParticipantMeetings 
+        {
+            get => mParticipantMeetings ??= new Collection<ParticipantMeetingEntity>();
+            
+            set => mParticipantMeetings = value;
+        }
 
         /// <summary>
         /// The meetings's organizer

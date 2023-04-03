@@ -2,51 +2,27 @@
 {
     public class CertificateRequestModel : BaseRequestModel
     {
-        #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
-
-        /// <summary>
-        /// The member of the <see cref="Department"/> property
-        /// </summary>
-        private string? mDepartment;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name
-        {
-            get => mName ?? string.Empty;
-
-            set => mName = value;
-        }
+        public string? Name { get; set; }
 
         /// <summary>
         /// The department
         /// </summary>
-        public string Department
-        {
-            get => mDepartment ?? string.Empty;
-
-            set => mDepartment = value;
-        }
+        public string? Department { get; set; }
 
         /// <summary>
         /// The graduation year
         /// </summary>
-        public double GradutationYear { get; set; }
+        public double? GradutationYear { get; set; }
 
         /// <summary>
         /// The grade
         /// </summary>
-        public double Grade { get; set; }
+        public double? Grade { get; set; }
 
         #endregion
 
