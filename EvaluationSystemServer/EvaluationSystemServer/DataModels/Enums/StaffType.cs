@@ -14,16 +14,16 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Employee
         /// </summary>
-        Employee, 
+        Employee = 0, 
 
         /// <summary>
         /// Evaluator
         /// </summary>
-        Evaluator,
+        Evaluator = 1,
 
         /// <summary>
         /// Manager
         /// </summary>
-        Manager
+        Manager = 2
     }
 }

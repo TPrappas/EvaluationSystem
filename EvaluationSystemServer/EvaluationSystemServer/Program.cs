@@ -1,3 +1,6 @@
+using Bogus;
+using Microsoft.EntityFrameworkCore;
+
 namespace EvaluationSystemServer
 {
     public class Program
@@ -5,7 +8,7 @@ namespace EvaluationSystemServer
         public static void Main(string[] args)
         {
             DI.Host = CreateHostBuilder(args).Build();
-
+            
             DI.Host.Run();
         }
 
