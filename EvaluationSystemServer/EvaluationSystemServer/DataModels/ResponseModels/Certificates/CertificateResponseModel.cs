@@ -41,7 +41,7 @@
         /// <summary>
         /// The graduation year
         /// </summary>
-        public double GradutationYear { get; set; }
+        public int GradutationYear { get; set; }
 
         /// <summary>
         /// The grade

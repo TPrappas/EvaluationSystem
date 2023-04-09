@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Bogus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ namespace EvaluationSystemServer
 
             services.AddSingleton<UsersManager>();
 
-            services.AddScoped<ProjectsManager>();
+            services.AddSingleton<ProjectsManager>();
 
             services.AddControllers();
 

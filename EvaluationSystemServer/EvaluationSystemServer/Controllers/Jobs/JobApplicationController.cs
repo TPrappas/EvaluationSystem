@@ -126,7 +126,7 @@ namespace EvaluationSystemServer
             // If the included Manager is not null...
             if (args.IncludeManagers is not null)
                 // Add to filters
-                filters.Add(x => args.IncludeEvaluators.Contains(x.ManagerId));
+                filters.Add(x => args.IncludeManagers.Contains(x.ManagerId));
 
             // If the excluded Manager is not null...
             if (args.ExcludeManagers is not null)

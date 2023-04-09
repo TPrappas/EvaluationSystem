@@ -53,7 +53,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The graduation year
         /// </summary>
-        public double GradugtationYear { get; set; }
+        public int GraduationYear { get; set; }
 
         /// <summary>
         /// The grade

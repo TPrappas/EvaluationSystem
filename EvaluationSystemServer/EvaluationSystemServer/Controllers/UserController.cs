@@ -20,7 +20,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The query used for retrieving the users 
         /// </summary>
-        protected IQueryable<UserEntity> UsersQuery => mContext.Users.Include(x => x.Company).Include(x => x.JobPosition.Job);
+        protected IQueryable<UserEntity> UsersQuery => mContext.Users.Include(x => x.Company).Include(x => x.JobPosition);
 
         #endregion
 
