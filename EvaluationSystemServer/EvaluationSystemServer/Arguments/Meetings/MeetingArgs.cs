@@ -9,16 +9,6 @@
         /// </summary>
         private string? mSearch;
 
-        /// <summary>
-        /// The member of the <see cref="IncludeOrganizer"/> property
-        /// </summary>
-        private IEnumerable<int>? mIncludeOrganizers;
-
-        /// <summary>
-        /// The member of the <see cref="ExcludeOrganizer"/> property
-        /// </summary>
-        private IEnumerable<int>? mExcludeOrganizers;
-
         #endregion
 
         #region Public Properties
@@ -26,23 +16,12 @@
         /// <summary>
         /// Organizer included
         /// </summary>
-        public IEnumerable<int> IncludeOrganizer 
-        { 
-            get => mIncludeOrganizers ?? Enumerable.Empty<int>();
-            
-            set => mIncludeOrganizers = value; 
-        }
+        public IEnumerable<int> IncludeOrganizer { get; set; }
 
         /// <summary>
         /// Organizer excluded
         /// </summary>
-        public IEnumerable<int> ExcludeOrganizer 
-        { 
-            get => mExcludeOrganizers ?? Enumerable.Empty<int>();
-            
-            set => mExcludeOrganizers = value;
-        }
-
+        public IEnumerable<int> ExcludeOrganizer { get; set; }
         /// <summary>
         /// By after date
         /// </summary>

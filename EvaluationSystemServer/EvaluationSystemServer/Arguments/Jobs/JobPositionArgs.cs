@@ -2,51 +2,17 @@
 {
     public class JobPositionArgs : BaseArgs
     {
-        #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="IncludeJobs"/> property
-        /// </summary>
-        private IEnumerable<int>? mIncludeJobs;
-
-        /// <summary>
-        /// The member of the <see cref="ExcludeJobs"/> property
-        /// </summary>
-        private IEnumerable<int>? mExcludeJobs;
-
-        /// <summary>
-        /// The member of the <see cref="IncludeCompanies"/> property
-        /// </summary>
-        private IEnumerable<int>? mIncludeCompanies;
-
-        /// <summary>
-        /// The member of the <see cref="ExcludeCompanies"/> property
-        /// </summary>
-        private IEnumerable<int>? mExcludeCompanies;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// Job included
         /// </summary>
-        public IEnumerable<int> IncludeJobs 
-        { 
-            get => mIncludeJobs ?? Enumerable.Empty<int>();
-            
-            set => mIncludeJobs = value; 
-        }
+        public IEnumerable<int>? IncludeJobs { get; set; }
 
         /// <summary>
         /// Job excluded
         /// </summary>
-        public IEnumerable<int> ExcludeJobs 
-        {
-            get => mExcludeJobs ?? Enumerable.Empty<int>();
-            
-            set => mExcludeJobs = value;
-        }
+        public IEnumerable<int>? ExcludeJobs { get; set; }
 
         /// <summary>
         /// By isOpen
@@ -56,22 +22,12 @@
         /// <summary>
         /// Company included
         /// </summary>
-        public IEnumerable<int> IncludeCompanies 
-        {
-            get => mIncludeCompanies ?? Enumerable.Empty<int>(); 
-            
-            set => mIncludeCompanies = value;
-        }
+        public IEnumerable<int>? IncludeCompanies { get; set; }
 
         /// <summary>
         /// Company excluded
         /// </summary>
-        public IEnumerable<int> ExcludeCompanies 
-        {
-            get => mExcludeCompanies ?? Enumerable.Empty<int>();
-            
-            set => mExcludeCompanies = value;
-        }
+        public IEnumerable<int>? ExcludeCompanies { get; set; }
 
         #endregion
 
