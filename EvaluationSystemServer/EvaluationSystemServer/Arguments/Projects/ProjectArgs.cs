@@ -9,16 +9,6 @@
         /// </summary>
         private string? mSearch;
 
-        /// <summary>
-        /// The member of the <see cref="IncludeUsers"/> property
-        /// </summary>
-        private IEnumerable<int>? mIncludeUsers;
-
-        /// <summary>
-        /// The member of the <see cref="ExcludeUsers"/> property
-        /// </summary>
-        private IEnumerable<int>? mExcludeUsers;
-
         #endregion
 
         #region Public Properties
@@ -71,22 +61,13 @@
         /// <summary>
         /// User included
         /// </summary>
-        public IEnumerable<int> IncludeUsers 
-        { 
-            get => mIncludeUsers ?? Enumerable.Empty<int>();
-            
-            set => mIncludeUsers = value;
-        }
+        public IEnumerable<int>? IncludeUsers { get; set; }
+
 
         /// <summary>
         /// User excluded
         /// </summary>
-        public IEnumerable<int> ExcludeUsers
-        {
-            get => mExcludeUsers ?? Enumerable.Empty<int>();
-
-            set => mExcludeUsers = value;
-        }
+        public IEnumerable<int>? ExcludeUsers { get; set; }
 
         #endregion
 
