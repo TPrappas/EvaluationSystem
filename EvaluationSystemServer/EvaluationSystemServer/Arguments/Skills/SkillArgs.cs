@@ -30,7 +30,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SkillArgs()
+        public SkillArgs() : base()
         {
 
         }

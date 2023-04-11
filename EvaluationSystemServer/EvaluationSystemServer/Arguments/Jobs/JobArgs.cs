@@ -40,7 +40,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobArgs()
+        public JobArgs() : base()
         {
 
         }

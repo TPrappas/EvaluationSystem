@@ -76,7 +76,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public ProjectArgs()
+        public ProjectArgs() : base()
         {
 
         }

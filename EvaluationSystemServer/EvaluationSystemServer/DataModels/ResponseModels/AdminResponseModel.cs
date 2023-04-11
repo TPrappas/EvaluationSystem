@@ -54,8 +54,31 @@
 
     }
 
-    public class EmbeddedAdminResponseModel : AdminResponseModel 
+    public class EmbeddedAdminResponseModel : BaseResponseModel 
     {
+        #region Private Members
+
+        /// <summary>
+        /// The member of the <see cref="Username"/> property
+        /// </summary>
+        private string? mUsername;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The username
+        /// </summary>
+        public string Username
+        {
+            get => mUsername ?? string.Empty;
+
+            set => mUsername = value;
+        }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>

@@ -36,7 +36,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobPositionArgs()
+        public JobPositionArgs() : base()
         {
 
         }

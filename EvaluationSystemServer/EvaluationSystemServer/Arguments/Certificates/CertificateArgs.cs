@@ -55,7 +55,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CertificateArgs()
+        public CertificateArgs() : base() 
         {
 
         }
