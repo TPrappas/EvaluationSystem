@@ -16,12 +16,12 @@
         /// <summary>
         /// Organizer included
         /// </summary>
-        public IEnumerable<int> IncludeOrganizer { get; set; }
+        public IEnumerable<int>? IncludeOrganizer { get; set; }
 
         /// <summary>
         /// Organizer excluded
         /// </summary>
-        public IEnumerable<int> ExcludeOrganizer { get; set; }
+        public IEnumerable<int>? ExcludeOrganizer { get; set; }
         /// <summary>
         /// By after date
         /// </summary>
@@ -59,7 +59,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MeetingArgs()
+        public MeetingArgs() : base()
         {
 
         }

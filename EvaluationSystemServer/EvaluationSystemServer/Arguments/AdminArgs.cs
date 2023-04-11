@@ -30,7 +30,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public AdminArgs()
+        public AdminArgs() : base()
         {
 
         }

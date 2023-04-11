@@ -30,7 +30,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CategoryArgs()
+        public CategoryArgs() : base()
         {
 
         }

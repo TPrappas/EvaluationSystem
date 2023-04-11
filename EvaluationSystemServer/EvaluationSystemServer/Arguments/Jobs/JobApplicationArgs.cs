@@ -72,7 +72,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public JobApplicationArgs()
+        public JobApplicationArgs() : base()
         {
 
         }

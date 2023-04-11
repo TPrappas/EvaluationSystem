@@ -60,7 +60,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public CompanyArgs()
+        public CompanyArgs() : base()
         {
 
         }

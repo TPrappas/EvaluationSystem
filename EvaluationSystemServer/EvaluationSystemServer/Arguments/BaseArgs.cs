@@ -31,7 +31,7 @@
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseArgs()
+        public BaseArgs() : base()
         {
 
         }
