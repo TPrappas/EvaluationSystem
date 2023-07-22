@@ -2,14 +2,9 @@
 
 namespace EvaluationSystemServer
 {
-    public class CategoryEntity : BaseEntity
+    public class CategoryEntity : NormalizedEntity
     {
         #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
 
         /// <summary>
         /// The member of the <see cref="Description"/> property
@@ -24,16 +19,6 @@ namespace EvaluationSystemServer
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The name
-        /// </summary>
-        public string Name
-        {
-            get => mName ?? string.Empty;
-
-            set => mName = value;
-        }
 
         /// <summary>
         /// The description
@@ -80,8 +65,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static CategoryEntity FromRequestModel(CreateCategoryRequestModel model)
-            => ControllerHelpers.FromRequestModel<CategoryEntity, CreateCategoryRequestModel>(model);
+        public static CategoryEntity FromRequestModel(CategoryRequestModel model)
+            => ControllerHelpers.FromRequestModel<CategoryEntity, CategoryRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="CategoryResponseModel"/> from the current <see cref="CategoryEntity"/>

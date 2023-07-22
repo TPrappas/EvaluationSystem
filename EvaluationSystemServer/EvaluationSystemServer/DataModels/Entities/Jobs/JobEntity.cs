@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace EvaluationSystemServer
 {
-    public class JobEntity : BaseEntity
+    public class JobEntity : NormalizedEntity
     {
         #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
 
         /// <summary>
         /// The member of the <see cref="Description"/> property
@@ -29,16 +24,6 @@ namespace EvaluationSystemServer
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The name
-        /// </summary>
-        public string Name 
-        { 
-            get => mName ?? string.Empty;
-            
-            set => mName = value; 
-        }    
 
         /// <summary>
         /// The description
@@ -90,8 +75,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static JobEntity FromRequestModel(CreateJobRequestModel model)
-            => ControllerHelpers.FromRequestModel<JobEntity, CreateJobRequestModel>(model);
+        public static JobEntity FromRequestModel(JobRequestModel model)
+            => ControllerHelpers.FromRequestModel<JobEntity, JobRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="JobResponseModel"/> from the current <see cref="JobEntity"/>

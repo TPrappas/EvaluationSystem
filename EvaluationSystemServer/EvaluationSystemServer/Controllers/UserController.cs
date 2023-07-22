@@ -54,7 +54,7 @@ namespace EvaluationSystemServer
         /// Get home/users
         [HttpGet]
         [Route(Routes.UsersRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedUserResponseModel>>> GetUsersAsync([FromQuery] UserArgs args)
+        public Task<ActionResult<IEnumerable<UserResponseModel>>> GetUsersAsync([FromQuery] UserArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<UserEntity, bool>>>();
@@ -120,7 +120,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => !args.ExcludeJobPositions.Contains(x.JobPositionId));
 
             // Gets the response models for each user entity
-            return ControllerHelpers.GetAllAsync<UserEntity, EmbeddedUserResponseModel>(
+            return ControllerHelpers.GetAllAsync<UserEntity, UserResponseModel>(
                 UsersQuery,
                 args,
                 filters);
@@ -134,13 +134,13 @@ namespace EvaluationSystemServer
         /// Get home/users/{userId} == home/users/2
         [HttpGet]
         [Route(Routes.UserRoute)]
-        public Task<ActionResult<EmbeddedUserResponseModel>> GetUserAsync([FromRoute] int userId)
+        public Task<ActionResult<UserResponseModel>> GetUserAsync([FromRoute] int userId)
         {
             // The needed expression for the filter
             Expression<Func<UserEntity, bool>> filter = x => x.Id == userId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<UserEntity, EmbeddedUserResponseModel>(
+            return ControllerHelpers.GetAsync<UserEntity, UserResponseModel>(
                 UsersQuery,
                 DI.GetMapper,
                 filter);
@@ -154,7 +154,7 @@ namespace EvaluationSystemServer
         /// Put /home/users/{userId}
         [HttpPut]
         [Route(Routes.UserRoute)]
-        public async Task<ActionResult<UserResponseModel>> UpdateUserAsync([FromRoute] int userId, [FromBody] UpdateUserRequestModel model)
+        public async Task<ActionResult<UserResponseModel>> UpdateUserAsync([FromRoute] int userId, [FromBody] UserRequestModel model)
         {
             return (await DI.GetUsersManager.UpdateUserAsync(userId, model)).ToResponseModel();
         }

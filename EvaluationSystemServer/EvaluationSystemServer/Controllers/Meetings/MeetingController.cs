@@ -46,7 +46,7 @@ namespace EvaluationSystemServer
         /// Post api/meetings
         [HttpPost]
         [Route(Routes.MeetingsRoute)]
-        public Task<ActionResult<MeetingResponseModel>> CreateMeetingAsync([FromBody] CreateMeetingRequestModel model)
+        public Task<ActionResult<MeetingResponseModel>> CreateMeetingAsync([FromBody] MeetingRequestModel model)
             => ControllerHelpers.PostAsync<MeetingEntity, MeetingResponseModel>(
                 mContext,
                 mContext.Meetings,
@@ -59,7 +59,7 @@ namespace EvaluationSystemServer
         /// Get api/meetings
         [HttpGet]
         [Route(Routes.MeetingsRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedMeetingResponseModel>>> GetMeetingsAsync([FromQuery] MeetingArgs args)
+        public Task<ActionResult<IEnumerable<MeetingResponseModel>>> GetMeetingsAsync([FromQuery] MeetingArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<MeetingEntity, bool>>>();
@@ -67,7 +67,7 @@ namespace EvaluationSystemServer
             // If Search is not null...
             if (!string.IsNullOrEmpty(args.Search))
                 // Add to filters
-                filters.Add(x => x.Title.Contains(args.Search));
+                filters.Add(x => x.Name.Contains(args.Search));
 
             // If the After Date Created is not null...
             if (args.AfterDateCreated is not null)
@@ -110,7 +110,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => args.MaxDuration <= x.Duration);
 
             // Gets the response models for each certificate entity
-            return ControllerHelpers.GetAllAsync<MeetingEntity, EmbeddedMeetingResponseModel>(
+            return ControllerHelpers.GetAllAsync<MeetingEntity, MeetingResponseModel>(
                 MeetingsQuery,
                 args,
                 filters);
@@ -124,13 +124,13 @@ namespace EvaluationSystemServer
         /// Get api/meetings/{meetingsId} == api/meetings/1
         [HttpGet]
         [Route(Routes.MeetingRoute)]
-        public Task<ActionResult<EmbeddedMeetingResponseModel>> GetMeetingAsync([FromRoute] int meetingId)
+        public Task<ActionResult<MeetingResponseModel>> GetMeetingAsync([FromRoute] int meetingId)
         {
             // The needed expression for the filter
             Expression<Func<MeetingEntity, bool>> filter = x => x.Id == meetingId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<MeetingEntity, EmbeddedMeetingResponseModel>(
+            return ControllerHelpers.GetAsync<MeetingEntity, MeetingResponseModel>(
                 MeetingsQuery,
                 DI.GetMapper,
                 filter);
@@ -144,7 +144,7 @@ namespace EvaluationSystemServer
         /// Put /api/meetings/{meetingId}
         [HttpPut]
         [Route(Routes.MeetingRoute)]
-        public Task<ActionResult<MeetingResponseModel>> UpdateMeetingAsync([FromRoute] int meetingId, [FromBody] UpdateMeetingRequestModel model)
+        public Task<ActionResult<MeetingResponseModel>> UpdateMeetingAsync([FromRoute] int meetingId, [FromBody] MeetingResponseModel model)
         {
             return ControllerHelpers.PutAsync<UpdateMeetingRequestModel, MeetingEntity, MeetingResponseModel>(
                 mContext,

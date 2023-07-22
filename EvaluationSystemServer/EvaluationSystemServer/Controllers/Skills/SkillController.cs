@@ -44,7 +44,7 @@ namespace EvaluationSystemServer
         /// Post api/skills
         [HttpPost]
         [Route(Routes.SkillsRoute)]
-        public Task<ActionResult<SkillResponseModel>> CreateSkillAsync([FromBody] CreateSkillRequestModel model)
+        public Task<ActionResult<SkillResponseModel>> CreateSkillAsync([FromBody] SkillRequestModel model)
             => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Skills,
@@ -57,7 +57,7 @@ namespace EvaluationSystemServer
         /// Get api/skills
         [HttpGet]
         [Route(Routes.SkillsRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedSkillResponseModel>>> GetSkillsAsync([FromQuery] SkillArgs args)
+        public Task<ActionResult<IEnumerable<SkillResponseModel>>> GetSkillsAsync([FromQuery] SkillArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<SkillEntity, bool>>>();
@@ -78,7 +78,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
             // Gets the response models for each skill entity
-            return ControllerHelpers.GetAllAsync<SkillEntity, EmbeddedSkillResponseModel>(
+            return ControllerHelpers.GetAllAsync<SkillEntity, SkillResponseModel>(
                 SkillsQuery,
                 args,
                 filters);
@@ -92,13 +92,13 @@ namespace EvaluationSystemServer
         /// Get api/skills/{skillId} == api/skills/1
         [HttpGet]
         [Route(Routes.SkillRoute)]
-        public Task<ActionResult<EmbeddedSkillResponseModel>> GetSkillAsync([FromRoute] int skillId)
+        public Task<ActionResult<SkillResponseModel>> GetSkillAsync([FromRoute] int skillId)
         {
             // The needed expression for the filter
             Expression<Func<SkillEntity, bool>> filter = x => x.Id == skillId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<SkillEntity, EmbeddedSkillResponseModel>(
+            return ControllerHelpers.GetAsync<SkillEntity, SkillResponseModel>(
                 SkillsQuery,
                 DI.GetMapper,
                 filter);
@@ -112,7 +112,7 @@ namespace EvaluationSystemServer
         /// Put /api/skill/{skillId}
         [HttpPut]
         [Route(Routes.SkillRoute)]
-        public Task<ActionResult<SkillResponseModel>> UpdateSkillAsync([FromRoute] int skillId, [FromBody] UpdateSkillRequestModel model)
+        public Task<ActionResult<SkillResponseModel>> UpdateSkillAsync([FromRoute] int skillId, [FromBody] SkillRequestModel model)
         {
             return ControllerHelpers.PutAsync<SkillRequestModel, SkillEntity, SkillResponseModel>(
                 mContext,

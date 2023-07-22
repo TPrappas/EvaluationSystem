@@ -45,7 +45,7 @@ namespace EvaluationSystemServer
         /// Post api/projects
         [HttpPost]
         [Route(Routes.ProjectsRoute)]
-        public async Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] CreateProjectRequestModel model)
+        public async Task<ActionResult<ProjectResponseModel>> CreateProjectAsync([FromBody] ProjectRequestModel model)
             => (await DI.GetProjectsManager.AddProjectAsync(model)).ToResponseModel();
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace EvaluationSystemServer
         /// Get api/projects
         [HttpGet]
         [Route(Routes.ProjectsRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedProjectResponseModel>>> GetProjectsAsync([FromQuery] ProjectArgs args)
+        public Task<ActionResult<IEnumerable<ProjectResponseModel>>> GetProjectsAsync([FromQuery] ProjectArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<ProjectEntity, bool>>>();
@@ -115,7 +115,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => !args.ExcludeUsers.Contains(x.UserId));
 
             // Gets the response models for each project entity
-            return ControllerHelpers.GetAllAsync<ProjectEntity, EmbeddedProjectResponseModel>(
+            return ControllerHelpers.GetAllAsync<ProjectEntity, ProjectResponseModel>(
                 ProjectsQuery,
                 args,
                 filters);
@@ -129,13 +129,13 @@ namespace EvaluationSystemServer
         /// Get api/projects/{projectId} == api/projects/1
         [HttpGet]
         [Route(Routes.ProjectRoute)]
-        public Task<ActionResult<EmbeddedProjectResponseModel>> GetProjectAsync([FromRoute] int projectId)
+        public Task<ActionResult<ProjectResponseModel>> GetProjectAsync([FromRoute] int projectId)
         {
             // The needed expression for the filter
             Expression<Func<ProjectEntity, bool>> filter = x => x.Id == projectId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<ProjectEntity, EmbeddedProjectResponseModel>(
+            return ControllerHelpers.GetAsync<ProjectEntity, ProjectResponseModel>(
                 ProjectsQuery,
                 DI.GetMapper,
                 filter);
@@ -149,9 +149,9 @@ namespace EvaluationSystemServer
         /// Put /api/projects/{projectId}
         [HttpPut]
         [Route(Routes.ProjectRoute)]
-        public Task<ActionResult<ProjectResponseModel>> UpdateProjectAsync([FromRoute] int projectId, [FromBody] UpdateProjectRequestModel model)
+        public Task<ActionResult<ProjectResponseModel>> UpdateProjectAsync([FromRoute] int projectId, [FromBody] ProjectRequestModel model)
         {
-            return ControllerHelpers.PutAsync<UpdateProjectRequestModel, ProjectEntity, ProjectResponseModel>(
+            return ControllerHelpers.PutAsync<ProjectRequestModel, ProjectEntity, ProjectResponseModel>(
                 mContext,
                 ProjectsQuery,
                 model,

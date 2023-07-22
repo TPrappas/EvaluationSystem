@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EvaluationSystemServer
 {
-    public class CompanyEntity : BaseEntity
+    public class CompanyEntity : NormalizedEntity
     {
         #region Private Members
 
@@ -15,11 +15,6 @@ namespace EvaluationSystemServer
         /// The member of the <see cref="DOY"/> property
         /// </summary>
         private string? mDOY;
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
 
         /// <summary>
         /// The member of the <see cref="Phone"/> property
@@ -69,16 +64,6 @@ namespace EvaluationSystemServer
             
             set => mDOY = value;
         } 
-
-        /// <summary>
-        /// The name
-        /// </summary>
-        public string Name 
-        { 
-            get => mName ?? string.Empty;
-            
-            set => mName = value;
-        }    
 
         /// <summary>
         /// The phone
@@ -170,8 +155,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model">The model</param>
         /// <returns></returns>
-        public static CompanyEntity FromRequestModel(CreateCompanyRequestModel model)
-            => ControllerHelpers.FromRequestModel<CompanyEntity, CreateCompanyRequestModel>(model);
+        public static CompanyEntity FromRequestModel(CompanyRequestModel model)
+            => ControllerHelpers.FromRequestModel<CompanyEntity, CompanyRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="CompanyResponseModel"/> from the current <see cref="CompanyEntity"/>

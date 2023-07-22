@@ -46,7 +46,7 @@ namespace EvaluationSystemServer
         /// Post api/jobs
         [HttpPost]
         [Route(Routes.JobsRoute)]
-        public Task<ActionResult<JobResponseModel>> CreateJobAsync([FromBody] CreateJobRequestModel model)
+        public Task<ActionResult<JobResponseModel>> CreateJobAsync([FromBody] JobRequestModel model)
             => ControllerHelpers.PostAsync<JobEntity, JobResponseModel>(
                 mContext,
                 mContext.Jobs,
@@ -59,7 +59,7 @@ namespace EvaluationSystemServer
         /// Get api/jobs
         [HttpGet]
         [Route(Routes.JobsRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedJobResponseModel>>> GetJobsAsync([FromQuery] JobArgs args)
+        public Task<ActionResult<IEnumerable<JobResponseModel>>> GetJobsAsync([FromQuery] JobArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<JobEntity, bool>>>();
@@ -90,7 +90,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => args.MaxSalary <= x.Salary);
 
             // Gets the response models for each job entity
-            return ControllerHelpers.GetAllAsync<JobEntity, EmbeddedJobResponseModel>(
+            return ControllerHelpers.GetAllAsync<JobEntity, JobResponseModel>(
                 JobsQuery,
                 args,
                 filters);
@@ -104,13 +104,13 @@ namespace EvaluationSystemServer
         /// Get api/jobs/{jobId} == api/jobs/1
         [HttpGet]
         [Route(Routes.JobRoute)]
-        public Task<ActionResult<EmbeddedJobResponseModel>> GetJobAsync([FromRoute] int jobId)
+        public Task<ActionResult<JobResponseModel>> GetJobAsync([FromRoute] int jobId)
         {
             // The needed expression for the filter
             Expression<Func<JobEntity, bool>> filter = x => x.Id == jobId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<JobEntity, EmbeddedJobResponseModel>(
+            return ControllerHelpers.GetAsync<JobEntity, JobResponseModel>(
                 JobsQuery,
                 DI.GetMapper,
                 filter);
@@ -124,9 +124,9 @@ namespace EvaluationSystemServer
         /// Put /api/jobs/{adminId}
         [HttpPut]
         [Route(Routes.JobRoute)]
-        public Task<ActionResult<JobResponseModel>> UpdateJobAsync([FromRoute] int jobId, [FromBody] UpdateJobRequestModel model)
+        public Task<ActionResult<JobResponseModel>> UpdateJobAsync([FromRoute] int jobId, [FromBody] JobRequestModel model)
         {
-            return ControllerHelpers.PutAsync<UpdateJobRequestModel, JobEntity, JobResponseModel>(
+            return ControllerHelpers.PutAsync<JobRequestModel, JobEntity, JobResponseModel>(
                 mContext,
                 JobsQuery,
                 model,

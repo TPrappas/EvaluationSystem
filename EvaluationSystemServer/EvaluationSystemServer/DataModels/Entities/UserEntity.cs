@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿// Ignore Spelling: Username Bio
+
+using Bogus.DataSets;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -77,6 +80,12 @@ namespace EvaluationSystemServer
         /// </summaryJobApplicationEntity
         private ICollection<MeetingEntity>? mOrganizersMeeting;
 
+        /// <summary>
+        /// The member of the <see cref="Notifications"/> property
+        /// 
+        /// </summary>
+        private ICollection<NotificationEntity>? mNotifications;
+
         #endregion
 
         #region Public Properties
@@ -89,6 +98,16 @@ namespace EvaluationSystemServer
             get => mUsername ?? string.Empty;
             
             set => mUsername = value;
+        }
+
+        /// <summary>
+        /// The normalized <see cref="Name"/>
+        /// </summary>
+        public string NormalizedName
+        {
+            get => ControllerHelpers.NormalizeString(Username);
+
+            set { }
         }
 
         /// <summary>
@@ -204,6 +223,13 @@ namespace EvaluationSystemServer
             get => mProjects ??= new Collection<ProjectEntity>();
             
             set => mProjects = value;
+        }
+
+        public ICollection<NotificationEntity> Notifications 
+        {
+            get => mNotifications ??= new Collection<NotificationEntity>(); 
+            
+            set => mNotifications = value;
         }
 
         #region Applications

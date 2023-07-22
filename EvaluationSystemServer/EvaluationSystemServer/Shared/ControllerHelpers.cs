@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -9,6 +10,17 @@ namespace EvaluationSystemServer
     public static class ControllerHelpers
     {
         #region Public Methods
+
+        /// <summary>
+        /// Normalizes the specified <paramref name="input"/>
+        /// </summary>
+        /// <param name="input">The input</param>
+        /// <returns></returns>
+        [return: NotNullIfNotNull(nameof(input))]
+        public static string? NormalizeString(string? input)
+        {
+            return input?.ToUpper();
+        }
 
         /// <summary>
         /// Post request
@@ -68,6 +80,34 @@ namespace EvaluationSystemServer
             where TEntity : BaseEntity
         {
             foreach(var filter in filters)
+                query = query.Where(filter);
+
+            // Gets the all the entities of the db set 
+            var entities = await query.Skip(args.Page * args.PerPage).Take(args.PerPage).ToListAsync();
+
+            // Creates and returns an Microsoft.AspNetCore.Mvc.OkObjectResult object that
+            // produces an Microsoft.AspNetCore.Http.StatusCodes.Status200OK
+            // response with all the response models of the entities
+            return new OkObjectResult(DI.GetMapper.Map<IEnumerable<TResponseModel>>(entities));
+        }
+
+        /// <summary>
+        /// Gets all the response models
+        /// </summary>
+        /// <typeparam name="TEntity">The entity</typeparam>
+        /// <typeparam name="TResponseModel">The response model</typeparam>
+        /// <param name="query">The db set</param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public static async Task<ActionResult<IEnumerable<TResponseModel>>> GetAllAsync<TEntity, TArgs, TResponseModel>(IQueryable<TEntity> query, TArgs args, Action<TArgs, List<Expression<Func<TEntity, bool>>>>? configureFilters = null)
+            where TArgs : BaseArgs
+            where TEntity : BaseEntity
+        {
+            var filters = new List<Expression<Func<TEntity, bool>>>();
+
+            configureFilters?.Invoke(args, filters);
+
+            foreach (var filter in filters)
                 query = query.Where(filter);
 
             // Gets the all the entities of the db set 
