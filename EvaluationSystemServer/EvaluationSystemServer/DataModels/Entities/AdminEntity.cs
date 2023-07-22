@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: Admin
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +34,17 @@ namespace EvaluationSystemServer
             get => mUsername ?? string.Empty;
             
             set => mUsername = value; 
-        }    
+        }
+
+        /// <summary>
+        /// The normalized <see cref="Name"/>
+        /// </summary>
+        public string NormalizedName
+        {
+            get => ControllerHelpers.NormalizeString(Username);
+
+            set { }
+        }
 
         /// <summary>
         /// The password

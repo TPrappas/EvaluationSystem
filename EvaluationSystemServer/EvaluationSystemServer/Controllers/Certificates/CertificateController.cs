@@ -45,7 +45,7 @@ namespace EvaluationSystemServer
         /// Post api/certificates
         [HttpPost]
         [Route(Routes.CertificatesRoute)]
-        public Task<ActionResult<CertificateResponseModel>> CreateCertificateAsync([FromBody] CreateCertificateRequestModel model)
+        public Task<ActionResult<CertificateResponseModel>> CreateCertificateAsync([FromBody] CertificateRequestModel model)
             => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Certificates,
@@ -58,46 +58,13 @@ namespace EvaluationSystemServer
         /// Get api/certificates
         [HttpGet]
         [Route(Routes.CertificatesRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedCertificateResponseModel>>> GetCertificatesAsync([FromQuery] CertificateArgs args)
+        public Task<ActionResult<IEnumerable<CertificateResponseModel>>> GetCertificatesAsync([FromQuery] CertificateArgs args)
         {
-            // The list of the filters
-            var filters = new List<Expression<Func<CertificateEntity, bool>>>();
-
-            // If Search is not null...
-            if (!string.IsNullOrEmpty(args.Search))
-                // Add to filters
-                filters.Add(x => x.Name.Contains(args.Search));
-
-            // If the After Date Created is not null...
-            if (args.AfterDateCreated is not null)
-                // Add to filters
-                filters.Add(x => x.DateCreated >= args.AfterDateCreated);
-
-            // If the After Date Created is not null...
-            if (args.BeforeDateCreated is not null)
-                // Add to filters
-                filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
-
-            // If Department is not null...
-            if (!string.IsNullOrEmpty(args.Department))
-                // Add to filters
-                filters.Add(x => x.Department.Contains(args.Department));
-
-            // If the Min Grade is not null...
-            if (args.MinGrade is not null)
-                // Add to filters
-                filters.Add(x => args.MinGrade >= x.Grade);
-
-            // If the Min Grade is not null...
-            if (args.MaxGrade is not null)
-                // Add to filters
-                filters.Add(x => args.MaxGrade <= x.Grade);
-
             // Gets the response models for each certificate entity
-            return ControllerHelpers.GetAllAsync<CertificateEntity, EmbeddedCertificateResponseModel>(
+            return ControllerHelpers.GetAllAsync<CertificateEntity, CertificateArgs, CertificateResponseModel>(
                 CertificatesQuery,
                 args,
-                filters);
+                (args, filters) => filters.AddCertificateFilters(args));
         }
 
         /// <summary>
@@ -108,13 +75,13 @@ namespace EvaluationSystemServer
         /// Get api/certificates/{certificateId} == api/certificates/1
         [HttpGet]
         [Route(Routes.CertificateRoute)]
-        public Task<ActionResult<EmbeddedCertificateResponseModel>> GetCertificateAsync([FromRoute] int certificateId)
+        public Task<ActionResult<CertificateResponseModel>> GetCertificateAsync([FromRoute] int certificateId)
         {
             // The needed expression for the filter
             Expression<Func<CertificateEntity, bool>> filter = x => x.Id == certificateId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<CertificateEntity, EmbeddedCertificateResponseModel>(
+            return ControllerHelpers.GetAsync<CertificateEntity, CertificateResponseModel>(
                 CertificatesQuery,
                 DI.GetMapper,
                 filter);
@@ -128,9 +95,9 @@ namespace EvaluationSystemServer
         /// Put /api/certificates/{certificatesId}
         [HttpPut]
         [Route(Routes.CertificateRoute)]
-        public Task<ActionResult<CertificateResponseModel>> UpdateCertificateAsync([FromRoute] int certificateId, [FromBody] UpdateCertificateRequestModel model)
+        public Task<ActionResult<CertificateResponseModel>> UpdateCertificateAsync([FromRoute] int certificateId, [FromBody] CertificateRequestModel model)
         {
-            return ControllerHelpers.PutAsync<UpdateCertificateRequestModel, CertificateEntity, CertificateResponseModel>(
+            return ControllerHelpers.PutAsync<CertificateRequestModel, CertificateEntity, CertificateResponseModel>(
                 mContext,
                 CertificatesQuery,
                 model,

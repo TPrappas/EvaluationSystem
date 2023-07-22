@@ -57,7 +57,7 @@ namespace EvaluationSystemServer
         /// Get api/admins
         [HttpGet]
         [Route(Routes.AdminsRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedAdminResponseModel>>> GetAdminsAsync([FromQuery] AdminArgs args)
+        public Task<ActionResult<IEnumerable<AdminResponseModel>>> GetAdminsAsync([FromQuery] AdminArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<AdminEntity, bool>>>();
@@ -78,7 +78,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
             // Gets the response models for each admin entity
-            return ControllerHelpers.GetAllAsync<AdminEntity, EmbeddedAdminResponseModel>(
+            return ControllerHelpers.GetAllAsync<AdminEntity, AdminResponseModel>(
                 AdminsQuery,
                 args,
                 filters);
@@ -92,13 +92,13 @@ namespace EvaluationSystemServer
         /// Get api/admins/{adminId} == api/admins/1
         [HttpGet]
         [Route(Routes.AdminRoute)]
-        public Task<ActionResult<EmbeddedAdminResponseModel>> GetAdminAsync([FromRoute] int adminId)
+        public Task<ActionResult<AdminResponseModel>> GetAdminAsync([FromRoute] int adminId)
         {
             // The needed expression for the filter
             Expression<Func<AdminEntity, bool>> filter = x => x.Id == adminId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<AdminEntity, EmbeddedAdminResponseModel>(
+            return ControllerHelpers.GetAsync<AdminEntity, AdminResponseModel>(
                 AdminsQuery,
                 DI.GetMapper,
                 filter);

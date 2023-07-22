@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace EvaluationSystemServer
 {
-    public class CertificateEntity : BaseEntity
+    public class CertificateEntity : NormalizedEntity
     {
         #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
 
         /// <summary>
         /// The member of the <see cref="Department"/> property
@@ -29,16 +24,6 @@ namespace EvaluationSystemServer
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The name
-        /// </summary>
-        public string Name 
-        { 
-            get => mName ?? string.Empty; 
-            
-            set => mName = value; 
-        }
 
         /// <summary>
         /// The department
@@ -95,8 +80,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static CertificateEntity FromRequestModel(CreateCertificateRequestModel model)
-            => ControllerHelpers.FromRequestModel<CertificateEntity, CreateCertificateRequestModel>(model);
+        public static CertificateEntity FromRequestModel(CertificateRequestModel model)
+            => ControllerHelpers.FromRequestModel<CertificateEntity, CertificateRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="CertificateResponseModel"/> from the current <see cref="CertificateEntity"/>

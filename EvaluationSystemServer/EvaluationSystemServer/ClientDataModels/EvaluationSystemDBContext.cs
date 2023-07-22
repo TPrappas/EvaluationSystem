@@ -84,6 +84,11 @@ namespace EvaluationSystemServer
         /// </summary>
         public DbSet<JobApplicationEntity> JobApplications { get; set; }
 
+        /// <summary>
+        /// The notifications
+        /// </summary>
+        public DbSet<NotificationEntity> Notifications { get; set; }
+
         #endregion
 
         #region Constructors
@@ -212,6 +217,13 @@ namespace EvaluationSystemServer
                 .WithOne(x => x.Organizer)
                 .HasForeignKey(x => x.OrganizerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(x => x.Notifications)
+                .WithOne(x => x.User)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             #endregion
 

@@ -96,8 +96,8 @@ namespace EvaluationSystemServer
         /// <param name="jobId">the job's id</param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static JobPositionEntity FromRequestModel(CreateJobPositionRequestModel model)
-            => ControllerHelpers.FromRequestModel<JobPositionEntity, CreateJobPositionRequestModel>(model);
+        public static JobPositionEntity FromRequestModel(JobPositionRequestModel model)
+            => ControllerHelpers.FromRequestModel<JobPositionEntity, JobPositionRequestModel>(model);
 
         /// <summary>
         /// Creates and returns a <see cref="JobPositionResponseModel"/> from the current <see cref="JobPositionEntity"/>

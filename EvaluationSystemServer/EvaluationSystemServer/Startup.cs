@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using Bogus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -34,6 +36,8 @@ namespace EvaluationSystemServer
             services.AddSingleton<UsersManager>();
 
             services.AddSingleton<ProjectsManager>();
+
+            services.AddSwaggerGen();
 
             services.AddControllers();
 
@@ -131,7 +135,7 @@ namespace EvaluationSystemServer
                 }
 
                 // Do not map values when the values of the properties of the request models are null
-                cfg.ForAllMaps((map, options) =>
+                cfg.Internal().ForAllMaps((map, options) =>
                 {
                     if (map.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix) && map.DestinationType.Name.EndsWith(FrameworkConstructionExtensions.EntitySuffix))
                         options.ForAllMembers(x =>
@@ -141,17 +145,15 @@ namespace EvaluationSystemServer
                         });
                 });
 
-                cfg.ForAllPropertyMaps(
-                        (map) => map.SourceType is not null && map.DestinationType is not null && map.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix) && map.DestinationType.Name.EndsWith(FrameworkConstructionExtensions.EntitySuffix) && map.SourceType is not null && map.SourceType == typeof(IEnumerable<int>),
+                cfg.Internal().ForAllPropertyMaps(
+                        (map) => map.SourceType is not null
+                        && map.DestinationType is not null 
+                        && map.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix) 
+                        && map.DestinationType.Name.EndsWith(FrameworkConstructionExtensions.EntitySuffix) 
+                        && map.SourceType is not null 
+                        && map.SourceType == typeof(IEnumerable<int>),
                         (map, opts) => opts.Ignore());
 
-                //cfg.ForAllPropertyMaps(propertyMap => propertyMap.TypeMap.SourceType.Name.EndsWith(FrameworkConstructionExtensions.RequestModelSuffix)
-                //                                                               && (TypeHelpers.GetNonNullableType(propertyMap.SourceType) == propertyMap.DestinationType
-                //                                                                || propertyMap.SourceType == propertyMap.DestinationType),
-                //      (proptertyMap, c) =>
-                //      {
-                //          c.MapFrom(new IgnoreNullResolver(), proptertyMap.SourceMember.Name);
-                //      });
             });
 
             // Create the mapper
@@ -170,6 +172,10 @@ namespace EvaluationSystemServer
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EvaluationSystem v1"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -2,14 +2,9 @@
 
 namespace EvaluationSystemServer
 {
-    public class MeetingEntity : BaseEntity
+    public class MeetingEntity : NormalizedEntity
     {
         #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Title"/> property
-        /// </summary>
-        private string? mTitle;
 
         /// <summary>
         /// The member of the <see cref="Location"/> property
@@ -39,16 +34,6 @@ namespace EvaluationSystemServer
         /// The link
         /// </summary>
         public Uri? Link { get; set; }
-
-        /// <summary>
-        /// The title
-        /// </summary>
-        public string Title 
-        { 
-            get => mTitle ?? string.Empty;
-            
-            set => mTitle = value;
-        }
 
         /// <summary>
         /// The description
@@ -110,8 +95,8 @@ namespace EvaluationSystemServer
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static MeetingEntity FromRequestModel(CreateMeetingRequestModel model)
-            => ControllerHelpers.FromRequestModel<MeetingEntity, CreateMeetingRequestModel>(model);
+        public static MeetingEntity FromRequestModel(MeetingRequestModel model)
+            => ControllerHelpers.FromRequestModel<MeetingEntity, MeetingRequestModel>(model);
 
 
         /// <summary>

@@ -46,7 +46,7 @@ namespace EvaluationSystemServer
         /// Post api/jobPositions
         [HttpPost]
         [Route(Routes.JobPositionsRoute)]
-        public Task<ActionResult<JobPositionResponseModel>> CreateJobPositionAsync([FromBody] CreateJobPositionRequestModel model)
+        public Task<ActionResult<JobPositionResponseModel>> CreateJobPositionAsync([FromBody] JobPositionRequestModel model)
             => ControllerHelpers.PostAsync<JobPositionEntity, JobPositionResponseModel>(
                 mContext,
                 mContext.JobPositions,
@@ -59,7 +59,7 @@ namespace EvaluationSystemServer
         /// Get api/jobPositions
         [HttpGet]
         [Route(Routes.JobPositionsRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedJobPositionResponseModel>>> GetJobPositionsAsync([FromQuery] JobPositionArgs args)
+        public Task<ActionResult<IEnumerable<JobPositionResponseModel>>> GetJobPositionsAsync([FromQuery] JobPositionArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<JobPositionEntity, bool>>>();
@@ -100,7 +100,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => !args.ExcludeCompanies.Contains(x.CompanyId));
 
             // Gets the response models for each job position entity
-            return ControllerHelpers.GetAllAsync<JobPositionEntity, EmbeddedJobPositionResponseModel>(
+            return ControllerHelpers.GetAllAsync<JobPositionEntity, JobPositionResponseModel>(
                 JobPositionsQuery,
                 args,
                 filters);
@@ -114,13 +114,13 @@ namespace EvaluationSystemServer
         /// Get api/jobPosition/{positionId} == api/jobPosition/1
         [HttpGet]
         [Route(Routes.JobPositionRoute)]
-        public Task<ActionResult<EmbeddedJobPositionResponseModel>> GetJobPositionAsync([FromRoute] int jobPositionId)
+        public Task<ActionResult<JobPositionResponseModel>> GetJobPositionAsync([FromRoute] int jobPositionId)
         {
             // The needed expression for the filter
             Expression<Func<JobPositionEntity, bool>> filter = x => x.Id == jobPositionId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<JobPositionEntity, EmbeddedJobPositionResponseModel>(
+            return ControllerHelpers.GetAsync<JobPositionEntity, JobPositionResponseModel>(
                 JobPositionsQuery,
                 DI.GetMapper,
                 filter);
@@ -134,9 +134,9 @@ namespace EvaluationSystemServer
         /// Put /api/jobPosition/{jobPositionId}
         [HttpPut]
         [Route(Routes.JobPositionRoute)]
-        public Task<ActionResult<JobPositionResponseModel>> UpdateJobPositionAsync([FromRoute] int jobPositionId, [FromBody] UpdateJobPositionRequestModel model)
+        public Task<ActionResult<JobPositionResponseModel>> UpdateJobPositionAsync([FromRoute] int jobPositionId, [FromBody] JobPositionRequestModel model)
         {
-            return ControllerHelpers.PutAsync<UpdateJobPositionRequestModel, JobPositionEntity, JobPositionResponseModel>(
+            return ControllerHelpers.PutAsync<JobPositionRequestModel, JobPositionEntity, JobPositionResponseModel>(
                 mContext,
                 JobPositionsQuery,
                 model,

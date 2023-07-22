@@ -44,7 +44,7 @@ namespace EvaluationSystemServer
         /// Post api/categories
         [HttpPost]
         [Route(Routes.CategoriesRoute)]
-        public Task<ActionResult<CategoryResponseModel>> CreateCategoryAsync([FromBody] CreateCategoryRequestModel model)
+        public Task<ActionResult<CategoryResponseModel>> CreateCategoryAsync([FromBody] CategoryRequestModel model)
             => ControllerHelpers.PostAsync(
                 mContext,
                 mContext.Categories,
@@ -57,7 +57,7 @@ namespace EvaluationSystemServer
         /// Get api/categories
         [HttpGet]
         [Route(Routes.CategoriesRoute)]
-        public Task<ActionResult<IEnumerable<EmbeddedCategoryResponseModel>>> GetCategoriesAsync([FromQuery] CategoryArgs args)
+        public Task<ActionResult<IEnumerable<CategoryResponseModel>>> GetCategoriesAsync([FromQuery] CategoryArgs args)
         {
             // The list of the filters
             var filters = new List<Expression<Func<CategoryEntity, bool>>>();
@@ -78,7 +78,7 @@ namespace EvaluationSystemServer
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
             // Gets the response models for each category entity
-            return ControllerHelpers.GetAllAsync<CategoryEntity, EmbeddedCategoryResponseModel>(
+            return ControllerHelpers.GetAllAsync<CategoryEntity, CategoryResponseModel>(
                 CategoriesQuery,
                 args,
                 filters);
@@ -92,13 +92,13 @@ namespace EvaluationSystemServer
         /// Get api/categories/{categoriesId} == api/categories/1
         [HttpGet]
         [Route(Routes.CategoryRoute)]
-        public Task<ActionResult<EmbeddedCategoryResponseModel>> GetCategoryAsync([FromRoute] int categoryId)
+        public Task<ActionResult<CategoryResponseModel>> GetCategoryAsync([FromRoute] int categoryId)
         {
             // The needed expression for the filter
             Expression<Func<CategoryEntity, bool>> filter = x => x.Id == categoryId;
 
             // Gets the response model 
-            return ControllerHelpers.GetAsync<CategoryEntity, EmbeddedCategoryResponseModel>(
+            return ControllerHelpers.GetAsync<CategoryEntity, CategoryResponseModel>(
                 CategoriesQuery,
                 DI.GetMapper,
                 filter);
@@ -112,9 +112,9 @@ namespace EvaluationSystemServer
         /// Put /api/categories/{categoryId}
         [HttpPut]
         [Route(Routes.CategoryRoute)]
-        public Task<ActionResult<CategoryResponseModel>> UpdateCategoryAsync([FromRoute] int categoryId, [FromBody] UpdateCategoryRequestModel model)
+        public Task<ActionResult<CategoryResponseModel>> UpdateCategoryAsync([FromRoute] int categoryId, [FromBody] CategoryRequestModel model)
         {
-            return ControllerHelpers.PutAsync<UpdateCategoryRequestModel, CategoryEntity, CategoryResponseModel>(
+            return ControllerHelpers.PutAsync<CategoryRequestModel, CategoryEntity, CategoryResponseModel>(
                 mContext,
                 CategoriesQuery,
                 model,

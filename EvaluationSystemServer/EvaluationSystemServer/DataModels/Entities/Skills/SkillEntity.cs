@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace EvaluationSystemServer
 {
-    public class SkillEntity : BaseEntity
+    public class SkillEntity : NormalizedEntity
     {
         #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
 
         /// <summary>
         /// The member of the <see cref="Experience"/> property
@@ -29,16 +24,6 @@ namespace EvaluationSystemServer
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The name
-        /// </summary>
-        public string Name
-        {
-            get => mName ?? string.Empty;
-
-            set => mName = value;
-        }
 
         /// <summary>
         /// The experience

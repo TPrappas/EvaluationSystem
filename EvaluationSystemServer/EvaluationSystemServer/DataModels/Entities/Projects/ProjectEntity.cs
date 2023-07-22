@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace EvaluationSystemServer
 {
-    public class ProjectEntity : BaseEntity
+    public class ProjectEntity : NormalizedEntity
     {
         #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Name"/> property
-        /// </summary>
-        private string? mName;
 
         /// <summary>
         /// The member of the <see cref="Description"/> property
@@ -31,16 +26,6 @@ namespace EvaluationSystemServer
         #region Public Properties
 
         /// <summary>
-        /// The name
-        /// </summary>
-        public string Name
-        {
-            get => mName ?? string.Empty;
-
-            set => mName = value;
-        }
-
-        /// <summary>
         /// The description
         /// </summary>
         public string Description
@@ -53,7 +38,7 @@ namespace EvaluationSystemServer
         /// <summary>
         /// Is the project submitted
         /// </summary>
-        public bool isSubmitted { get; set; }
+        public bool IsSubmitted { get; set; }
 
         /// <summary>
         /// The grade
