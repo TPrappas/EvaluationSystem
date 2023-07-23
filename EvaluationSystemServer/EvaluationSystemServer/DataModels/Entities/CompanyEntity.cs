@@ -46,6 +46,12 @@ namespace EvaluationSystemServer
         /// </summary>
         private ICollection<UserEntity>? mUsers;
 
+        /// <summary>
+        /// The member of the <see cref="Lisenses"/> property
+        /// 
+        /// </summary>
+        private ICollection<LicenseEntity>? mLicenses;
+
         #endregion
 
         #region Public Properties
@@ -130,6 +136,16 @@ namespace EvaluationSystemServer
             get => mJobPositions ??= new Collection<JobPositionEntity>();
             
             set => mJobPositions = value;
+        }
+
+        /// <summary>
+        /// The company's licenses
+        /// </summary>
+        public ICollection<LicenseEntity> Licenses
+        {
+            get => mLicenses ??= new Collection<LicenseEntity>();
+
+            set => mLicenses = value;
         }
 
         #endregion

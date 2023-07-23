@@ -33,6 +33,11 @@
         /// </summary>
         public bool IsRead { get; set; }
 
+        /// <summary>
+        /// The related <see cref="EmbeddedUserResponseModel"/>
+        /// </summary>
+        public EmbeddedUserResponseModel? User { get; set; }
+
         #endregion
 
         #region Constructors

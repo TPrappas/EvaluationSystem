@@ -1,4 +1,6 @@
-﻿namespace EvaluationSystemServer
+﻿// Ignore Spelling: Bio
+
+namespace EvaluationSystemServer
 {
     public class UserResponseModel : DateResponseModel
     {
