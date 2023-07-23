@@ -17,7 +17,7 @@
         /// <summary>
         /// Is the notification read
         /// </summary>
-        public bool? isRead { get; set; }
+        public bool? IsRead { get; set; }
 
         /// <summary>
         /// The <see cref="BaseEntity.Id"/> of the related <see cref="UserEntity"/>

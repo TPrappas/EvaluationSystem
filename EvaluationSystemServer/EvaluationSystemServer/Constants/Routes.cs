@@ -130,5 +130,21 @@
 
         #endregion
 
+        #region Notification Routes
+
+        public const string NotificationsRoute = HomeRoute + "/notifications";
+
+        public const string NotificationRoute = NotificationsRoute + "/{notificationId}";
+
+        #endregion
+
+        #region License Routes
+
+        public const string LicensesRoute = HomeRoute + "/licenses";
+
+        public const string LicenseRoute = LicensesRoute + "/{licenseId}";
+
+        #endregion
+
     }
 }

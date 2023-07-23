@@ -89,6 +89,11 @@ namespace EvaluationSystemServer
         /// </summary>
         public DbSet<NotificationEntity> Notifications { get; set; }
 
+        /// <summary>
+        /// The licenses
+        /// </summary>
+        public DbSet<LicenseEntity> Licenses { get; set; }
+
         #endregion
 
         #region Constructors
@@ -299,6 +304,13 @@ namespace EvaluationSystemServer
                 .HasMany(x => x.JobPositions)
                 .WithOne(x => x.Company)
                 .HasPrincipalKey(x => x.Id) 
+                .HasForeignKey(x => x.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CompanyEntity>()
+                .HasMany(x => x.Licenses)
+                .WithOne(x => x.Company)
+                .HasPrincipalKey(x => x.Id)
                 .HasForeignKey(x => x.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
 
