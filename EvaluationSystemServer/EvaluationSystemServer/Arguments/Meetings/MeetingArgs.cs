@@ -22,6 +22,7 @@
         /// Organizer excluded
         /// </summary>
         public IEnumerable<int>? ExcludeOrganizer { get; set; }
+
         /// <summary>
         /// By after date
         /// </summary>
