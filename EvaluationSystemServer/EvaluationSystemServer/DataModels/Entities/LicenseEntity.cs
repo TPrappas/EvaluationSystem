@@ -73,6 +73,21 @@ namespace EvaluationSystemServer
 
         #region Public Methods
 
+        /// <summary>
+        /// Creates and returns a <see cref="LicenseEntity"/> from the specified <paramref name="model"/>
+        /// </summary>
+        /// <param name="model">The model</param>
+        /// <returns></returns>
+        public static LicenseEntity FromRequestModel(LicenseRequestModel model)
+            => ControllerHelpers.FromRequestModel<LicenseEntity, LicenseRequestModel>(model);
+
+        /// <summary>
+        /// Creates and returns a <see cref="LicenseResponseModel"/> from the current <see cref="LicenseEntity"/>
+        /// </summary>
+        /// <returns></returns>
+        public LicenseResponseModel ToResponseModel()
+            => ControllerHelpers.ToResponseModel<LicenseEntity, LicenseResponseModel>(this);
+
         #endregion
     }
 }

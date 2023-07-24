@@ -73,6 +73,11 @@ namespace EvaluationSystemServer
                 // Add to filters
                 filters.Add(x => x.DateCreated <= args.BeforeDateCreated);
 
+            // If the NotificationType is not null...
+            if (args.NotificationType is not null)
+                // Add to filters
+                filters.Add(x => args.NotificationType == x.NotificationType);
+
             // Gets the response models for each user entity
             return ControllerHelpers.GetAllAsync<NotificationEntity, NotificationResponseModel>(
                 NotificationsQuery,
