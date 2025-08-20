@@ -1,0 +1,29 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<br />
+<br />
+<br />
+
+<MudButton Variant="@Variant.Filled" Color="@Color.Primary" OnClick="@TestClient">
+    Click me
+</MudButton>
+
+<br />
+<br />
+<br />
+
+@if (!string.IsNullOrEmpty(mErrorMessage))
+{
+    <span>@mErrorMessage</span>
+}
+
+@if(mUser is not null)
+{
+    <strong style="font-size: 140%;">@mUser.FirstName @mUser.LastName</strong>
+}

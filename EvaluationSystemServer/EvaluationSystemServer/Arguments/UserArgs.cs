@@ -2,56 +2,22 @@
 {
     public class UserArgs : BaseArgs
     {
-        #region Private Members
-
-        /// <summary>
-        /// The member of the <see cref="Search"/> property
-        /// </summary>
-        private string? mSearch;
-
-        /// <summary>
-        /// The member of the <see cref="FirstName"/> property
-        /// </summary>
-        private string? mFirstName;
-
-        /// <summary>
-        /// The member of the <see cref="LastName"/> property
-        /// </summary>
-        private string? mLastName;
-
-        #endregion
-
         #region Public Properties 
 
         /// <summary>
         /// By username
         /// </summary>
-        public string Search
-        { 
-            get => mSearch ?? string.Empty; 
-            
-            set => mSearch = value;
-        }
+        public string Search { get; set; }
 
         /// <summary>
-        /// By firstname
+        /// By first name
         /// </summary>
-        public string FirstName
-        { 
-            get => mFirstName ?? string.Empty; 
-            
-            set => mFirstName = value;
-        }
+        public string FirstName { get; set; }
 
         /// <summary>
-        /// By lastname
+        /// By last name
         /// </summary>
-        public string LastName
-        {
-            get => mLastName ?? string.Empty;
-
-            set => mLastName = value;
-        }
+        public string LastName { get; set; }
 
         /// <summary>
         /// By minRating

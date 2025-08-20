@@ -103,12 +103,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The normalized <see cref="Name"/>
         /// </summary>
-        public string NormalizedName
-        {
-            get => ControllerHelpers.NormalizeString(Username);
+        //public string NormalizedName
+        //{
+        //    get => ControllerHelpers.NormalizeString(Username);
 
-            set { }
-        }
+        //    set { }
+        //}
 
         /// <summary>
         /// The password

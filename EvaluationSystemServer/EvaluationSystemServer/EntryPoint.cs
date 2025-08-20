@@ -226,7 +226,7 @@ namespace EvaluationSystemServer
                     Description = faker.Lorem.Sentence(20),
                     UserId = faker.Random.Int(1, 29),
                     Grade = faker.Random.Double(0.0, 10.0),
-                    isSubmitted = faker.Random.Bool(),
+                    //isSubmitted = faker.Random.Bool(),
                     SubmissionStart = faker.Date.RecentOffset(10, DateTimeOffset.Now),
                     SubmissionEnd = faker.Date.SoonOffset(20, DateTimeOffset.Now.AddDays(11)),
                     DateCreated = DateTimeOffset.Now,
