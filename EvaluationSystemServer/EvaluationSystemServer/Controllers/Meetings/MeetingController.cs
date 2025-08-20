@@ -142,16 +142,16 @@ namespace EvaluationSystemServer
         /// <param name="meetingId">The meeting's id</param>
         /// <param name="model">The meeting request model</param>
         /// Put /api/meetings/{meetingId}
-        [HttpPut]
-        [Route(Routes.MeetingRoute)]
-        public Task<ActionResult<MeetingResponseModel>> UpdateMeetingAsync([FromRoute] int meetingId, [FromBody] MeetingResponseModel model)
-        {
-            return ControllerHelpers.PutAsync<UpdateMeetingRequestModel, MeetingEntity, MeetingResponseModel>(
-                mContext,
-                MeetingsQuery,
-                model,
-                x => x.Id == meetingId);
-        }
+        //[HttpPut]
+        //[Route(Routes.MeetingRoute)]
+        //public Task<ActionResult<MeetingResponseModel>> UpdateMeetingAsync([FromRoute] int meetingId, [FromBody] MeetingResponseModel model)
+        //{
+        //    return ControllerHelpers.PutAsync<UpdateMeetingRequestModel, MeetingEntity, MeetingResponseModel>(
+        //        mContext,
+        //        MeetingsQuery,
+        //        model,
+        //        x => x.Id == meetingId);
+        //}
 
         /// <summary>
         /// Deletes the certificate with the specified id if exists from the database

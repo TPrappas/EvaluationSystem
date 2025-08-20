@@ -26,6 +26,16 @@ namespace EvaluationSystemServer
         }
 
         /// <summary>
+        /// The normalized <see cref="Name"/>
+        /// </summary>
+        //public string NormalizedName
+        //{
+        //    get => ControllerHelpers.NormalizeString(LicenseKey);
+
+        //    set { }
+        //}
+
+        /// <summary>
         /// The activation Date
         /// </summary>
         public DateTimeOffset ActivationDate { get; set; }

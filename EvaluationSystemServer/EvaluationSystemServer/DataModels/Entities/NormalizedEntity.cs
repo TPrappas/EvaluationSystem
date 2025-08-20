@@ -28,12 +28,12 @@ namespace EvaluationSystemServer
         /// <summary>
         /// The normalized <see cref="Name"/>
         /// </summary>
-        public string NormalizedName
-        {
-            get => ControllerHelpers.NormalizeString(Name);
+        //public string NormalizedName
+        //{
+        //    get => ControllerHelpers.NormalizeString(Name);
 
-            set { }
-        } 
+        //    set { }
+        //} 
 
         #endregion
     }
